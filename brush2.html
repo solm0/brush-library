@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>brushtest</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+        }
+        @font-face {
+            font-family: 'font';
+            src: url(./zhe0109VF.ttf);
+        }
+
+    </style>
+</head>
+<body>
+
+
+    <script>
+ let cnv;
+
+function setup() {
+  cnv = createCanvas(600,900)
+  background(225,225,216);
+
+  
+}
+
+function draw() {
+  
+
+    let c = random(['red', 'black', 'white']);
+    let c2 = random(['red', 'black', 'white']);
+
+rectMode(CENTER);
+  
+  
+  let v = random([8, 3]);
+  let v2 = random([8, 3]);
+  let s = random([circle,rect]);
+  let s2 = random([circle,rect]);
+  
+  
+  cnv.mouseClicked ( () =>
+                    {
+    fill(c)
+    s(mouseX -30, mouseY -30, v);
+    s(mouseX -30, mouseY +30, v);
+    s(mouseX -30, mouseY, v);
+    s(mouseX, mouseY -30, v);
+    s(mouseX, mouseY +30, v);
+    s2(mouseX, mouseY, v2);
+    s(mouseX +30, mouseY -30, v);
+    s(mouseX +30, mouseY +30, v);
+    s(mouseX +30, mouseY, v);
+    
+    fill(c2)
+    s2(mouseX -30, mouseY -30, v2);
+    s2(mouseX -30, mouseY +30, v2);
+    s2(mouseX -30, mouseY, v2);
+    s2(mouseX, mouseY -30, v2);
+    s2(mouseX, mouseY +30, v2);
+    s(mouseX, mouseY, v2);
+    s2(mouseX +30, mouseY -30, v2);
+    s2(mouseX +30, mouseY +30, v2);
+    s2(mouseX +30, mouseY, v2);
+  }
+  ) 
+ 
+  if(mouseIsPressed === true) {
+    fill('black');
+    strokeWeight(1);
+    line(pmouseX, pmouseY, mouseX, mouseY);
+    line(pmouseX -30, pmouseY, mouseX -30, mouseY);
+    line(pmouseX +30, pmouseY, mouseX +30, mouseY);
+    line(pmouseX, pmouseY +30, mouseX, mouseY +30);
+    line(pmouseX, pmouseY -30, mouseX, mouseY -30);
+    line(pmouseX +30, pmouseY -30, mouseX +30, mouseY -30);
+    line(pmouseX -30, pmouseY +30, mouseX -30, mouseY +30);
+    line(pmouseX -30, pmouseY -30, mouseX -30, mouseY -30);
+    line(pmouseX +30, pmouseY +30, mouseX +30, mouseY +30);
+    
+  }
+ 
+  
+  
+
+    
+    
+    
+   
+  
+  
+}
+    </script>
+</body>
+</html>

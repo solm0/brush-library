@@ -20,80 +20,105 @@
 
 
     <script>
- let cnv;
+ let symmetry = 2; 
+let angle;
+updateAngle(); //Angle step
+let largest; //Number of pixels of the largest side of the window
+let multip; 
 
 function setup() {
-  cnv = createCanvas(600,900)
+  createCanvas(windowWidth, windowHeight);
+  if (width > height) {
+    largest = width;
+  } else {
+    largest = height;
+  }
+  multip = largest / 100;
+  angleMode(DEGREES); //Set the angle mode to degrees
   background(225,225,216);
-
-  
 }
 
+
 function draw() {
+  frameRate(10);
+  rectMode(CENTER);
   
+  let mx = mouseX - width / 2;
+  let my = mouseY - height / 2
+  let pmx = pmouseX - width / 2;
+  let pmy = pmouseY - height / 2;
 
-    let c = random(['red', 'black', 'white']);
-    let c2 = random(['red', 'black', 'white']);
+  mx = snapToGrid(mx, multip);
+  my = snapToGrid(my, multip);
+  pmx = snapToGrid(pmx, multip);
+  pmy = snapToGrid(pmy, multip);
 
-rectMode(CENTER);
-  
-  
   let v = random([8, 3]);
   let v2 = random([8, 3]);
   let s = random([circle,rect]);
   let s2 = random([circle,rect]);
-  
-  
-  cnv.mouseClicked ( () =>
-                    {
-    fill(c)
-    s(mouseX -30, mouseY -30, v);
-    s(mouseX -30, mouseY +30, v);
-    s(mouseX -30, mouseY, v);
-    s(mouseX, mouseY -30, v);
-    s(mouseX, mouseY +30, v);
-    s2(mouseX, mouseY, v2);
-    s(mouseX +30, mouseY -30, v);
-    s(mouseX +30, mouseY +30, v);
-    s(mouseX +30, mouseY, v);
-    
-    fill(c2)
-    s2(mouseX -30, mouseY -30, v2);
-    s2(mouseX -30, mouseY +30, v2);
-    s2(mouseX -30, mouseY, v2);
-    s2(mouseX, mouseY -30, v2);
-    s2(mouseX, mouseY +30, v2);
-    s(mouseX, mouseY, v2);
-    s2(mouseX +30, mouseY -30, v2);
-    s2(mouseX +30, mouseY +30, v2);
-    s2(mouseX +30, mouseY, v2);
-  }
-  ) 
- 
-  if(mouseIsPressed === true) {
-    fill('black');
-    strokeWeight(1);
-    line(pmouseX, pmouseY, mouseX, mouseY);
-    line(pmouseX -30, pmouseY, mouseX -30, mouseY);
-    line(pmouseX +30, pmouseY, mouseX +30, mouseY);
-    line(pmouseX, pmouseY +30, mouseX, mouseY +30);
-    line(pmouseX, pmouseY -30, mouseX, mouseY -30);
-    line(pmouseX +30, pmouseY -30, mouseX +30, mouseY -30);
-    line(pmouseX -30, pmouseY +30, mouseX -30, mouseY +30);
-    line(pmouseX -30, pmouseY -30, mouseX -30, mouseY -30);
-    line(pmouseX +30, pmouseY +30, mouseX +30, mouseY +30);
-    
-  }
- 
+  let c = random(['red', 'black', 'white']);
+  let c2 = random(['red', 'black', 'white']);
   
   
 
+  if (mouseIsPressed) {
+    translate(width / 2, height / 2); //Translate to the centre
+ 
+    stroke('black');
+    strokeWeight(1);
+
     
-    
-    
-   
+    for (let i = 0; i < symmetry; i++) { //Repeat the process
+      push(); //Save matrix
+      rotate(i * angle); //Rotate
+          line(pmx, pmy, mx, my);
+          line(pmx -30, pmy -30, mx -30, my -30);
+          line(pmx +30, pmy +30, mx +30, my +30);
+            fill(c)
+          s(mx-30, my-30, v);
+          s(mx-30, my+30, v);
+          s(mx-30, my, v);
+          s(mx, my-30, v);
+          s(mx, my+30, v);
+          s(mx+30, my-30, v);
+          s(mx+30, my+30, v);
+          s(mx+30, my, v);
+            fill(c2)
+          s2(mx, my, v2);
+      
+      scale(-1, 1); //Flip the canvas
+          line(pmx, pmy, mx, my);
+          line(pmx -30, pmy -30, mx -30, my -30);
+          line(pmx +30, pmy +30, mx +30, my +30);
+            fill(c)
+          s(mx-30, my-30, v);
+          s(mx-30, my+30, v);
+          s(mx-30, my, v);
+          s(mx, my-30, v);
+          s(mx, my+30, v);
+          s(mx+30, my-30, v);
+          s(mx+30, my+30, v);
+          s(mx+30, my, v);
+            fill(c2)
+        s2(mx, my, v2);
+      pop(); //Restore matrix
+    }
+  }
   
-  
+}
+
+
+function updateAngle() { //A function to update the angle
+  angle = 360 / symmetry;
+}
+
+function snapToGrid(val, multiplier) { // A function that returns a value that is in an imaginary grid
+  let num = 0;
+  while (!(abs(val) - num <= multiplier)) {
+    num += multiplier;
+  }
+  return num * Math.sign(val);
 }
     </script>
 </body>

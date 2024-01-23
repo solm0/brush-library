@@ -25,12 +25,15 @@
         let largest;
         let multip;
 
-        //brush3_1, brush3_2
+        //brush3_1, brush3_2, brush3_3
         let drawing1 = false;
         let drawing2 = false;
+        let drawing3 = false;
         let points1 = [];
         let points2 = [];
+        let points3 = [];
         let fillColor;
+        let randomFilter;
 
 
         function setup() {
@@ -46,8 +49,9 @@
             multip = largest / 100;
             angleMode(DEGREES);
 
-            //brush3_1, brush3_2
+            //brush3_1, brush3_2, brush3_3
             fillColor = random([color(193,141,79,5),color(44,134,134, 5)]);
+            randomFilter = random([DILATE, ERODE]);
         }
 
 
@@ -72,6 +76,10 @@
             else if (keyCode === 82) {
                 console.log('brush3_2');
                 brush3_2();
+            }
+            else if (keyCode === 84) {
+                console.log('brush3_3');
+                brush3_3();
             }
         }
 
@@ -222,7 +230,6 @@
             }
             endShape();
 
-            // 도형이 닫혀있을 때, 내부를 fillColor로 채우기
             if (drawing1 && points1.length > 1) {
             
                 fill(fillColor);
@@ -244,8 +251,6 @@
 
             noFill();
             let sW = 25;
-            
-            
             strokeCap(SQUARE);
             
 
@@ -280,7 +285,6 @@
             }
             endShape();
 
-            // 도형이 닫혀있을 때, 내부를 fillColor로 채우기
             if (drawing2 && points2.length > 1) {
             
                 fill(fillColor);
@@ -294,20 +298,84 @@
                 endShape(CLOSE);
             }
         }
-            //brush3_1, brush3_2
+
+        function brush3_3() {
+            drawingContext.shadowBlur = 0;
+            frameRate(60);
+
+            noFill();
+            let sW = 25;
+            strokeCap(SQUARE);
+            
+
+            if (mouseIsPressed === true) {
+                
+            stroke('red');
+            strokeWeight(sW);
+            line(pmouseX, pmouseY, mouseX, mouseY);
+            
+            stroke(225,225,216);
+            strokeWeight(sW * 0.8);
+            line(pmouseX, pmouseY, mouseX, mouseY);
+
+            stroke('black');
+            strokeWeight(sW * 0.6);
+            line(pmouseX, pmouseY, mouseX, mouseY);
+            
+            stroke(225,225,216);
+            strokeWeight(sW * 0.4);
+            line(pmouseX, pmouseY, mouseX, mouseY);
+            
+            stroke('red');
+            strokeWeight(sW * 0.1);
+            line(pmouseX, pmouseY, mouseX, mouseY);
+                
+            }
+            
+            beginShape();
+            for (let pt of points3) {
+                vertex(pt.x, pt.y);
+            }
+            endShape();
+
+            if (drawing3 && points3.length > 1) {
+            
+                fill(fillColor);
+                noStroke();
+                filter(randomFilter);
+                blendMode(DIFFERENCE);
+                beginShape();
+                for (let pt of points3) {
+                vertex(pt.x, pt.y);
+                }
+                endShape(CLOSE);
+            }
+        }
+
+
+
+
+
+
+            //brush3_1, brush3_2, brush3_3
             function mousePressed() {
                 drawing1 = true;
                 points1 = [];
 
                 drawing2 = true;
-            }
 
+                drawing3 = true;
+                points3 = [];
+            }
             function mouseDragged() {
                 if (drawing1) {
                     points1.push(createVector(mouseX, mouseY));
                 }
                 if (drawing2) {
                     points2.push(createVector(mouseX, mouseY));
+                }
+                if (drawing3) {
+                    points3.push(createVector(mouseX, mouseY));
                 }
             }
 

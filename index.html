@@ -3,79 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>brushtest</title>
+    <title>brushtest-2</title>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
     <style>
-        * {
+         * {
             margin: 0;
             padding: 0;
             overflow: hidden;
         }
-        @font-face {
-            font-family: 'font';
-            src: url(./zhe0109VF.ttf);
-        }
-        iframe {
-          position: absolute;
-          mix-blend-mode: multiply;
-          width: 100vw;
-          height: 300px;
-          left: 0;
-        }
-        .brush1 {
-          top: 50px;
-        }
-        .brush2 {
-          top: 350px;
-        }
-        .brush3 {
-          top: 650px;
-        }
- 
-        
-
     </style>
 </head>
 <body>
-  <h1>this is my brush library.</h1>
-  <a href="./brush1.html">brush1</a>
-  <a href="./brush2.html">brush2</a>
-  <a href="./brush3.html">brush3</a>
-  <iframe class="brush1" src="./brush1.html" frameborder="0"></iframe>
-  <iframe class="brush2" src="./brush2.html" frameborder="0"></iframe>
-  <iframe class="brush3" src="./brush3.html" frameborder="0"></iframe>
-
-
-
+    <h1>1월 23일. key로 브러쉬 바꾸기</h1>
     <script>
 
-
-      let font;
-
-      function preload() {
-        font = loadFont('./zhe0109VF.ttf')
-      }
-
-      function setup() {
-        createCanvas(windowWidth, windowHeight);
-
-        fill(250, 235, 215);
-        noStroke();
-        rectMode(CENTER);
-        rect(windowWidth/2, windowHeight/2,1600,1800);
-        fill(128, 0, 0);
-        textSize(140);
-        stroke(0);
-        strokeWeight(30);
-        textFont(font);
-        textWrap(CHAR);
-        textAlign(CENTER,CENTER);
-        textLeading(120);
-        text('ЖКФХГПЬЫЪТБВШЩИЙЦНЛР', windowWidth/2, windowHeight/2 -100, 400, 1000);
-        
-      }
-      function draw() {
-      }
     </script>
 </body>
 </html>

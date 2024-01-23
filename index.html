@@ -25,10 +25,12 @@
         let largest;
         let multip;
 
-        //brush3_1
-        let drawing = false; // 마우스 드래그 상태 확인
-        let points = []; // 그린 점의 좌표 저장
-        let fillColor; // 도형 내부의 색상
+        //brush3_1, brush3_2
+        let drawing1 = false;
+        let drawing2 = false;
+        let points1 = [];
+        let points2 = [];
+        let fillColor;
 
 
         function setup() {
@@ -44,7 +46,7 @@
             multip = largest / 100;
             angleMode(DEGREES);
 
-            //brush3_1
+            //brush3_1, brush3_2
             fillColor = random([color(193,141,79,5),color(44,134,134, 5)]);
         }
 
@@ -64,8 +66,12 @@
                 brush2();
             }
             else if (keyCode === 69) {
-                console.log('brush3-1');
+                console.log('brush3_1');
                 brush3_1();
+            }
+            else if (keyCode === 82) {
+                console.log('brush3_2');
+                brush3_2();
             }
         }
 
@@ -211,36 +217,99 @@
             }
 
             beginShape();
-            for (let pt of points) {
+            for (let pt of points1) {
                 vertex(pt.x, pt.y);
             }
             endShape();
 
             // 도형이 닫혀있을 때, 내부를 fillColor로 채우기
-            if (drawing && points.length > 1) {
+            if (drawing1 && points1.length > 1) {
             
                 fill(fillColor);
                 noStroke();
                 
                 blendMode(DIFFERENCE);
                 beginShape();
-                for (let pt of points) {
+                for (let pt of points1) {
                 vertex(pt.x, pt.y);
                 }
                 endShape(CLOSE);
             }
         }
 
-            function mousePressed() {
-                drawing = true;
-                points = [];
+            
+        function brush3_2() {
+            drawingContext.shadowBlur = 0;
+            frameRate(60);
+
+            noFill();
+            let sW = 25;
+            
+            
+            strokeCap(SQUARE);
+            
+
+            if (mouseIsPressed === true) {
+                
+            stroke('red');
+            strokeWeight(sW);
+            line(pmouseX, pmouseY, mouseX, mouseY);
+            
+            stroke(225,225,216);
+            strokeWeight(sW * 0.8);
+            line(pmouseX, pmouseY, mouseX, mouseY);
+
+            stroke('black');
+            strokeWeight(sW * 0.6);
+            line(pmouseX, pmouseY, mouseX, mouseY);
+            
+            stroke(225,225,216);
+            strokeWeight(sW * 0.4);
+            line(pmouseX, pmouseY, mouseX, mouseY);
+            
+            stroke('red');
+            strokeWeight(sW * 0.1);
+            line(pmouseX, pmouseY, mouseX, mouseY);
+                
             }
+
+            
+            beginShape();
+            for (let pt of points2) {
+                vertex(pt.x, pt.y);
+            }
+            endShape();
+
+            // 도형이 닫혀있을 때, 내부를 fillColor로 채우기
+            if (drawing2 && points2.length > 1) {
+            
+                fill(fillColor);
+                noStroke();
+                filter(DILATE);
+                blendMode(DIFFERENCE);
+                beginShape();
+                for (let pt of points2) {
+                vertex(pt.x, pt.y);
+                }
+                endShape(CLOSE);
+            }
+        }
+            //brush3_1, brush3_2
+            function mousePressed() {
+                drawing1 = true;
+                points1 = [];
+
+                drawing2 = true;
+            }
+
             function mouseDragged() {
-                if (drawing) {
-                    points.push(createVector(mouseX, mouseY));
+                if (drawing1) {
+                    points1.push(createVector(mouseX, mouseY));
+                }
+                if (drawing2) {
+                    points2.push(createVector(mouseX, mouseY));
                 }
             }
-        
 
 
    </script>

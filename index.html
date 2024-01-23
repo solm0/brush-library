@@ -18,9 +18,28 @@
     <script>
         let cnv;
 
+        //brush2
+        let symmetry = 2; 
+        let angle;
+        updateAngle();
+        let largest;
+        let multip; 
+
         function setup() {
             cnv = createCanvas(windowWidth, windowHeight);
             background(220);
+
+            //brush2
+            if (width > height) {
+                largest = width;
+            } else {
+                largest = height;
+            }
+            multip = largest / 100;
+            angleMode(DEGREES);
+
+
+
         }
         function draw() {
             keyPressed();
@@ -38,6 +57,7 @@
         }
 
         function brush1() {
+            frameRate(60);
             let mx = (width/2-mouseX) + width / 2;
             let pmx = (width/2-pmouseX) + width / 2;
 
@@ -60,6 +80,89 @@
                 drawingContext.shadowColor = color(193,141,79)
                 drawingContext.shadowBlur = 32;
             }
+        }
+        function brush2() {
+            frameRate(10);
+            rectMode(CENTER);
+            
+            let mx = mouseX - width / 2;
+            let my = mouseY - height / 2
+            let pmx = pmouseX - width / 2;
+            let pmy = pmouseY - height / 2;
+
+            mx = snapToGrid(mx, multip);
+            my = snapToGrid(my, multip);
+            pmx = snapToGrid(pmx, multip);
+            pmy = snapToGrid(pmy, multip);
+
+            let v = random([8, 3]);
+            let v2 = random([8, 3]);
+            let s = random([circle,rect]);
+            let s2 = random([circle,rect]);
+            let c = random(['red', 'black', 'white']);
+            let c2 = random(['red', 'black', 'white']);
+            
+            
+
+            if (mouseIsPressed) {
+                translate(width / 2, height / 2); //Translate to the centre
+            
+                stroke('black');
+                strokeWeight(1);
+                drawingContext.shadowBlur = 0;
+
+                
+                for (let i = 0; i < symmetry; i++) { //Repeat the process
+                push(); //Save matrix
+                rotate(i * angle); //Rotate
+                    line(pmx, pmy, mx, my);
+                    line(pmx -30, pmy -30, mx -30, my -30);
+                    line(pmx +30, pmy +30, mx +30, my +30);
+                        fill(c)
+                    s(mx-30, my-30, v);
+                    s(mx-30, my+30, v);
+                    s(mx-30, my, v);
+                    s(mx, my-30, v);
+                    s(mx, my+30, v);
+                    s(mx+30, my-30, v);
+                    s(mx+30, my+30, v);
+                    s(mx+30, my, v);
+                        fill(c2)
+                    s2(mx, my, v2);
+                
+                scale(-1, 1); //Flip the canvas
+                    line(pmx, pmy, mx, my);
+                    line(pmx -30, pmy -30, mx -30, my -30);
+                    line(pmx +30, pmy +30, mx +30, my +30);
+                        fill(c)
+                    s(mx-30, my-30, v);
+                    s(mx-30, my+30, v);
+                    s(mx-30, my, v);
+                    s(mx, my-30, v);
+                    s(mx, my+30, v);
+                    s(mx+30, my-30, v);
+                    s(mx+30, my+30, v);
+                    s(mx+30, my, v);
+                        fill(c2)
+                    s2(mx, my, v2);
+                pop(); //Restore matrix
+                }
+            }
+            
+            }
+
+
+            function updateAngle() { //A function to update the angle
+            angle = 360 / symmetry;
+            }
+
+            function snapToGrid(val, multiplier) { // A function that returns a value that is in an imaginary grid
+            let num = 0;
+            while (!(abs(val) - num <= multiplier)) {
+                num += multiplier;
+            }
+            return num * Math.sign(val);
+
         }
    </script>
 </body>

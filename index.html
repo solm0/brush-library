@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>brushtest-2</title>
+    <title>brush library</title>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
     <style>
          * {
@@ -108,6 +108,7 @@
         function brush1() {
             frameRate(60);
             blendMode(BLEND);
+
             let mx = (width/2-mouseX) + width / 2;
             let pmx = (width/2-pmouseX) + width / 2;
 
@@ -117,14 +118,14 @@
                 py = pow(pmouseY-mouseY, 2);
                 
                 stroke(113,37,5)
-                strokeWeight(3-sqrt(px+py));
+                strokeWeight(4 - sqrt(px+py));
                 line(mx-2, mouseY+2, pmx-2, pmouseY+2);
                 line(mx+2, mouseY-2, pmx+2, pmouseY-2);
                 line(pmouseX-2,pmouseY-2,mouseX-2,mouseY-2);
                 line(pmouseX+2,pmouseY+2,mouseX+2,mouseY+2);
                 
                 stroke(225,225,216);
-                strokeWeight(3 - sqrt(px+py));
+                strokeWeight(4 - sqrt(px+py));
                 line(mx, mouseY, pmx, pmouseY);
                 line(pmouseX, pmouseY,mouseX,mouseY);
                 drawingContext.shadowColor = color(193,141,79)
@@ -137,8 +138,6 @@
             drawingContext.shadowBlur = 0;
 
             rectMode(CENTER);
-
-            
             let mx = mouseX - width / 2;
             let my = mouseY - height / 2
             let pmx = pmouseX - width / 2;

@@ -26,24 +26,25 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            pointer-events: none;
         }
         .parent * {
-            background-color: #FFFFFF;
             position: relative;
             border: 0px solid black;
-
+            
+            background-color: transparent;
             /* transition: 0.5s; */
             font-family: 'Poppins', sans-serif;
             font-size: 30px;
             text-decoration: underline;
             text-decoration-thickness: 1px;
             line-height: 35px;
-            pointer-events: all;
+            user-select: none;
         }
         .parent *:hover {
-            color: mediumslateblue;
+            background-color: rgb(123, 104, 238);
+            color: white;
         }
+
     </style>
 </head>
 <body>
@@ -131,13 +132,13 @@
             fillColor = random([color(193,141,79,5),color(44,134,134, 5)]);
             randomFilter = random([DILATE, ERODE]);
         }
+
         function setBrushFunction(buttonName) {
             currentBrushFunction = buttonFunctions[buttonName];
         }
 
 
         function draw() {
-            keyPressed();
             
             if (currentBrushFunction) {
                 currentBrushFunction();

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>brush library</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;1,800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
     <style>
          * {
@@ -11,11 +12,58 @@
             padding: 0;
             overflow: hidden;
         }
+        canvas {
+            display: block;
+        }
+        .parent {
+            position: fixed;
+            top: 0px;
+            left: 50%;
+            transform: translate(-50%);
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .parent * {
+            position: relative;
+            border: 0px solid black;
+            
+            background-color: transparent;
+            /* transition: 0.5s; */
+            font-family: 'Poppins', sans-serif;
+            font-size: 30px;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            line-height: 35px;
+            user-select: none;
+        }
+        .parent *:hover {
+            background-color: rgb(123, 104, 238);
+            color: white;
+        }
+
     </style>
 </head>
 <body>
     <script>
-        let cnv;
+        let buttonFunctions = {
+            button1: brush1,
+            button2: brush2,
+            button3: brush3_1,
+        };
+        let currentBrushFunction = null;
+        let button1;
+        let button2;
+        let button3;
+        let button4;
+        let button5;
+
+
+
+
         let allowDownload = true;
         let allowRefresh = true;
 
@@ -38,8 +86,38 @@
 
 
         function setup() {
-            cnv = createCanvas(windowWidth, windowHeight);
+            createCanvas(windowWidth, windowHeight);
             background(220);
+
+            let parent = createDiv('');
+            parent.addClass('parent');
+
+            button1 = createButton('outline, outline with blur');
+            parent.child(button1);
+            button1.mousePressed(() => {
+                setBrushFunction('button1');
+            });
+
+            button2 = createButton('9 random shapes, 3 line snap to grid');
+            parent.child(button2);
+            button2.mousePressed(() => {
+                setBrushFunction('button2');
+            });
+
+            button3 = createButton('fill the closed shape');
+            parent.child(button3);
+            button3.mousePressed(() => {
+                setBrushFunction('button3');
+            });
+
+            button4 = createButton('fill the closed shape (2)');
+            parent.child(button4);
+
+            button5 = createButton('fill the closed shape (3)');
+            parent.child(button5);
+
+
+
 
             //brush2
             if (width > height) {
@@ -55,38 +133,26 @@
             randomFilter = random([DILATE, ERODE]);
         }
 
+        function setBrushFunction(buttonName) {
+            currentBrushFunction = buttonFunctions[buttonName];
+        }
+
 
         function draw() {
-            keyPressed();
+            
+            if (currentBrushFunction) {
+                currentBrushFunction();
+            }
         }
+
+
 
         function refresh() {
             location.reload(true);
         }
 
-
         function keyPressed() {
-            if (keyCode === 81) {
-                console.log('Q pressed','brush1');
-                brush1();
-            }
-            else if (keyCode === 87) {
-                console.log('W pressed','brush2');
-                brush2();
-            }
-            else if (keyCode === 69) {
-                console.log('E pressed','brush3_1');
-                brush3_1();
-            }
-            else if (keyCode === 82) {
-                console.log('R pressed','brush3_2');
-                brush3_2();
-            }
-            else if (keyCode === 84) {
-                console.log('T pressed','brush3_3');
-                brush3_3();
-            }
-            else if (keyCode === 83 && allowDownload) {
+            if (keyCode === 83 && allowDownload) {
                 save('library.jpg');
                 allowDownload = false;
             }
@@ -105,7 +171,13 @@
         }
     
 
+
+
+
+
+
         function brush1() {
+            console.log('brush1');
             frameRate(60);
             blendMode(BLEND);
 
@@ -133,6 +205,7 @@
             }
         }
         function brush2() {
+            console.log('brush2');
             frameRate(10);
             blendMode(BLEND);
             drawingContext.shadowBlur = 0;
@@ -213,6 +286,7 @@
             }
 
         function brush3_1() {
+            console.log('brush3_1');
             frameRate(60);
             drawingContext.shadowBlur = 0;
 

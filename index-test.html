@@ -16,16 +16,17 @@
             display: block;
         }
         .parent {
-            background-color: #e9e9e9;
             position: fixed;
-            top: 0;
+            top: 0px;
             left: 50%;
             transform: translate(-50%);
-            width: 300px;
+            width: 100vw;
             height: 100vh;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
+            pointer-events: none;
         }
         .parent * {
             background-color: #FFFFFF;
@@ -36,7 +37,9 @@
             font-family: 'Poppins', sans-serif;
             font-size: 30px;
             text-decoration: underline;
-            text-decoration-thickness: 1px
+            text-decoration-thickness: 1px;
+            line-height: 35px;
+            pointer-events: all;
         }
         .parent *:hover {
             color: mediumslateblue;
@@ -45,6 +48,18 @@
 </head>
 <body>
     <script>
+        let button1Clicked = false;
+        let button2Clicked = false;
+        let button3Clicked = false;
+        let button1;
+        let button2;
+        let button3;
+        let button4;
+        let button5;
+
+
+
+
         let allowDownload = true;
         let allowRefresh = true;
 
@@ -73,17 +88,30 @@
             let parent = createDiv('');
             parent.addClass('parent');
 
-            let button1 = createButton('click1');
-            button1.id('child1');
+            button1 = createButton('outline, outline with blur');
             parent.child(button1);
+            button1.mousePressed(() => {
+                button1Clicked = true;
+            });
 
-            let button2 = createButton('click2');
-            button2.id('child1');
+
+            button2 = createButton('9 random shapes, 3 line snap to grid');
             parent.child(button2);
+            button2.mousePressed(() => {
+                button2Clicked = true;
+            });
 
-            let button3 = createButton('click3');
-            button3.id('child1');
+            button3 = createButton('fill the closed shape');
             parent.child(button3);
+            button3.mousePressed(() => {
+                button3Clicked = true;
+            });
+
+            button4 = createButton('fill the closed shape (2)');
+            parent.child(button4);
+
+            button5 = createButton('fill the closed shape (3)');
+            parent.child(button5);
 
 
 
@@ -105,35 +133,30 @@
 
         function draw() {
             keyPressed();
+            
+            if (button1Clicked) {
+                brush1();
+                console.log('brush1'); 
+            }
+            else if (button2Clicked) {
+                brush2();
+                console.log('brush2');
+            }
+            else if (button3Clicked) {
+                brush3_1();
+                console.log('brush3_1');
+            }
         }
+
+
+
 
         function refresh() {
             location.reload(true);
         }
 
-
         function keyPressed() {
-            if (keyCode === 81) {
-                console.log('Q pressed','brush1');
-                brush1();
-            }
-            else if (keyCode === 87) {
-                console.log('W pressed','brush2');
-                brush2();
-            }
-            else if (keyCode === 69) {
-                console.log('E pressed','brush3_1');
-                brush3_1();
-            }
-            else if (keyCode === 82) {
-                console.log('R pressed','brush3_2');
-                brush3_2();
-            }
-            else if (keyCode === 84) {
-                console.log('T pressed','brush3_3');
-                brush3_3();
-            }
-            else if (keyCode === 83 && allowDownload) {
+            if (keyCode === 83 && allowDownload) {
                 save('library.jpg');
                 allowDownload = false;
             }
@@ -151,6 +174,11 @@
             }
         }
     
+
+
+
+
+
 
         function brush1() {
             frameRate(60);

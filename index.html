@@ -53,6 +53,8 @@
             button1: brush1,
             button2: brush2,
             button3: brush3_1,
+            button4: brush3_2,
+            button5: brush3_3,
         };
         let currentBrushFunction = null;
         let button1;
@@ -112,9 +114,15 @@
 
             button4 = createButton('fill the closed shape (2)');
             parent.child(button4);
+            button4.mousePressed(() => {
+                setBrushFunction('button4');
+            });
 
             button5 = createButton('fill the closed shape (3)');
             parent.child(button5);
+            button5.mousePressed(() => {
+                setBrushFunction('button5');
+            });
 
 
 
@@ -341,6 +349,7 @@
 
             
         function brush3_2() {
+            console.log('brush3_2');
             drawingContext.shadowBlur = 0;
             frameRate(60);
 
@@ -395,6 +404,7 @@
         }
 
         function brush3_3() {
+            console.log('brush3_3');
             drawingContext.shadowBlur = 0;
             frameRate(60);
 

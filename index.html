@@ -49,13 +49,7 @@
 </head>
 <body>
     <script>
-        let img1;
-        let img2;
-        let img3;
-        let imgFunctions = {};
-        let currentImgFunction = null;
-        // let drawImage = false;
-        // console.log(drawImage);
+        
         let buttonFunctions = {
             button1: brush1,
             button2: brush2,
@@ -94,22 +88,11 @@
         let fillColor;
         let randomFilter;
 
-        function preload() {
-            img1 = loadImage('./img/img1.png');
-            img2 = loadImage('./img/img2.png');
-            img3 = loadImage('./img/img3.png');
-        }
-
 
         function setup() {
             createCanvas(windowWidth, windowHeight);
             background(220);
 
-            imgFunctions = {
-            img1: img1,
-            img2: img2,
-            img3: img3,
-            }
 
             let parent = createDiv('');
             parent.addClass('parent');
@@ -119,46 +102,35 @@
             button1.mousePressed(() => {
                 setBrushFunction('button1');
             });
-            button1.mouseOver(() => {
-                setImgFunction('img1');
-            });
+            
 
             button2 = createButton('9 random shapes, 3 line snap to grid');
             parent.child(button2);
             button2.mousePressed(() => {
                 setBrushFunction('button2');
             });
-            button2.mouseOver(() => {
-                setImgFunction('img2');
-            });
+            
 
             button3_1 = createButton('fill the closed shape');
             parent.child(button3_1);
             button3_1.mousePressed(() => {
                 setBrushFunction('button3_1');
             });
-            button3_1.mouseOver(() => {
-                setImgFunction('img3');
-            });
+            
 
             button3_2 = createButton('fill the closed shape (2)');
             parent.child(button3_2);
             button3_2.mousePressed(() => {
                 setBrushFunction('button3_2');
             });
-            button3_2.mouseOver(() => {
-                setImgFunction('img3');
-            });
+            
 
             button3_3 = createButton('fill the closed shape (3)');
             parent.child(button3_3);
             button3_3.mousePressed(() => {
                 setBrushFunction('button3_3');
             });
-            button3_3.mouseOver(() => {
-                setImgFunction('img3');
-            });
-            
+           
 
 
             //brush2
@@ -173,22 +145,15 @@
             currentBrushFunction = buttonFunctions[buttonName];
         }
         
-        function setImgFunction(imgName) {
-            currentImgFunction = imgFunctions[imgName];
-        }
+        
 
 
         function draw() {
+            
             if (currentBrushFunction) {
                 currentBrushFunction();
             }
-            if (currentImgFunction) {
-                imageMode(CENTER);
-                let aspectRatio = currentImgFunction.width / currentImgFunction.height;
-                let imgWidth = 150;
-                let imgHeight = imgWidth / aspectRatio;
-                image(currentImgFunction, width/2, 200, imgWidth, imgHeight);
-            }
+            
         }
 
 
@@ -516,6 +481,64 @@
                     points3.push(createVector(mouseX, mouseY));
                 }
             }
+
+
+
+        let sketch1 = function(p) {
+            let img1;
+            let img2;
+            let img3;
+            let imgFunctions = {};
+            let currentImgFunction = null;
+            // let drawImage = false;
+            // console.log(drawImage);
+
+            p.preload = function() {
+                img1 = p.loadImage('./img/img1.png');
+                img2 = p.loadImage('./img/img2.png');
+                img3 = p.loadImage('./img/img3.png');
+            }
+            p.setup = function() {
+                imgFunctions = {
+                    img1: img1,
+                    img2: img2,
+                    img3: img3,
+                }
+                button1.mouseOver(() => {
+                    p.setImgFunction('img1');
+                });
+                button2.mouseOver(() => {
+                    p.setImgFunction('img2');
+                });
+                button3_1.mouseOver(() => {
+                    p.setImgFunction('img3');
+                });
+                button3_2.mouseOver(() => {
+                    p.setImgFunction('img3');
+                });
+                button3_3.mouseOver(() => {
+                    p.setImgFunction('img3');
+                });
+            }
+
+            p.setImgFunction = function(imgName) {
+                currentImgFunction = imgFunctions[imgName];
+            }
+
+            p.draw = function() {
+                if (currentImgFunction) {
+
+
+                imageMode(CENTER);
+                let aspectRatio = currentImgFunction.width / currentImgFunction.height;
+                let imgWidth = 150;
+                let imgHeight = imgWidth / aspectRatio;
+                
+                image(currentImgFunction, width/2, 200, imgWidth, imgHeight);
+            }
+            }
+        }
+        // new p5(sketch1);
 
 
    </script>

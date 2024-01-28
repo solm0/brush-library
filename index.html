@@ -6,6 +6,7 @@
     <title>brush library</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;1,800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+    <script src="./img.js"></script>
     <style>
          * {
             margin: 0;
@@ -41,8 +42,11 @@
         }
         .parent *:hover {
             background-color: black;
+            opacity: 80%;
             border-radius: 17.5px;
             color: white;
+            line-height: 50px;
+            transition: 1s;
         }
 
     </style>
@@ -481,65 +485,6 @@
                     points3.push(createVector(mouseX, mouseY));
                 }
             }
-
-
-
-        let sketch1 = function(p) {
-            let img1;
-            let img2;
-            let img3;
-            let imgFunctions = {};
-            let currentImgFunction = null;
-            // let drawImage = false;
-            // console.log(drawImage);
-
-            p.preload = function() {
-                img1 = p.loadImage('./img/img1.png');
-                img2 = p.loadImage('./img/img2.png');
-                img3 = p.loadImage('./img/img3.png');
-            }
-            p.setup = function() {
-                imgFunctions = {
-                    img1: img1,
-                    img2: img2,
-                    img3: img3,
-                }
-                button1.mouseOver(() => {
-                    p.setImgFunction('img1');
-                });
-                button2.mouseOver(() => {
-                    p.setImgFunction('img2');
-                });
-                button3_1.mouseOver(() => {
-                    p.setImgFunction('img3');
-                });
-                button3_2.mouseOver(() => {
-                    p.setImgFunction('img3');
-                });
-                button3_3.mouseOver(() => {
-                    p.setImgFunction('img3');
-                });
-            }
-
-            p.setImgFunction = function(imgName) {
-                currentImgFunction = imgFunctions[imgName];
-            }
-
-            p.draw = function() {
-                if (currentImgFunction) {
-
-
-                imageMode(CENTER);
-                let aspectRatio = currentImgFunction.width / currentImgFunction.height;
-                let imgWidth = 150;
-                let imgHeight = imgWidth / aspectRatio;
-                
-                image(currentImgFunction, width/2, 200, imgWidth, imgHeight);
-            }
-            }
-        }
-        // new p5(sketch1);
-
 
    </script>
 </body>

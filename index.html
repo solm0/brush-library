@@ -46,12 +46,39 @@
             border-radius: 17.5px;
             color: white;
             line-height: 50px;
-            transition: 1s;
+            transition: 0.5s;
         }
-
+        footer {
+            position: fixed;
+            bottom: 0;
+            text-align: center;
+            font-size: 12px;
+            font-family: serif;
+            height: 80px;
+            width: 100%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgb(119, 43, 43) 100%);
+            user-select: none;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            text-align: center;
+            font-size: 12px;
+            font-family: serif;
+            height: 80px;
+            width: 100%;
+            background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, rgb(119, 43, 43) 100%);
+            user-select: none;
+        }
     </style>
 </head>
 <body>
+    <header>
+        <p><br><br><br>press 's' to save<br>press 'c' to clear</p>
+    </header>
+    <footer>
+        <p>This is a graphic library of me.<br>I collect and reproduce interesting graphics with p5.js.</p>
+    </footer>
     <script>
         
         let buttonFunctions = {

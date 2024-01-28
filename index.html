@@ -73,7 +73,6 @@
         let symmetry = 2; 
         let angle;
         updateAngle();
-        let largest;
         let multip;
 
         //brush3_1, brush3_2, brush3_3
@@ -128,17 +127,11 @@
 
 
             //brush2
-            if (width > height) {
-                largest = width;
-            } else {
-                largest = height;
-            }
-            multip = largest / 100;
+            multip = 10 / 1;
             angleMode(DEGREES);
 
             //brush3_1, brush3_2, brush3_3
             fillColor = random([color(193,141,79,5),color(44,134,134, 5)]);
-            randomFilter = random([DILATE, ERODE]);
         }
 
         function setBrushFunction(buttonName) {
@@ -147,7 +140,6 @@
 
 
         function draw() {
-            
             if (currentBrushFunction) {
                 currentBrushFunction();
             }
@@ -236,49 +228,49 @@
             let c = random(['red', 'black', 'white']);
             let c2 = random(['red', 'black', 'white']);
             
-                if (mouseIsPressed) {
-                    translate(width / 2, height / 2); //Translate to the centre
-                
-                    stroke('black');
-                    strokeWeight(1);
+            if (mouseIsPressed) {
+                translate(width / 2, height / 2); //Translate to the centre
+            
+                stroke('black');
+                strokeWeight(1);
 
-                    
-                    for (let i = 0; i < symmetry; i++) { //Repeat the process
-                    push(); //Save matrix
-                    rotate(i * angle); //Rotate
-                        line(pmx, pmy, mx, my);
-                        line(pmx -30, pmy -30, mx -30, my -30);
-                        line(pmx +30, pmy +30, mx +30, my +30);
-                            fill(c)
-                        s(mx-30, my-30, v);
-                        s(mx-30, my+30, v);
-                        s(mx-30, my, v);
-                        s(mx, my-30, v);
-                        s(mx, my+30, v);
-                        s(mx+30, my-30, v);
-                        s(mx+30, my+30, v);
-                        s(mx+30, my, v);
-                            fill(c2)
-                        s2(mx, my, v2);
-                    
-                    scale(-1, 1); //Flip the canvas
-                        line(pmx, pmy, mx, my);
-                        line(pmx -30, pmy -30, mx -30, my -30);
-                        line(pmx +30, pmy +30, mx +30, my +30);
-                            fill(c)
-                        s(mx-30, my-30, v);
-                        s(mx-30, my+30, v);
-                        s(mx-30, my, v);
-                        s(mx, my-30, v);
-                        s(mx, my+30, v);
-                        s(mx+30, my-30, v);
-                        s(mx+30, my+30, v);
-                        s(mx+30, my, v);
-                            fill(c2)
-                        s2(mx, my, v2);
-                    pop(); //Restore matrix
-                    }
+                
+                for (let i = 0; i < symmetry; i++) { //Repeat the process
+                push(); //Save matrix
+                rotate(i * angle); //Rotate
+                    line(pmx, pmy, mx, my);
+                    line(pmx -30, pmy -30, mx -30, my -30);
+                    line(pmx +30, pmy +30, mx +30, my +30);
+                        fill(c)
+                    s(mx-30, my-30, v);
+                    s(mx-30, my+30, v);
+                    s(mx-30, my, v);
+                    s(mx, my-30, v);
+                    s(mx, my+30, v);
+                    s(mx+30, my-30, v);
+                    s(mx+30, my+30, v);
+                    s(mx+30, my, v);
+                        fill(c2)
+                    s2(mx, my, v2);
+                
+                scale(-1, 1); //Flip the canvas
+                    line(pmx, pmy, mx, my);
+                    line(pmx -30, pmy -30, mx -30, my -30);
+                    line(pmx +30, pmy +30, mx +30, my +30);
+                        fill(c)
+                    s(mx-30, my-30, v);
+                    s(mx-30, my+30, v);
+                    s(mx-30, my, v);
+                    s(mx, my-30, v);
+                    s(mx, my+30, v);
+                    s(mx+30, my-30, v);
+                    s(mx+30, my+30, v);
+                    s(mx+30, my, v);
+                        fill(c2)
+                    s2(mx, my, v2);
+                pop(); //Restore matrix
                 }
+            }
         }
 
             function updateAngle() { //A function to update the angle
@@ -447,7 +439,7 @@
             
                 fill(fillColor);
                 noStroke();
-                filter(randomFilter);
+                filter(DILATE);
                 blendMode(DIFFERENCE);
                 beginShape();
                 for (let pt of points3) {
@@ -456,11 +448,6 @@
                 endShape(CLOSE);
             }
         }
-
-
-
-
-
 
             //brush3_1, brush3_2, brush3_3
             function mousePressed() {

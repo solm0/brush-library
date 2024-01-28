@@ -17,14 +17,13 @@
         }
         .parent {
             position: fixed;
-            top: 0px;
+            top: 400px;
             left: 50%;
             transform: translate(-50%);
             width: 100vw;
             height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
         }
         .parent * {
@@ -41,7 +40,8 @@
             user-select: none;
         }
         .parent *:hover {
-            background-color: rgb(123, 104, 238);
+            background-color: black;
+            border-radius: 17.5px;
             color: white;
         }
 
@@ -124,10 +124,8 @@
             });
 
 
-
-
             //brush2
-            multip = 10 / 1;
+            multip = 10;
             angleMode(DEGREES);
 
             //brush3_1, brush3_2, brush3_3

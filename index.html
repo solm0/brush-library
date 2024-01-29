@@ -6,7 +6,6 @@
     <title>brush library</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;1,800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
-    <script src="./img.js"></script>
     <style>
          * {
             margin: 0;
@@ -20,7 +19,8 @@
             overflow-x: hidden;
             height: 100vh;
             position: relative;
-            /* animation: move 1s ease-in-out forwards; */
+            top: 0vh;
+            transition: top 1s cubic-bezier(0.5, 0, 0, 1.2);
         }
         canvas {
             display: block;
@@ -103,16 +103,10 @@
             /* height: 90vh; */
             z-index: 3;
             top: 100vh;
+            transition: height 1s cubic-bezier(0.5, 0, 0, 1.2);
         }
-        @keyframes move {
-            0% {
-                top: 0;
-            }
-            100% {
-                top: -90vh;
-            }
-        }
-        .referenceButton {
+
+        .switchButton {
             position: relative;
             top: 0px;
             pointer-events: all;
@@ -126,11 +120,32 @@
     </header>
     <footer>
         <p><br><br>This is a graphic library of <font>me</font>.<br>I collect and reproduce interesting graphics with <font>p5.js</font>.</p>
-        <button class="referenceButton">reference</button>
+        <button class="switchButton" onclick="buttonFunction()" value="draw">reference</button>
     </footer>
 
     <iframe class="referencePage" src="./referencePage.html" frameborder="0"></iframe>
     <script>
+        const body = document.querySelector("body");
+        const referencePage = document.querySelector(".referencePage");
+        const header = document.querySelector("header");
+        const button = document.querySelector(".switchButton")
+
+        function buttonFunction() {
+            if (button.value === 'draw') {
+                body.style.top = '-90vh';
+                referencePage.style.height = '90vh';
+                header.style.position = 'absolute';
+                button.innerText = 'back to draw';
+                button.value = 'reference';
+            }
+            else if (button.value === 'reference') {
+                body.style.top = '0vh';
+                referencePage.style.height = '0vh';
+                header.style.position = 'fixed';
+                button.innerText = 'reference';
+                button.value = 'draw';
+            }
+        }
         
         let buttonFunctions = {
             button1: brush1,
@@ -228,19 +243,19 @@
                 setBrushFunction('button3_3');
             });
 
-            button4 = createButton('this is button4');
+            button4 = createButton('button is button4');
             parent.child(button4);
-            button5 = createButton('this is button5');
+            button5 = createButton('button is button5');
             parent.child(button5);
             button6 = createButton('button6');
             parent.child(button6);
             button7 = createButton('button7');
             parent.child(button7);
-            button8 = createButton('this button8');
+            button8 = createButton('button button8');
             parent.child(button8);
             button9 = createButton('button9');
             parent.child(button9);
-            button10 = createButton('thisis button10');
+            button10 = createButton('buttonis button10');
             parent.child(button10);
             button11 = createButton('button11');
             parent.child(button11);

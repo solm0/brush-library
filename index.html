@@ -11,12 +11,14 @@
          * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
         body {
             display: flex;
             justify-content: center;
             overflow-x: hidden;
+            height: 100vh;
+            position: relative;
+            /* animation: move 1s ease-in-out forwards; */
         }
         canvas {
             display: block;
@@ -39,7 +41,7 @@
         }
         .parent * {
             position: relative;
-            border: 0px solid black;
+            border: 0px;
             
             background-color: transparent;
             /* transition: 0.5s; */
@@ -51,7 +53,7 @@
             user-select: none;
         }
         .parent *:hover {
-            background-color: black;
+            background-color:  rgb(20, 20, 20);
             opacity: 80%;
             border-radius: 17.5px;
             color: white;
@@ -70,11 +72,11 @@
             user-select: none;
             overflow: visible;
             line-height: 37px;
-            z-index: 5;
+            z-index: 4;
             pointer-events: none;
         }
         header {
-            position: fixed;
+            position: absolute;
             top: 0;
             text-align: center;
             font-family: 'Poppins', sans-serif;
@@ -85,11 +87,27 @@
             user-select: none;
             overflow: visible;
             line-height: 35px;
-            z-index: 5;
+            z-index: 4;
         }
         font {
             text-decoration: underline;
             text-decoration-thickness: 1px;
+        }
+        .referencePage {
+            position: absolute;
+            width: 100vw;
+            /* height: 0; */
+            height: 90vh;
+            z-index: 3;
+            top: 100vh;
+        }
+        @keyframes move {
+            0% {
+                top: 0;
+            }
+            100% {
+                top: -90vh;
+            }
         }
     </style>
 </head>
@@ -100,6 +118,7 @@
     <footer>
         <p><br><br>This is a graphic library of <font>me</font>.<br>I collect and reproduce interesting graphics with <font>p5.js</font>.</p>
     </footer>
+    <iframe class="referencePage" src="./referencePage.html" frameborder="0"></iframe>
     <script>
         
         let buttonFunctions = {
@@ -308,7 +327,7 @@
         }
         function brush2() {
             console.log('brush2');
-            frameRate(10);
+            frameRate(20);
             blendMode(BLEND);
             drawingContext.shadowBlur = 0;
 

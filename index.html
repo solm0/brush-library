@@ -11,21 +11,31 @@
          * {
             margin: 0;
             padding: 0;
-            overflow: hidden;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            overflow-x: hidden;
         }
         canvas {
             display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
         }
         .parent {
-            position: fixed;
+            position: absolute;
             top: 400px;
-            left: 50%;
-            transform: translate(-50%);
-            width: 100vw;
-            height: 100vh;
+            width: 800px;
+            height: 700px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            overflow-y: auto;
+        }
+        *::-webkit-scrollbar {
+            display: none;
         }
         .parent * {
             position: relative;
@@ -54,12 +64,14 @@
             text-align: center;
             font-family: 'Poppins', sans-serif;
             font-size: 30px;
-            height: 90px;
+            height: 150px;
             width: 100%;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgb(255, 214, 214) 100%);
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgb(255, 214, 214) 90%);
             user-select: none;
             overflow: visible;
             line-height: 37px;
+            z-index: 5;
+            pointer-events: none;
         }
         header {
             position: fixed;
@@ -73,15 +85,20 @@
             user-select: none;
             overflow: visible;
             line-height: 35px;
+            z-index: 5;
+        }
+        font {
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
         }
     </style>
 </head>
 <body>
     <header>
-        <p><br>press 's' to save<br>press 'c' to clear</p>
+        <p>press 's' to save<br>press 'c' to clear</p>
     </header>
     <footer>
-        <p>This is a graphic library of me.<br>I collect and reproduce interesting graphics with p5.js.</p>
+        <p><br><br>This is a graphic library of <font>me</font>.<br>I collect and reproduce interesting graphics with <font>p5.js</font>.</p>
     </footer>
     <script>
         
@@ -91,6 +108,7 @@
             button3_1: brush3_1,
             button3_2: brush3_2,
             button3_3: brush3_3,
+
         };
         let currentBrushFunction = null;
         
@@ -99,6 +117,20 @@
         let button3_1;
         let button3_2;
         let button3_3;
+
+        let button4;
+        let button5;
+        let button6;
+        let button7;
+        let button8;
+        let button9;
+        let button10;
+        let button11;
+        let button12;
+        let button13;
+        let button14;
+        let button15;
+        let button16;
         
 
 
@@ -165,6 +197,34 @@
             button3_3.mousePressed(() => {
                 setBrushFunction('button3_3');
             });
+
+            button4 = createButton('this is button4');
+            parent.child(button4);
+            button5 = createButton('this is button5');
+            parent.child(button5);
+            button6 = createButton('button6');
+            parent.child(button6);
+            button7 = createButton('button7');
+            parent.child(button7);
+            button8 = createButton('this button8');
+            parent.child(button8);
+            button9 = createButton('button9');
+            parent.child(button9);
+            button10 = createButton('thisis button10');
+            parent.child(button10);
+            button11 = createButton('button11');
+            parent.child(button11);
+            button12 = createButton('button12');
+            parent.child(button12);
+            button13 = createButton('button13');
+            parent.child(button13);
+            button14 = createButton('button14');
+            parent.child(button14);
+            button15 = createButton('button15');
+            parent.child(button15);
+            button16 = createButton('button16');
+            parent.child(button16);
+
            
 
 
@@ -216,10 +276,6 @@
             }
         }
     
-
-
-
-
 
 
         function brush1() {

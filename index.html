@@ -42,23 +42,28 @@
         *::-webkit-scrollbar {
             display: none;
         }
-        button {
+        button, input:hover {
             position: relative;
-            border: 0px;
-            
             background-color: transparent;
-            /* transition: 0.5s; */
+            border: 0;
+            border-radius: 19px;
+            color: black;
+            line-height: 35px;
             text-decoration: underline;
             text-decoration-thickness: 1px;
-            line-height: 35px;
             user-select: none;
+            transition: 0.5s;
         }
-        button:hover {
+        button:hover, input {
             background-color:  rgb(20, 20, 20);
             opacity: 80%;
+            border: 0;
             border-radius: 19px;
             color: white;
             line-height: 50px;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            user-select: none;
             transition: 0.5s;
         }
         footer {
@@ -121,7 +126,7 @@
     </header>
     <footer>
         <p><br><br>This is a graphic library of <font>me</font>.<br>I collect and reproduce interesting graphics with <font>p5.js</font>.</p>
-        <button class="switchButton" onclick="buttonFunction()" value="draw">reference</button>
+        <input type="button" class="switchButton" onclick="buttonFunction()" value="reference">
     </footer>
 
     <iframe class="referencePage" src="./referencePage.html" frameborder="0"></iframe>
@@ -132,19 +137,17 @@
         const button = document.querySelector(".switchButton")
 
         function buttonFunction() {
-            if (button.value === 'draw') {
+            if (button.value === 'reference') {
                 body.style.top = '-90vh';
                 referencePage.style.height = '90vh';
                 header.style.position = 'absolute';
-                button.innerText = 'back to draw';
-                button.value = 'reference';
+                button.value = 'back to draw';
             }
-            else if (button.value === 'reference') {
+            else if (button.value === 'back to draw') {
                 body.style.top = '0vh';
                 referencePage.style.height = '0vh';
                 header.style.position = 'fixed';
-                button.innerText = 'reference';
-                button.value = 'draw';
+                button.value = 'reference';
             }
         }
         

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>brush library</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;1,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/mdh2mek.css">
     <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
     <style>
          * {
@@ -12,14 +13,16 @@
             padding: 0;
             font-family: 'Poppins', sans-serif;
             font-size: 30px;
+            text-align: left;
+            user-select: none;
         }
         body {
-            display: flex;
-            justify-content: center;
-            overflow-x: hidden;
+            position: absolute;
+            width: 100vw;
             height: 100vh;
-            position: relative;
-            top: 0vh;
+            overflow-x: hidden;
+            top: 0;
+            left: 0;
             transition: top 1s cubic-bezier(0.5, 0, 0, 1.2);
         }
         canvas {
@@ -29,15 +32,16 @@
             left: 0;
         }
         .parent {
-            position: absolute;
-            top: 400px;
-            width: 800px;
-            height: 700px;
+            position: fixed;
+            top: 298px;
+            right: -23px;
+            width: 550px;
+            height: 800px;
             display: flex;
             flex-direction: column;
-            align-items: center;
             overflow-y: auto;
-            padding-bottom: 80px;
+            z-index: 6;
+            text-align: left;
         }
         *::-webkit-scrollbar {
             display: none;
@@ -46,107 +50,89 @@
             position: relative;
             background-color: transparent;
             border: 0;
-            border-radius: 19px;
             color: black;
             line-height: 35px;
             text-decoration: underline;
             text-decoration-thickness: 1px;
             user-select: none;
-            transition: 0.5s;
         }
         button:hover, input {
-            background-color:  rgb(20, 20, 20);
+            position: relative;
+            background-color:  rgb(141, 39, 39);
             opacity: 80%;
             border: 0;
-            border-radius: 19px;
             color: white;
-            line-height: 50px;
+            line-height: 35px;
             text-decoration: underline;
             text-decoration-thickness: 1px;
             user-select: none;
-            transition: 0.5s;
         }
-        footer {
+        input, input:hover {
             position: fixed;
-            bottom: 0;
-            text-align: center;
-            height: 210px;
-            width: 100%;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgb(255, 214, 214) 80%);
-            user-select: none;
-            overflow: visible;
-            line-height: 37px;
-            z-index: 4;
-            pointer-events: none;
-
-            display: flex;
-            align-items: center;
-            flex-direction: column;
         }
-        header {
-            position: fixed;
-            top: 0;
-            text-align: center;
-            font-family: 'Poppins', sans-serif;
-            font-size: 30px;
+        .save-clear {
+            position: absolute;
+            top: 300px;
             height: 80px;
             width: 100%;
-            padding-top: 30px;
-            background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, rgb(214, 254, 217) 80%);
             user-select: none;
             overflow: visible;
             line-height: 35px;
             z-index: 4;
+            padding-left: 50px;
         }
-        font {
-            text-decoration: underline;
-            text-decoration-thickness: 1px;
+        h1 {
+            position: fixed;
+            top: 510px;
+            height: 80px;
+            width: 800px;
+            user-select: none;
+            overflow: visible;
+            line-height: 35px;
+            z-index: 4;
+            padding-left: 50px;
+            font-weight: 300;
         }
+
         .referencePage {
             position: absolute;
             width: 100vw;
             height: 0;
-            /* height: 90vh; */
             z-index: 3;
             top: 100vh;
             transition: height 1s cubic-bezier(0.5, 0, 0, 1.2);
         }
-
         .switchButton {
-            position: relative;
-            top: 0px;
-            pointer-events: all;
+            position: fixed;
+            bottom: 10px;
+            right: 527px;
+            z-index: 6;
         }
 
     </style>
 </head>
 <body>
-    <header>
+    <div class="save-clear">
         <p>press 's' to save<br>press 'c' to clear</p>
-    </header>
-    <footer>
-        <p><br><br>This is a graphic library of <font>me</font>.<br>I collect and reproduce interesting graphics with <font>p5.js</font>.</p>
-        <input type="button" class="switchButton" onclick="buttonFunction()" value="reference">
-    </footer>
+    </div>
+    <h1>This is my graphic library. I collect and reproduce interesting graphics with p5.js.</h1>
 
+    <input type="button" class="switchButton" onclick="buttonFunction()" value="reference">
     <iframe class="referencePage" src="./referencePage.html" frameborder="0"></iframe>
     <script>
         const body = document.querySelector("body");
         const referencePage = document.querySelector(".referencePage");
-        const header = document.querySelector("header");
         const button = document.querySelector(".switchButton")
 
         function buttonFunction() {
             if (button.value === 'reference') {
                 body.style.top = '-90vh';
                 referencePage.style.height = '90vh';
-                header.style.position = 'absolute';
                 button.value = 'back to draw';
             }
             else if (button.value === 'back to draw') {
                 body.style.top = '0vh';
                 referencePage.style.height = '0vh';
-                header.style.position = 'fixed';
                 button.value = 'reference';
             }
         }

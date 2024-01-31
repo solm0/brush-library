@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;1,800&display=swap" rel="stylesheet">
     <title>Document</title>
     <style>
-        * {
+         * {
             margin: 0;
             padding: 0;
+            font-family: 'Poppins', sans-serif;
+            font-size: 30px;
+            text-align: left;
         }
         body {
             position: absolute;
@@ -16,42 +20,196 @@
             height: 100vh;
             background-color: white;
         }
-
+        .parent {
+            position: fixed;
+            top: 298px;
+            right: -243px;
+            width: 550px;
+            height: 800px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            z-index: 4;
+            text-align: left;
+        }
+        button {
+            position: relative;
+            background-color: transparent;
+            border: 0;
+            color: black;
+            line-height: 35px;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            user-select: none;
+        }
+        button:hover {
+            position: relative;
+            background-color:  rgb(141, 39, 39);
+            opacity: 80%;
+            border: 0;
+            color: white;
+            line-height: 35px;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            user-select: none;
+        }
     </style>
 </head>
 <body>
-
     <script>
-        // function setup() {
-        //     createCanvas(1000,1000);
-        // }
-        // function draw() {
-        //     fill('red');
-        //     rect(windowWidth-330,175,1500,225);
+        let buttonFunctions = {
+            button1: brush1,
+            button2: brush2,
+            button3_1: brush3_1,
+            button3_2: brush3_2,
+            button3_3: brush3_3,
 
-        //     if ((windowWidth-330) && (mouseX < 1500) &&
-        //     (mouseY > 175) && (mouseY < 225)) {
-        //         clear();
-        //         fill(240, 20, 140);
-        //         brush1();
-        // } else if ((mouseX > 150) && (mouseX < 250) &&
-        //     (mouseY > 225) && (mouseY < 275)) {
-        //         clear();
-        //         fill(20, 20, 10);
-        //         brush2();
-        // } else {
-        //     fill(220, 220, 120);
-        // }
-        // rect(150,250,175,225);
-        // }
-
-        // function brush1() {
-        //     text('hello', 50,50);
-        // }
-        // function brush2() {
-        //     text('bye', 50,50);
-        // }
+        };
+        let currentBrushFunction = null;
         
+        let button1;
+        let button2;
+        let button3_1;
+        let button3_2;
+        let button3_3;
+
+        let button4;
+        let button5;
+        let button6;
+        let button7;
+        let button8;
+        let button9;
+        let button10;
+        let button11;
+        let button12;
+        let button13;
+        let button14;
+        let button15;
+        let button16;
+
+
+        function setBrushFunction(buttonName) {
+            currentBrushFunction = buttonFunctions[buttonName];
+        }
+
+       function setup() {
+        createCanvas(1500,1000);
+            background('white');
+
+
+            let parent = createDiv('');
+            parent.addClass('parent');
+
+            button1 = createButton('outline, outline with blur');
+            parent.child(button1);
+            button1.mousePressed(() => {
+                setBrushFunction('button1');
+            });
+            
+
+            button2 = createButton('9 random shapes, 3 line snap to grid');
+            parent.child(button2);
+            button2.mousePressed(() => {
+                setBrushFunction('button2');
+            });
+            
+
+            button3_1 = createButton('fill the closed shape');
+            parent.child(button3_1);
+            button3_1.mousePressed(() => {
+                setBrushFunction('button3_1');
+            });
+            
+
+            button3_2 = createButton('fill the closed shape (2)');
+            parent.child(button3_2);
+            button3_2.mousePressed(() => {
+                setBrushFunction('button3_2');
+            });
+            
+
+            button3_3 = createButton('fill the closed shape (3)');
+            parent.child(button3_3);
+            button3_3.mousePressed(() => {
+                setBrushFunction('button3_3');
+            });
+
+            button4 = createButton('button is button4');
+            parent.child(button4);
+            button5 = createButton('button is button5');
+            parent.child(button5);
+            button6 = createButton('button6');
+            parent.child(button6);
+            button7 = createButton('button7');
+            parent.child(button7);
+            button8 = createButton('button button8');
+            parent.child(button8);
+            button9 = createButton('button9');
+            parent.child(button9);
+            button10 = createButton('buttonis button10');
+            parent.child(button10);
+            button11 = createButton('button11');
+            parent.child(button11);
+            button12 = createButton('button12');
+            parent.child(button12);
+            button13 = createButton('button13');
+            parent.child(button13);
+            button14 = createButton('button14');
+            parent.child(button14);
+            button15 = createButton('button15');
+            parent.child(button15);
+            button16 = createButton('button16');
+            parent.child(button16);
+       }
+
+       function draw() {
+            // 여기에 필요한 그림 그리는 로직 추가
+            if (currentBrushFunction) {
+                currentBrushFunction();
+            }
+        }
+       
+
+        function brush1() {
+            clear();
+            fill('black');
+            text('hello', 50,50);
+        }
+        function brush2() {
+            clear();
+            fill('black');
+            text('bye', 50,50);
+        }
+        function brush3_1() {
+            console.log('brush3');
+        }
+        function brush3_2() {
+
+        }
+        function brush3_3() {
+
+        }
+        function brush4() {
+
+        }
+        function brush5() {
+
+        }
+        function brush6() {
+
+        }
+        function brush7() {
+
+        }
+        function brush8() {
+
+        }
+        function brush9() {
+
+        }
+        function brush10() {
+
+        }
         
     </script>
 </body>

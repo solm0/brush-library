@@ -134,6 +134,7 @@
                 body.style.top = '0vh';
                 referencePage.style.height = '0vh';
                 button.value = 'reference';
+                removeBrushFunction();
             }
         }
         
@@ -203,6 +204,8 @@
             parent.child(button1);
             button1.mousePressed(() => {
                 setBrushFunction('button1');
+                fill('black');
+                text('hello', 50, 50);
             });
             
 
@@ -274,6 +277,17 @@
         function setBrushFunction(buttonName) {
             currentBrushFunction = buttonFunctions[buttonName];
         }
+        function removeBrushFunction() {
+            setBrushFunction = function() {};
+        }
+
+        // setBrushFunction 함수 다시 추가
+        function addBrushFunction() {
+            setBrushFunction = function(button) {
+                console.log(`Brush function set by ${button}`);
+            };
+        }
+
         
         
 

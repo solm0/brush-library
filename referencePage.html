@@ -53,10 +53,24 @@
             text-decoration-thickness: 1px;
             user-select: none;
         }
+        .cap-parent {
+            position: absolute;
+            top: 198px;
+            right: 307px;
+            width: 336px;
+            height: 800px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            z-index: 4;
+            text-align: left;
+            background-color: aliceblue;
+        }
     </style>
 </head>
 <body>
     <script>
+        let font
         let buttonFunctions = {
             button1: brush1,
             button2: brush2,
@@ -86,6 +100,8 @@
         let button14;
         let button15;
         let button16;
+
+        let brushcap1;
 
 
         function setBrushFunction(buttonName) {
@@ -160,6 +176,12 @@
             parent.child(button15);
             button16 = createButton('button16');
             parent.child(button16);
+
+            let capParent = createDiv('');
+            capParent.addClass('cap-parent');
+
+            brushcap1 = createDiv('hello');
+            capParent.child(brushcap1);
        }
 
        function draw() {
@@ -168,12 +190,12 @@
                 currentBrushFunction();
             }
         }
-       
+
+        
 
         function brush1() {
             clear();
-            fill('black');
-            text('hello', 50,50);
+            brushcap1();
         }
         function brush2() {
             clear();

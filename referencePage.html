@@ -71,6 +71,20 @@
             line-height: 35px;
             background-color: white;
         }
+        .img-container {
+            position: absolute;
+            width: calc(100vw - 785px);
+            height: 800px;
+            top: 20px;
+            left: 50px;
+        }
+        .img-container * {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            top: 0;
+            left: 0;
+        }
         hr {
             border: 0.5px solid black;
         }
@@ -78,6 +92,14 @@
 </head>
 <body>
     <script>
+        let currentButton;
+
+        let img;
+        let imgContainer;
+        let img1;
+        let img2;
+        let img3;
+
         let button1;
         let button2;
         let button3_1;
@@ -118,6 +140,11 @@
             link: 'https://www.litfund.ru/auction/106/94/',
         };
 
+        function preload() {
+            img1 = loadImage('./img/img1.jpg');
+            img2 = loadImage('./img/img2.png');
+            img3 = loadImage('./img/img3.png');
+        }
 
        function setup() {
             createCanvas(1500,1000);
@@ -130,6 +157,12 @@
             button1 = createButton('outline, outline with blur');
             parent.child(button1);
             button1.mouseClicked(() => {
+                applyButtonStyle(button1);
+                imgContainer = createDiv('');
+                imgContainer.addClass('img-container');
+                img = createImg('./img/img1.jpg');
+                img.parent(imgContainer);
+
                 textContainer = createP();
                 textContainer.addClass('text-container');
                 textContainer.html(object1.work + '<br><br><hr>' + object1.artist + '<br><br><hr>' + object1.description + '<br><br><hr>' + '<a href="' + object1.link + '"target="_blank">' + object1.link + '</a>');
@@ -139,6 +172,7 @@
             button2 = createButton('9 random shapes, 3 line snap to grid');
             parent.child(button2);
             button2.mouseClicked(() => {
+                applyButtonStyle(button2);
                 textContainer = createP();
                 textContainer.addClass('text-container');
                 textContainer.html(object2.work + '<br><br><hr>' + object2.artist + '<br><br><hr>' + object2.description + '<br><br><hr>' + '<a href="' + object2.link + '"target="_blank">' + object2.link + '</a>');
@@ -149,6 +183,7 @@
             button3_1 = createButton('fill the closed shape');
             parent.child(button3_1);
             button3_1.mouseClicked(() => {
+                applyButtonStyle(button3_1);
                 textContainer = createP();
                 textContainer.addClass('text-container');
                 textContainer.html(object3.work + '<br><br><hr>' + object3.artist + '<br><br><hr>' + object3.description + '<br><br><hr>' + '<a href="' + object3.link + '"target="_blank">' + object3.link + '</a>');
@@ -159,6 +194,7 @@
             button3_2 = createButton('fill the closed shape (2)');
             parent.child(button3_2);
             button3_2.mouseClicked(() => {
+                applyButtonStyle(button3_2);
                 textContainer = createP();
                 textContainer.addClass('text-container');
                 textContainer.html(object3.work + '<br><br><hr>' + object3.artist + '<br><br><hr>' + object3.description + '<br><br><hr>' + '<a href="' + object3.link + '"target="_blank">' + object3.link + '</a>');
@@ -169,6 +205,7 @@
             button3_3 = createButton('fill the closed shape (3)');
             parent.child(button3_3);
             button3_3.mouseClicked(() => {
+                applyButtonStyle(button3_3);
                 textContainer = createP();
                 textContainer.addClass('text-container');
                 textContainer.html(object3.work + '<br><br><hr>' + object3.artist + '<br><br><hr>' + object3.description + '<br><br><hr>' + '<a href="' + object3.link + '"target="_blank">' + object3.link + '</a>');
@@ -202,6 +239,22 @@
             button16 = createButton('button16');
             parent.child(button16);
 
+            function applyButtonStyle(button) {
+                if (currentButton) {
+                    // 이전 버튼이 있을 경우, 스타일 초기화
+                    currentButton.style('color', '');
+                    currentButton.style('background-color', '');
+                    currentButton.style('opacity', '');
+                }
+
+                // 현재 버튼에 스타일 적용
+                button.style('color', 'white');
+                button.style('background-color', 'rgb(141, 39, 39)');
+                button.style('opacity', '80%');
+
+                // 현재 버튼을 기억
+                currentButton = button;
+            }
        } 
     </script>
 </body>

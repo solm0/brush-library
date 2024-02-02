@@ -74,9 +74,10 @@
         .img-container {
             position: absolute;
             width: calc(100vw - 785px);
-            height: 800px;
+            height: 1000px;
             top: 20px;
             left: 50px;
+            background-color: white;
         }
         .img-container * {
             position: absolute;
@@ -96,9 +97,6 @@
 
         let img;
         let imgContainer;
-        let img1;
-        let img2;
-        let img3;
 
         let button1;
         let button2;
@@ -140,12 +138,6 @@
             link: 'https://www.litfund.ru/auction/106/94/',
         };
 
-        function preload() {
-            img1 = loadImage('./img/img1.jpg');
-            img2 = loadImage('./img/img2.png');
-            img3 = loadImage('./img/img3.png');
-        }
-
        function setup() {
             createCanvas(1500,1000);
             background('white');
@@ -173,6 +165,11 @@
             parent.child(button2);
             button2.mouseClicked(() => {
                 applyButtonStyle(button2);
+                imgContainer = createDiv('');
+                imgContainer.addClass('img-container');
+                img = createImg('./img/img2.jpg');
+                img.parent(imgContainer);
+
                 textContainer = createP();
                 textContainer.addClass('text-container');
                 textContainer.html(object2.work + '<br><br><hr>' + object2.artist + '<br><br><hr>' + object2.description + '<br><br><hr>' + '<a href="' + object2.link + '"target="_blank">' + object2.link + '</a>');
@@ -184,6 +181,11 @@
             parent.child(button3_1);
             button3_1.mouseClicked(() => {
                 applyButtonStyle(button3_1);
+                imgContainer = createDiv('');
+                imgContainer.addClass('img-container');
+                img = createImg('./img/img3.jpeg');
+                img.parent(imgContainer);
+
                 textContainer = createP();
                 textContainer.addClass('text-container');
                 textContainer.html(object3.work + '<br><br><hr>' + object3.artist + '<br><br><hr>' + object3.description + '<br><br><hr>' + '<a href="' + object3.link + '"target="_blank">' + object3.link + '</a>');
@@ -195,6 +197,11 @@
             parent.child(button3_2);
             button3_2.mouseClicked(() => {
                 applyButtonStyle(button3_2);
+                imgContainer = createDiv('');
+                imgContainer.addClass('img-container');
+                img = createImg('./img/img3.jpeg');
+                img.parent(imgContainer);
+
                 textContainer = createP();
                 textContainer.addClass('text-container');
                 textContainer.html(object3.work + '<br><br><hr>' + object3.artist + '<br><br><hr>' + object3.description + '<br><br><hr>' + '<a href="' + object3.link + '"target="_blank">' + object3.link + '</a>');
@@ -206,6 +213,11 @@
             parent.child(button3_3);
             button3_3.mouseClicked(() => {
                 applyButtonStyle(button3_3);
+                imgContainer = createDiv('');
+                imgContainer.addClass('img-container');
+                img = createImg('./img/img3.jpeg');
+                img.parent(imgContainer);
+                
                 textContainer = createP();
                 textContainer.addClass('text-container');
                 textContainer.html(object3.work + '<br><br><hr>' + object3.artist + '<br><br><hr>' + object3.description + '<br><br><hr>' + '<a href="' + object3.link + '"target="_blank">' + object3.link + '</a>');

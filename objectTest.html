@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;1,800&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins';
+            font-size: 30px;
+        }
+        .parent {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        let button;
+        let font;
+
+        let object = {
+            artist: 'Gennady Pavlov',
+            work: 'The True Cross of the Lord, sheet 28',
+            description: 'Paper, calligraphic ink, water-colours, sharp-pointed nib pen, brush, 31х31 cm, 2010',
+            link: 'http://calligraphy-expo.com/en/participants/Gennady_Pavlov',
+        };
+        function setup() {
+            createCanvas(600,600);
+            background(220);
+
+            let parent = createDiv('');
+            parent.addClass('parent');
+
+            button = createButton('outline, outline with blur');
+            parent.child(button);
+            button.mouseClicked(() => {
+                background(220);
+                textFont('Poppins');
+                textSize(30);
+                text(object.artist, 10, 10, 100, 100);
+            });
+        }
+        function draw() {
+
+        }
+
+    </script>
+</body>
+</html>

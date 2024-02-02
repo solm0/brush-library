@@ -23,22 +23,32 @@
             align-items: center;
             text-align: center;
         }
+        .custom-text {
+            position: absolute;
+            width: 600px;
+            height: 500px;
+            top: 10px;
+            left: 10px;
+        }
     </style>
 </head>
 <body>
     <script>
         let button;
-        let font;
+        let textContainer;
 
         let object = {
             artist: 'Gennady Pavlov',
             work: 'The True Cross of the Lord, sheet 28',
-            description: 'Paper, calligraphic ink, water-colours, sharp-pointed nib pen, brush, 31х31 cm, 2010',
+            description: 'Paper, calligraphic ink, water-colours, sharp-pointed nib pen, brush, 31x31 cm, 2010',
             link: 'http://calligraphy-expo.com/en/participants/Gennady_Pavlov',
         };
         function setup() {
             createCanvas(600,600);
             background(220);
+
+            let margin = 50; // 원하는 위아래 간격 조절
+            let yPos = 10; // 초기 y 좌표
 
             let parent = createDiv('');
             parent.addClass('parent');
@@ -47,11 +57,14 @@
             parent.child(button);
             button.mouseClicked(() => {
                 background(220);
-                textFont('Poppins');
-                textSize(30);
-                text(object.artist, 10, 10, 100, 100);
-            });
-        }
+
+                textContainer = createP();
+                textContainer.addClass('custom-text'); // Add your custom class here
+
+                // Add text to the container
+                textContainer.html(object.artist + '<br>' + object.work + '<br>' + object.description+ '<br>' + object.link);
+                    });
+                }
         function draw() {
 
         }

@@ -13,6 +13,14 @@
             font-family: 'Poppins', sans-serif;
             font-size: 30px;
             text-align: left;
+            overflow: hidden;
+            user-select: none;
+        }
+        a {
+            color: black;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            pointer-events: none;
         }
         body {
             position: absolute;
@@ -55,10 +63,15 @@
         }
         .text-container {
             position: absolute;
-            width: 600px;
-            height: 500px;
-            top: 10px;
-            left: 10px;
+            word-break: break-word;
+            width: 388px;
+            height: 724px;
+            top: 15px;
+            right: 328px;
+            line-height: 35px;
+        }
+        hr {
+            border: 0.5px solid black;
         }
     </style>
 </head>
@@ -86,8 +99,8 @@
 
         let textContainer;
         let object = {
-            artist: 'Gennady Pavlov',
             work: 'The True Cross of the Lord, sheet 28',
+            artist: 'Gennady Pavlov',
             description: 'Paper, calligraphic ink, water-colours, sharp-pointed nib pen, brush, 31x31 cm, 2010',
             link: 'http://calligraphy-expo.com/en/participants/Gennady_Pavlov',
         };
@@ -108,8 +121,8 @@
 
                 textContainer = createP();
                 textContainer.addClass('text-container');
-                textContainer.html(object.artist + '<br>' + object.work + '<br>' + object.description+ '<br>' + object.link);
-                    });
+                textContainer.html(object.work + '<br><br><hr>' + object.artist + '<br><br><hr>' + object.description + '<br><br><hr>' + '<a href="' + object.link + '"target="_blank">' + object.link + '</a>');
+            });
             
 
             button2 = createButton('9 random shapes, 3 line snap to grid');

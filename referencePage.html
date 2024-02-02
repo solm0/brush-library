@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;1,800&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>referencePage</title>
     <style>
          * {
             margin: 0;
@@ -53,34 +53,17 @@
             text-decoration-thickness: 1px;
             user-select: none;
         }
-        .cap-parent {
+        .text-container {
             position: absolute;
-            top: 198px;
-            right: 307px;
-            width: 336px;
-            height: 800px;
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-            z-index: 4;
-            text-align: left;
-            background-color: aliceblue;
+            width: 600px;
+            height: 500px;
+            top: 10px;
+            left: 10px;
         }
     </style>
 </head>
 <body>
     <script>
-        let font
-        let buttonFunctions = {
-            button1: brush1,
-            button2: brush2,
-            button3_1: brush3_1,
-            button3_2: brush3_2,
-            button3_3: brush3_3,
-
-        };
-        let currentBrushFunction = null;
-        
         let button1;
         let button2;
         let button3_1;
@@ -101,15 +84,17 @@
         let button15;
         let button16;
 
-        let brushcap1;
+        let textContainer;
+        let object = {
+            artist: 'Gennady Pavlov',
+            work: 'The True Cross of the Lord, sheet 28',
+            description: 'Paper, calligraphic ink, water-colours, sharp-pointed nib pen, brush, 31x31 cm, 2010',
+            link: 'http://calligraphy-expo.com/en/participants/Gennady_Pavlov',
+        };
 
-
-        function setBrushFunction(buttonName) {
-            currentBrushFunction = buttonFunctions[buttonName];
-        }
 
        function setup() {
-        createCanvas(1500,1000);
+            createCanvas(1500,1000);
             background('white');
 
 
@@ -118,37 +103,33 @@
 
             button1 = createButton('outline, outline with blur');
             parent.child(button1);
-            button1.mousePressed(() => {
-                setBrushFunction('button1');
-            });
+            button1.mouseClicked(() => {
+                background('white');
+
+                textContainer = createP();
+                textContainer.addClass('text-container');
+                textContainer.html(object.artist + '<br>' + object.work + '<br>' + object.description+ '<br>' + object.link);
+                    });
             
 
             button2 = createButton('9 random shapes, 3 line snap to grid');
             parent.child(button2);
-            button2.mousePressed(() => {
-                setBrushFunction('button2');
-            });
+
             
 
             button3_1 = createButton('fill the closed shape');
             parent.child(button3_1);
-            button3_1.mousePressed(() => {
-                setBrushFunction('button3_1');
-            });
+
             
 
             button3_2 = createButton('fill the closed shape (2)');
             parent.child(button3_2);
-            button3_2.mousePressed(() => {
-                setBrushFunction('button3_2');
-            });
+
             
 
             button3_3 = createButton('fill the closed shape (3)');
             parent.child(button3_3);
-            button3_3.mousePressed(() => {
-                setBrushFunction('button3_3');
-            });
+
 
             button4 = createButton('button is button4');
             parent.child(button4);
@@ -177,62 +158,7 @@
             button16 = createButton('button16');
             parent.child(button16);
 
-            let capParent = createDiv('');
-            capParent.addClass('cap-parent');
-
-            brushcap1 = createDiv('hello');
-            capParent.child(brushcap1);
-       }
-
-       function draw() {
-            // 여기에 필요한 그림 그리는 로직 추가
-            if (currentBrushFunction) {
-                currentBrushFunction();
-            }
-        }
-
-        
-
-        function brush1() {
-            clear();
-            brushcap1();
-        }
-        function brush2() {
-            clear();
-            fill('black');
-            text('bye', 50,50);
-        }
-        function brush3_1() {
-            console.log('brush3');
-        }
-        function brush3_2() {
-
-        }
-        function brush3_3() {
-
-        }
-        function brush4() {
-
-        }
-        function brush5() {
-
-        }
-        function brush6() {
-
-        }
-        function brush7() {
-
-        }
-        function brush8() {
-
-        }
-        function brush9() {
-
-        }
-        function brush10() {
-
-        }
-        
+       } 
     </script>
 </body>
 </html>

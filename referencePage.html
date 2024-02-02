@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;1,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100&display=swap" rel="stylesheet">
     <title>referencePage</title>
     <style>
          * {
             margin: 0;
             padding: 0;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Montserrat Alternates', sans-serif;
             font-size: 30px;
             text-align: left;
             overflow: hidden;
@@ -69,6 +69,7 @@
             top: 15px;
             right: 328px;
             line-height: 35px;
+            background-color: white;
         }
         hr {
             border: 0.5px solid black;
@@ -98,11 +99,23 @@
         let button16;
 
         let textContainer;
-        let object = {
+        let object1 = {
             work: 'The True Cross of the Lord, sheet 28',
             artist: 'Gennady Pavlov',
             description: 'Paper, calligraphic ink, water-colours, sharp-pointed nib pen, brush, 31x31 cm, 2010',
             link: 'http://calligraphy-expo.com/en/participants/Gennady_Pavlov',
+        };
+        let object2 = {
+            work: 'Bodoni Ornament',
+            artist: 'Seongjin Kim',
+            description: '',
+            link: 'https://www.behance.net/gallery/14142121/Bodoni-Ornament',
+        };
+        let object3 = {
+            work: 'Синицын, П. Преображенское и окружающие его места, их прошлое и настоящее',
+            artist: 'Михаила Васильевича Нестерова',
+            description: '1895, 195pp, 31.5x24.1cm. In a publishers compound chromolithographed binding with gold and colorful embossing.',
+            link: 'https://www.litfund.ru/auction/106/94/',
         };
 
 
@@ -117,31 +130,49 @@
             button1 = createButton('outline, outline with blur');
             parent.child(button1);
             button1.mouseClicked(() => {
-                background('white');
-
                 textContainer = createP();
                 textContainer.addClass('text-container');
-                textContainer.html(object.work + '<br><br><hr>' + object.artist + '<br><br><hr>' + object.description + '<br><br><hr>' + '<a href="' + object.link + '"target="_blank">' + object.link + '</a>');
+                textContainer.html(object1.work + '<br><br><hr>' + object1.artist + '<br><br><hr>' + object1.description + '<br><br><hr>' + '<a href="' + object1.link + '"target="_blank">' + object1.link + '</a>');
             });
             
 
             button2 = createButton('9 random shapes, 3 line snap to grid');
             parent.child(button2);
+            button2.mouseClicked(() => {
+                textContainer = createP();
+                textContainer.addClass('text-container');
+                textContainer.html(object2.work + '<br><br><hr>' + object2.artist + '<br><br><hr>' + object2.description + '<br><br><hr>' + '<a href="' + object2.link + '"target="_blank">' + object2.link + '</a>');
+            });
 
             
 
             button3_1 = createButton('fill the closed shape');
             parent.child(button3_1);
+            button3_1.mouseClicked(() => {
+                textContainer = createP();
+                textContainer.addClass('text-container');
+                textContainer.html(object3.work + '<br><br><hr>' + object3.artist + '<br><br><hr>' + object3.description + '<br><br><hr>' + '<a href="' + object3.link + '"target="_blank">' + object3.link + '</a>');
+            });
 
             
 
             button3_2 = createButton('fill the closed shape (2)');
             parent.child(button3_2);
+            button3_2.mouseClicked(() => {
+                textContainer = createP();
+                textContainer.addClass('text-container');
+                textContainer.html(object3.work + '<br><br><hr>' + object3.artist + '<br><br><hr>' + object3.description + '<br><br><hr>' + '<a href="' + object3.link + '"target="_blank">' + object3.link + '</a>');
+            });
 
             
 
             button3_3 = createButton('fill the closed shape (3)');
             parent.child(button3_3);
+            button3_3.mouseClicked(() => {
+                textContainer = createP();
+                textContainer.addClass('text-container');
+                textContainer.html(object3.work + '<br><br><hr>' + object3.artist + '<br><br><hr>' + object3.description + '<br><br><hr>' + '<a href="' + object3.link + '"target="_blank">' + object3.link + '</a>');
+            });
 
 
             button4 = createButton('button is button4');

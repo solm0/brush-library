@@ -23,7 +23,7 @@
             align-items: center;
             text-align: center;
         }
-        .custom-text {
+        .text-container {
             position: absolute;
             width: 600px;
             height: 500px;
@@ -47,9 +47,6 @@
             createCanvas(600,600);
             background(220);
 
-            let margin = 50; // 원하는 위아래 간격 조절
-            let yPos = 10; // 초기 y 좌표
-
             let parent = createDiv('');
             parent.addClass('parent');
 
@@ -59,7 +56,7 @@
                 background(220);
 
                 textContainer = createP();
-                textContainer.addClass('custom-text'); // Add your custom class here
+                textContainer.addClass('text-container'); // Add your custom class here
 
                 // Add text to the container
                 textContainer.html(object.artist + '<br>' + object.work + '<br>' + object.description+ '<br>' + object.link);

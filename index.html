@@ -158,6 +158,7 @@
             button3_1: brush3_1,
             button3_2: brush3_2,
             button3_3: brush3_3,
+            button4: brush4,
 
         };
         let currentBrushFunction = null;
@@ -167,8 +168,8 @@
         let button3_1;
         let button3_2;
         let button3_3;
-
         let button4;
+
         let button5;
         let button6;
         let button7;
@@ -248,8 +249,14 @@
                 setBrushFunction('button3_3');
             });
 
-            button4 = createButton('button is button4');
+            button4 = createButton('color circles');
             parent.child(button4);
+            button4.mousePressed(() => {
+                setBrushFunction('button4');
+            });
+
+
+
             button5 = createButton('button is button5');
             parent.child(button5);
             button6 = createButton('button6');
@@ -623,6 +630,35 @@
                     points3.push(createVector(mouseX, mouseY));
                 }
             }
+
+        
+        function brush4() {
+            console.log('brush2');
+            frameRate(30);
+            drawingContext.shadowBlur = 0;
+
+            let sW = 500;
+            strokeCap(ROUND);
+            
+
+            if (mouseIsPressed === true) {
+                blendMode(DIFFERENCE);
+                filter(BLUR, 1);
+
+                stroke(random(['orange','red','yellow']));
+                strokeWeight(random(-30,30));
+                line(pmouseX, pmouseY, mouseX, mouseY);
+
+                stroke(random(['lime','blue','pink']));
+                strokeWeight(sW * 0.8);
+                line(pmouseX, pmouseY, mouseX, mouseY);
+
+                stroke(random(['orange','red','yellow']));
+                strokeWeight(sW * 0.4);
+                line(pmouseX, pmouseY, mouseX, mouseY);
+            }
+
+        }
 
    </script>
 </body>

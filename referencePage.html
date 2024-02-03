@@ -140,6 +140,7 @@
             link: 'https://www.litfund.ru/auction/106/94/',
         };
 
+
        function setup() {
             createCanvas(1500,1000);
             background('white');
@@ -201,12 +202,9 @@
                 applyButtonStyle(button3_2);
                 imgContainer = createDiv('');
                 imgContainer.addClass('img-container');
-                img = createImg('./img/img3.jpeg');
-                img.parent(imgContainer);
-
-                textContainer = createP();
+                
+                textContainer = createP('no reference :-)');
                 textContainer.addClass('text-container');
-                textContainer.html(object3.work + '<br><br><hr>' + object3.artist + '<br><br><hr>' + object3.description + '<br><br><hr>' + '<a href="' + object3.link + '"target="_blank">' + object3.link + '</a>');
             });
 
             
@@ -217,17 +215,25 @@
                 applyButtonStyle(button3_3);
                 imgContainer = createDiv('');
                 imgContainer.addClass('img-container');
-                img = createImg('./img/img3.jpeg');
-                img.parent(imgContainer);
                 
-                textContainer = createP();
+                textContainer = createP('no reference :-)');
                 textContainer.addClass('text-container');
-                textContainer.html(object3.work + '<br><br><hr>' + object3.artist + '<br><br><hr>' + object3.description + '<br><br><hr>' + '<a href="' + object3.link + '"target="_blank">' + object3.link + '</a>');
             });
 
 
-            button4 = createButton('button is button4');
+            button4 = createButton('color circles');
             parent.child(button4);
+            button4.mouseClicked(() => {
+                applyButtonStyle(button4);
+                imgContainer = createDiv('');
+                imgContainer.addClass('img-container');
+                
+                textContainer = createP('no reference :-)');
+                textContainer.addClass('text-container');
+            });
+
+
+
             button5 = createButton('button is button5');
             parent.child(button5);
             button6 = createButton('button6');

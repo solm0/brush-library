@@ -490,13 +490,26 @@
                 fill(fillColor);
                 noStroke();
                 
-                blendMode(DIFFERENCE);
+                blendMode(BURN);
                 beginShape();
                 for (let pt of points1) {
-                vertex(pt.x, pt.y);
+                    vertex(pt.x, pt.y);
                 }
                 endShape(CLOSE);
             }
+
+            if (mouseIsPressed === true) {
+            
+                blendMode(BLEND);
+                stroke(225,225,216);
+                strokeWeight(sW * 0.4);
+                line(pmouseX, pmouseY, mouseX, mouseY);
+                
+                stroke('red');
+                strokeWeight(sW * 0.1);
+                line(pmouseX, pmouseY, mouseX, mouseY);
+                    
+                }
         }
 
             

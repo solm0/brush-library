@@ -135,32 +135,38 @@
     <script>
         const body = document.querySelector("body");
         const referencePage = document.querySelector(".referencePage");
-        const button = document.querySelector(".switchButton")
+        const switchButton = document.querySelector(".switchButton")
 
         function buttonFunction() {
-            if (button.value === 'reference') {
+            if (switchButton.value === 'reference') {
                 body.style.top = '-100vh';
                 referencePage.style.height = '90vh';
-                button.style.bottom = '-100px';
-                button.value = 'back to draw';
+                switchButton.style.bottom = '-100px';
+                switchButton.value = 'back to draw';
             }
-            else if (button.value === 'back to draw') {
+            else if (switchButton.value === 'back to draw') {
                 body.style.top = '0vh';
                 referencePage.style.height = '0vh';
-                button.style.bottom = '0px';
-                button.value = 'reference';
+                switchButton.style.bottom = '0px';
+                switchButton.value = 'reference';
             }
         }
-        
-        let buttonFunctions = {
-            button1: brush1,
-            button2: brush2,
-            button3: brush3,
-            button4: brush4,
-            button5: brush5,
-            button6: brush6,
 
+        let buttonFunctions = {
         };
+        let buttonTexts = {
+            button1: 'outline, outline with blur',
+            button2: '9 random shapes, 3 line snap to grid',
+            button3: 'fill the closed shape',
+            button4: 'fill the closed shape (2)',
+            button5: 'fill the closed shape (3)',
+            button6: 'color circles',
+        };
+        let i = 1;
+
+ 
+        console.log(buttonFunctions);
+     
         let currentBrushFunction = null;
         
         let button1;
@@ -181,7 +187,6 @@
         let button15;
         let button16;
         
-
 
 
 
@@ -209,70 +214,23 @@
             createCanvas(windowWidth, windowHeight);
             background(220);
 
-
             let parent = createDiv('');
             parent.addClass('parent');
 
-            button1 = createButton('outline, outline with blur');
-            parent.child(button1);
-            button1.mousePressed(() => {
-                setBrushFunction('button1');
-            });
-            
+            for (let i = 1; i <= 16; i++) {
+                let buttonKey = 'button' + i;
+                let brushValue = window['brush' + i];
+                buttonFunctions[buttonKey] = brushValue;
+                let buttonText = buttonTexts[buttonKey];
 
-            button2 = createButton('9 random shapes, 3 line snap to grid');
-            parent.child(button2);
-            button2.mousePressed(() => {
-                setBrushFunction('button2');
-            });
-            
+                let button = createButton(buttonText);
+                parent.child(button);
+                button.mousePressed(() => {
+                    setBrushFunction(buttonKey);
+                    console.log(buttonKey)
+                })
+            }
 
-            button3 = createButton('fill the closed shape');
-            parent.child(button3);
-            button3.mousePressed(() => {
-                setBrushFunction('button3');
-            });
-            
-
-            button4= createButton('fill the closed shape (2)');
-            parent.child(button4);
-            button4.mousePressed(() => {
-                setBrushFunction('button4');
-            });
-            
-
-            button5 = createButton('fill the closed shape (3)');
-            parent.child(button5);
-            button5.mousePressed(() => {
-                setBrushFunction('button5');
-            });
-
-            button6 = createButton('color circles');
-            parent.child(button6);
-            button6.mousePressed(() => {
-                setBrushFunction('button6');
-            });
-
-            button7 = createButton('button7');
-            parent.child(button7);
-            button8 = createButton('button button8');
-            parent.child(button8);
-            button9 = createButton('button9');
-            parent.child(button9);
-            button10 = createButton('buttonis button10');
-            parent.child(button10);
-            button11 = createButton('button11');
-            parent.child(button11);
-            button12 = createButton('button12');
-            parent.child(button12);
-            button13 = createButton('button13');
-            parent.child(button13);
-            button14 = createButton('button14');
-            parent.child(button14);
-            button15 = createButton('button15');
-            parent.child(button15);
-            button16 = createButton('button16');
-            parent.child(button16);
 
            
 

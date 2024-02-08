@@ -152,8 +152,9 @@
             }
         }
 
-        let buttonFunctions = {
-        };
+        let buttonFunctions = {};
+        console.log(buttonFunctions);
+
         let buttonTexts = {
             button1: 'outline, outline with blur',
             button2: '9 random shapes, 3 line snap to grid',
@@ -162,33 +163,15 @@
             button5: 'fill the closed shape (3)',
             button6: 'color circles',
         };
-        let i = 1;
-
- 
-        console.log(buttonFunctions);
-     
+       
         let currentBrushFunction = null;
         
-        let button1;
-        let button2;
-        let button3;
-        let button4;
-        let button5;
-        let button6;
-
-        let button7;
-        let button8;
-        let button9;
-        let button10;
-        let button11;
-        let button12;
-        let button13;
-        let button14;
-        let button15;
-        let button16;
-        
-
-
+        // button1,button2...변수 선언
+        let buttons = [];
+        for (let i = 1; i <= 16; i++) {
+            buttons.push(undefined); // 버튼을 생성하지 않고 undefined로 초기화
+        }
+    
 
         let allowDownload = true;
         let allowRefresh = true;

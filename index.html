@@ -155,23 +155,21 @@
         let buttonFunctions = {
             button1: brush1,
             button2: brush2,
-            button3_1: brush3_1,
-            button3_2: brush3_2,
-            button3_3: brush3_3,
+            button3: brush3,
             button4: brush4,
+            button5: brush5,
+            button6: brush6,
 
         };
         let currentBrushFunction = null;
         
         let button1;
         let button2;
-        let button3_1;
-        let button3_2;
-        let button3_3;
+        let button3;
         let button4;
-
         let button5;
         let button6;
+
         let button7;
         let button8;
         let button9;
@@ -196,7 +194,7 @@
         updateAngle();
         let multip;
 
-        //brush3_1, brush3_2, brush3_3
+        //brush3, brush4, brush5
         let drawing1 = false;
         let drawing2 = false;
         let drawing3 = false;
@@ -229,38 +227,32 @@
             });
             
 
-            button3_1 = createButton('fill the closed shape');
-            parent.child(button3_1);
-            button3_1.mousePressed(() => {
-                setBrushFunction('button3_1');
+            button3 = createButton('fill the closed shape');
+            parent.child(button3);
+            button3.mousePressed(() => {
+                setBrushFunction('button3');
             });
             
 
-            button3_2 = createButton('fill the closed shape (2)');
-            parent.child(button3_2);
-            button3_2.mousePressed(() => {
-                setBrushFunction('button3_2');
-            });
-            
-
-            button3_3 = createButton('fill the closed shape (3)');
-            parent.child(button3_3);
-            button3_3.mousePressed(() => {
-                setBrushFunction('button3_3');
-            });
-
-            button4 = createButton('color circles');
+            button4= createButton('fill the closed shape (2)');
             parent.child(button4);
             button4.mousePressed(() => {
                 setBrushFunction('button4');
             });
+            
 
-
-
-            button5 = createButton('button is button5');
+            button5 = createButton('fill the closed shape (3)');
             parent.child(button5);
-            button6 = createButton('button6');
+            button5.mousePressed(() => {
+                setBrushFunction('button5');
+            });
+
+            button6 = createButton('color circles');
             parent.child(button6);
+            button6.mousePressed(() => {
+                setBrushFunction('button6');
+            });
+
             button7 = createButton('button7');
             parent.child(button7);
             button8 = createButton('button button8');
@@ -284,12 +276,11 @@
 
            
 
-
             //brush2
             multip = 10;
             angleMode(DEGREES);
 
-            //brush3_1, brush3_2, brush3_3
+            //brush3, brush4, brush5
             fillColor = random([color(193,141,79,5),color(44,134,134, 5)]);
         }
 
@@ -298,15 +289,11 @@
         }
 
         
-        
-
-
+    
         function draw() {
-            
             if (currentBrushFunction) {
                 currentBrushFunction();
             }
-            
         }
 
 
@@ -445,8 +432,8 @@
                 return num * Math.sign(val);
             }
 
-        function brush3_1() {
-            console.log('brush3_1');
+        function brush3() {
+            console.log('brush3');
             frameRate(60);
             drawingContext.shadowBlur = 0;
 
@@ -513,8 +500,8 @@
         }
 
             
-        function brush3_2() {
-            console.log('brush3_2');
+        function brush4() {
+            console.log('brush4');
             drawingContext.shadowBlur = 0;
             frameRate(60);
 
@@ -568,8 +555,8 @@
             }
         }
 
-        function brush3_3() {
-            console.log('brush3_3');
+        function brush5() {
+            console.log('brush5');
             drawingContext.shadowBlur = 0;
             frameRate(60);
 
@@ -622,7 +609,7 @@
             }
         }
 
-            //brush3_1, brush3_2, brush3_3
+            //brush3, brush4, brush5
             function mousePressed() {
                 drawing1 = true;
                 points1 = [];
@@ -645,8 +632,8 @@
             }
 
         
-        function brush4() {
-            console.log('brush2');
+        function brush6() {
+            console.log('brush6');
             frameRate(30);
             drawingContext.shadowBlur = 0;
 

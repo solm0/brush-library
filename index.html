@@ -152,10 +152,10 @@
             }
         }
 
-        let buttonFunctions = {};
+        const buttonFunctions = {};
         console.log(buttonFunctions);
 
-        let buttonTexts = {
+        const buttonTexts = {
             button1: 'outline, outline with blur',
             button2: '9 random shapes, 3 line snap to grid',
             button3: 'fill the closed shape',
@@ -171,11 +171,11 @@
         let allowRefresh = true;
 
         //brush2
-        let symmetry = 2; 
+        const symmetry = 2;
+        const multip = 10;
         let angle;
         updateAngle();
-        let multip;
-
+        
         //brush3, brush4, brush5
         let drawing1 = false;
         let drawing2 = false;
@@ -184,14 +184,13 @@
         let points2 = [];
         let points3 = [];
         let fillColor;
-        let randomFilter;
 
 
         function setup() {
             createCanvas(windowWidth, windowHeight);
             background(220);
 
-            let parent = createDiv('');
+            const parent = createDiv('');
             parent.addClass('parent');
 
             for (let i = 1; i <= 16; i++) {
@@ -209,10 +208,7 @@
             }
 
 
-           
-
             //brush2
-            multip = 10;
             angleMode(DEGREES);
 
             //brush3, brush4, brush5
@@ -223,8 +219,6 @@
             currentBrushFunction = buttonFunctions[buttonName];
         }
 
-        
-    
         function draw() {
             if (currentBrushFunction) {
                 currentBrushFunction();
@@ -236,7 +230,6 @@
         function refresh() {
             location.reload(true);
         }
-
         function keyPressed() {
             if (keyCode === 83 && allowDownload) {
                 save('library.jpg');
@@ -266,7 +259,6 @@
             let mx = (width/2-mouseX) + width / 2;
             let pmx = (width/2-pmouseX) + width / 2;
 
-        
             if(mouseIsPressed === true) {
                 px = pow(pmouseX-mouseX, 2);
                 py = pow(pmouseY-mouseY, 2);
@@ -316,7 +308,6 @@
                 stroke('black');
                 strokeWeight(1);
 
-                
                 for (let i = 0; i < symmetry; i++) { //Repeat the process
                 push(); //Save matrix
                 rotate(i * angle); //Rotate
@@ -398,7 +389,6 @@
             stroke('red');
             strokeWeight(sW * 0.1);
             line(pmouseX, pmouseY, mouseX, mouseY);
-                
             }
 
             beginShape();
@@ -408,7 +398,6 @@
             endShape();
 
             if (drawing1 && points1.length > 1) {
-            
                 fill(fillColor);
                 noStroke();
                 
@@ -466,7 +455,6 @@
             stroke('red');
             strokeWeight(sW * 0.1);
             line(pmouseX, pmouseY, mouseX, mouseY);
-                
             }
 
             
@@ -477,7 +465,6 @@
             endShape();
 
             if (drawing2 && points2.length > 1) {
-            
                 fill(fillColor);
                 noStroke();
                 filter(DILATE);
@@ -521,7 +508,6 @@
             stroke('red');
             strokeWeight(sW * 0.1);
             line(pmouseX, pmouseY, mouseX, mouseY);
-                
             }
             
             beginShape();
@@ -566,7 +552,6 @@
                 }
             }
 
-        
         function brush6() {
             console.log('brush6');
             frameRate(30);
@@ -592,7 +577,6 @@
                 strokeWeight(sW * 0.4);
                 line(pmouseX, pmouseY, mouseX, mouseY);
             }
-
         }
 
    </script>

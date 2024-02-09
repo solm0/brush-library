@@ -165,7 +165,6 @@
        
         let currentBrushFunction = null;
         
-
         let allowDownload = true;
         let allowRefresh = true;
 
@@ -201,14 +200,12 @@
                 let button = createButton(buttonText);
                 parent.child(button);
                 button.mousePressed(() => {
-                    setBrushFunction(buttonKey);
-                    console.log(buttonKey)
-                })
+                    setTimeout(() => {
+                        setBrushFunction(buttonKey);
+                        console.log(buttonKey)
+                    }, 500);
+                });
             }
-
-
-            //brush2
-            angleMode(DEGREES);
 
             //brush3, brush4, brush5
             fillColor = random([color(193,141,79,5),color(44,134,134, 5)]);
@@ -283,6 +280,7 @@
             blendMode(BLEND);
             drawingContext.shadowBlur = 0;
 
+            angleMode(DEGREES);
             rectMode(CENTER);
             let mx = mouseX - width / 2;
             let my = mouseY - height / 2

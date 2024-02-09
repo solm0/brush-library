@@ -151,123 +151,50 @@
             '1895, 195pp, 31.5x24.1cm. In a publishers compound chromolithographed binding with gold and colorful embossing.',
             'https://www.litfund.ru/auction/106/94/',
         );
-        console.log(refTexts);
 
+        const buttonTexts = {
+            button1: 'outline, outline with blur',
+            button2: '9 random shapes, 3 line snap to grid',
+            button3: 'fill the closed shape',
+            button4: 'fill the closed shape (2)',
+            button5: 'fill the closed shape (3)',
+            button6: 'color circles',
+        };
+        const buttonImgs = {
+            button1: './img/img1.jpg',
+            button2: './img/img2.jpg',
+            button3: './img/img3.jpeg',
+            button4: '',
+            button5: '',
+            button6: '',
+        }
+        console.log(buttonImgs);
 
         function setup() {
             createCanvas(1500,1000);
             background('white');
 
-            let parent = createDiv('');
+            const parent = createDiv('');
             parent.addClass('parent');
 
-            button1 = createButton('outline, outline with blur');
-            parent.child(button1);
-            button1.mouseClicked(() => {
-                applyButtonStyle(button1);
-                imgContainer = createDiv('');
-                imgContainer.addClass('img-container');
-                img = createImg('./img/img1.jpg');
-                img.parent(imgContainer);
+            for (let i = 1; i <= 16; i++) {
+                let buttonKey = 'button' + i;
 
-                textContainer = createP();
-                textContainer.addClass('text-container');
-                textContainer.html(ref1.work + '<br><br><hr>' + ref1.artist + '<br><br><hr>' + ref1.description + '<br><br><hr>' + '<a href="' + ref1.link + '"target="_blank">' + ref1.link + '</a>');
-            });
-            
+                let button = createButton(buttonTexts[buttonKey]);
+                parent.child(button);
+                button.mouseClicked(() => {
+                    applyButtonStyle(button);
+                    imgContainer = createDiv('');
+                    imgContainer.addClass('img-container');
+                    img = createImg(buttonImgs[buttonKey]);
+                    img.parent(imgContainer);
 
-            button2 = createButton('9 random shapes, 3 line snap to grid');
-            parent.child(button2);
-            button2.mouseClicked(() => {
-                applyButtonStyle(button2);
-                imgContainer = createDiv('');
-                imgContainer.addClass('img-container');
-                img = createImg('./img/img2.jpg');
-                img.parent(imgContainer);
+                    textContainer = createP();
+                    textContainer.addClass('text-container');
+                    textContainer.html(ref1.work + '<br><br><hr>' + ref1.artist + '<br><br><hr>' + ref1.description + '<br><br><hr>' + '<a href="' + ref1.link + '"target="_blank">' + ref1.link + '</a>');
+                })
+            }
 
-                textContainer = createP();
-                textContainer.addClass('text-container');
-                textContainer.html(ref2.work + '<br><br><hr>' + ref2.artist + '<br><br><hr>' + ref2.description + '<br><br><hr>' + '<a href="' + ref2.link + '"target="_blank">' + ref2.link + '</a>');
-            });
-
-            
-
-            button3 = createButton('fill the closed shape');
-            parent.child(button3);
-            button3.mouseClicked(() => {
-                applyButtonStyle(button3);
-                imgContainer = createDiv('');
-                imgContainer.addClass('img-container');
-                img = createImg('./img/img3.jpeg');
-                img.parent(imgContainer);
-
-                textContainer = createP();
-                textContainer.addClass('text-container');
-                textContainer.html(ref3.work + '<br><br><hr>' + ref3.artist + '<br><br><hr>' + ref3.description + '<br><br><hr>' + '<a href="' + ref3.link + '"target="_blank">' + ref3.link + '</a>');
-            });
-
-            
-
-            button4 = createButton('fill the closed shape (2)');
-            parent.child(button4);
-            button4.mouseClicked(() => {
-                applyButtonStyle(button4);
-                imgContainer = createDiv('');
-                imgContainer.addClass('img-container');
-                
-                textContainer = createP();
-                textContainer.addClass('text-container');
-                textContainer.html(noref.work + '<br><br><hr>' + noref.artist + '<br><br><hr>' + noref.description + '<br><br><hr>' + noref.link);
-            });
-
-            
-
-            button5 = createButton('fill the closed shape (3)');
-            parent.child(button5);
-            button5.mouseClicked(() => {
-                applyButtonStyle(button5);
-                imgContainer = createDiv('');
-                imgContainer.addClass('img-container');
-                
-                textContainer = createP();
-                textContainer.addClass('text-container');
-                textContainer.html(noref.work + '<br><br><hr>' + noref.artist + '<br><br><hr>' + noref.description + '<br><br><hr>' + noref.link);
-            });
-
-
-            button6 = createButton('color circles');
-            parent.child(button6);
-            button6.mouseClicked(() => {
-                applyButtonStyle(button6);
-                imgContainer = createDiv('');
-                imgContainer.addClass('img-container');
-                
-                textContainer = createP();
-                textContainer.addClass('text-container');
-                textContainer.html(noref.work + '<br><br><hr>' + noref.artist + '<br><br><hr>' + noref.description + '<br><br><hr>' + noref.link);
-            });
-
-
-            button7 = createButton('button7');
-            parent.child(button7);
-            button8 = createButton('button button8');
-            parent.child(button8);
-            button9 = createButton('button9');
-            parent.child(button9);
-            button10 = createButton('buttonis button10');
-            parent.child(button10);
-            button11 = createButton('button11');
-            parent.child(button11);
-            button12 = createButton('button12');
-            parent.child(button12);
-            button13 = createButton('button13');
-            parent.child(button13);
-            button14 = createButton('button14');
-            parent.child(button14);
-            button15 = createButton('button15');
-            parent.child(button15);
-            button16 = createButton('button16');
-            parent.child(button16);
 
             function applyButtonStyle(button) {
                 if (currentButton) {
@@ -276,12 +203,10 @@
                     currentButton.style('background-color', '');
                     currentButton.style('opacity', '');
                 }
-
                 // 현재 버튼에 스타일 적용
                 button.style('color', 'white');
                 button.style('background-color', 'rgb(141, 39, 39)');
                 button.style('opacity', '80%');
-
                 // 현재 버튼을 기억
                 currentButton = button;
             }

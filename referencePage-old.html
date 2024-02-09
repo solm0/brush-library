@@ -119,42 +119,27 @@
         let button16;
 
         let textContainer;
+        let object1 = {
+            work: 'The True Cross of the Lord, sheet 28',
+            artist: 'Gennady Pavlov',
+            description: 'Paper, calligraphic ink, water-colours, sharp-pointed nib pen, brush, 31x31 cm, 2010',
+            link: 'http://calligraphy-expo.com/en/participants/Gennady_Pavlov',
+        };
+        let object2 = {
+            work: 'Bodoni Ornament',
+            artist: 'Seongjin Kim',
+            description: '',
+            link: 'https://www.behance.net/gallery/14142121/Bodoni-Ornament',
+        };
+        let object3 = {
+            work: 'Синицын, П. Преображенское и окружающие его места, их прошлое и настоящее',
+            artist: 'Михаила Васильевича Нестерова',
+            description: '1895, 195pp, 31.5x24.1cm. In a publishers compound chromolithographed binding with gold and colorful embossing.',
+            link: 'https://www.litfund.ru/auction/106/94/',
+        };
 
 
-        function refTexts(work, artist, description, link) {
-            this.work = work;
-            this.artist = artist;
-            this.description = description;
-            this.link = link;
-        }
-        const noref = new refTexts(
-            'no reference :-)',
-            '',
-            '',
-            '',
-        )
-        const ref1 = new refTexts(
-            'The True Cross of the Lord, sheet 28',
-            'Gennady Pavlov',
-            'Paper, calligraphic ink, water-colours, sharp-pointed nib pen, brush, 31x31 cm, 2010',
-            'http://calligraphy-expo.com/en/participants/Gennady_Pavlov',
-        );
-        const ref2 = new refTexts(
-            'Bodoni Ornament',
-            'Seongjin Kim',
-            '',
-            'https://www.behance.net/gallery/14142121/Bodoni-Ornament',
-        );
-        const ref3 = new refTexts(
-            'Синицын, П. Преображенское и окружающие его места, их прошлое и настоящее',
-            'Михаила Васильевича Нестерова',
-            '1895, 195pp, 31.5x24.1cm. In a publishers compound chromolithographed binding with gold and colorful embossing.',
-            'https://www.litfund.ru/auction/106/94/',
-        );
-        console.log(refTexts);
-
-
-        function setup() {
+       function setup() {
             createCanvas(1500,1000);
             background('white');
 
@@ -172,7 +157,7 @@
 
                 textContainer = createP();
                 textContainer.addClass('text-container');
-                textContainer.html(ref1.work + '<br><br><hr>' + ref1.artist + '<br><br><hr>' + ref1.description + '<br><br><hr>' + '<a href="' + ref1.link + '"target="_blank">' + ref1.link + '</a>');
+                textContainer.html(object1.work + '<br><br><hr>' + object1.artist + '<br><br><hr>' + object1.description + '<br><br><hr>' + '<a href="' + object1.link + '"target="_blank">' + object1.link + '</a>');
             });
             
 
@@ -187,7 +172,7 @@
 
                 textContainer = createP();
                 textContainer.addClass('text-container');
-                textContainer.html(ref2.work + '<br><br><hr>' + ref2.artist + '<br><br><hr>' + ref2.description + '<br><br><hr>' + '<a href="' + ref2.link + '"target="_blank">' + ref2.link + '</a>');
+                textContainer.html(object2.work + '<br><br><hr>' + object2.artist + '<br><br><hr>' + object2.description + '<br><br><hr>' + '<a href="' + object2.link + '"target="_blank">' + object2.link + '</a>');
             });
 
             
@@ -203,7 +188,7 @@
 
                 textContainer = createP();
                 textContainer.addClass('text-container');
-                textContainer.html(ref3.work + '<br><br><hr>' + ref3.artist + '<br><br><hr>' + ref3.description + '<br><br><hr>' + '<a href="' + ref3.link + '"target="_blank">' + ref3.link + '</a>');
+                textContainer.html(object3.work + '<br><br><hr>' + object3.artist + '<br><br><hr>' + object3.description + '<br><br><hr>' + '<a href="' + object3.link + '"target="_blank">' + object3.link + '</a>');
             });
 
             
@@ -215,9 +200,8 @@
                 imgContainer = createDiv('');
                 imgContainer.addClass('img-container');
                 
-                textContainer = createP();
+                textContainer = createP('no reference :-)');
                 textContainer.addClass('text-container');
-                textContainer.html(noref.work + '<br><br><hr>' + noref.artist + '<br><br><hr>' + noref.description + '<br><br><hr>' + noref.link);
             });
 
             
@@ -229,9 +213,8 @@
                 imgContainer = createDiv('');
                 imgContainer.addClass('img-container');
                 
-                textContainer = createP();
+                textContainer = createP('no reference :-)');
                 textContainer.addClass('text-container');
-                textContainer.html(noref.work + '<br><br><hr>' + noref.artist + '<br><br><hr>' + noref.description + '<br><br><hr>' + noref.link);
             });
 
 
@@ -242,9 +225,8 @@
                 imgContainer = createDiv('');
                 imgContainer.addClass('img-container');
                 
-                textContainer = createP();
+                textContainer = createP('no reference :-)');
                 textContainer.addClass('text-container');
-                textContainer.html(noref.work + '<br><br><hr>' + noref.artist + '<br><br><hr>' + noref.description + '<br><br><hr>' + noref.link);
             });
 
 

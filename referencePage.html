@@ -95,30 +95,10 @@
 </head>
 <body>
     <script>
-        let currentButton;
-
         let img;
         let imgContainer;
-
-        let button1;
-        let button2;
-        let button3;
-        let button4;
-        let button5;
-        let button6;
-
-        let button7;
-        let button8;
-        let button9;
-        let button10;
-        let button11;
-        let button12;
-        let button13;
-        let button14;
-        let button15;
-        let button16;
-
         let textContainer;
+        let currentButton;
 
 
         function refTexts(work, artist, description, link) {
@@ -151,6 +131,7 @@
             '1895, 195pp, 31.5x24.1cm. In a publishers compound chromolithographed binding with gold and colorful embossing.',
             'https://www.litfund.ru/auction/106/94/',
         );
+        const refTextsArray = [noref, ref1, ref2, ref3];
 
         const buttonTexts = {
             button1: 'outline, outline with blur',
@@ -168,7 +149,8 @@
             button5: '',
             button6: '',
         }
-        console.log(buttonImgs);
+        
+
 
         function setup() {
             createCanvas(1500,1000);
@@ -179,11 +161,13 @@
 
             for (let i = 1; i <= 16; i++) {
                 let buttonKey = 'button' + i;
+                const ref = refTextsArray[i] ? refTextsArray[i] : noref;
 
                 let button = createButton(buttonTexts[buttonKey]);
                 parent.child(button);
                 button.mouseClicked(() => {
                     applyButtonStyle(button);
+
                     imgContainer = createDiv('');
                     imgContainer.addClass('img-container');
                     img = createImg(buttonImgs[buttonKey]);
@@ -191,26 +175,25 @@
 
                     textContainer = createP();
                     textContainer.addClass('text-container');
-                    textContainer.html(ref1.work + '<br><br><hr>' + ref1.artist + '<br><br><hr>' + ref1.description + '<br><br><hr>' + '<a href="' + ref1.link + '"target="_blank">' + ref1.link + '</a>');
+                    textContainer.html(ref.work + '<br><br><hr>' + ref.artist + '<br><br><hr>' + ref.description + '<br><br><hr>' + '<a href="' + ref.link + '"target="_blank">' + ref.link + '</a>');
                 })
             }
+        } 
 
-
-            function applyButtonStyle(button) {
-                if (currentButton) {
-                    // 이전 버튼이 있을 경우, 스타일 초기화
-                    currentButton.style('color', '');
-                    currentButton.style('background-color', '');
-                    currentButton.style('opacity', '');
-                }
-                // 현재 버튼에 스타일 적용
-                button.style('color', 'white');
-                button.style('background-color', 'rgb(141, 39, 39)');
-                button.style('opacity', '80%');
-                // 현재 버튼을 기억
-                currentButton = button;
+        function applyButtonStyle(button) {
+            if (currentButton) {
+                // 이전 버튼이 있을 경우, 스타일 초기화
+                currentButton.style('color', '');
+                currentButton.style('background-color', '');
+                currentButton.style('opacity', '');
             }
-       } 
+            // 현재 버튼에 스타일 적용
+            button.style('color', 'white');
+            button.style('background-color', 'rgb(141, 39, 39)');
+            button.style('opacity', '80%');
+            // 현재 버튼을 기억
+            currentButton = button;
+        }
     </script>
 </body>
 </html>

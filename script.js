@@ -127,7 +127,7 @@ const cursor = document.getElementById('cursor');
 
                     textContainer = createP();
                     textContainer.addClass('text-container');
-                    textContainer.html(ref.work + '<br>' + ref.artist + '<br>' + ref.description + '<br>' + '<a href="' + ref.link + '"target="_blank">' + ref.link + '</a>');
+                    textContainer.html(ref.work + '<br>' + ref.artist + '<br>&nbsp;&nbsp;&nbsp;&nbsp;' + ref.description + '<br>' + '<a href="' + ref.link + '"target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;' + ref.link + '</a>');
                     textContainer.position(random(0,windowWidth-300), random(0,windowHeight-700));
                     img = createImg(buttonImgs[buttonKey]);
                     textContainer.child(img);

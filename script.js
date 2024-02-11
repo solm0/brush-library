@@ -47,7 +47,6 @@ const cursor = document.getElementById('cursor');
         };
 
         let img;
-        let imgContainer;
         let textContainer;
 
         function refTexts(work, artist, description, link) {
@@ -126,14 +125,12 @@ const cursor = document.getElementById('cursor');
                 button.mouseClicked(() => {
                     applyButtonStyle(button);
 
-                    imgContainer = createDiv('');
-                    imgContainer.addClass('img-container');
-                    img = createImg(buttonImgs[buttonKey]);
-                    img.parent(imgContainer);
-
                     textContainer = createP();
                     textContainer.addClass('text-container');
-                    textContainer.html(ref.work + '<br><br><hr>' + ref.artist + '<br><br><hr>' + ref.description + '<br><br><hr>' + '<a href="' + ref.link + '"target="_blank">' + ref.link + '</a>');
+                    textContainer.html(ref.work + '<br>' + ref.artist + '<br>' + ref.description + '<br>' + '<a href="' + ref.link + '"target="_blank">' + ref.link + '</a>');
+                    textContainer.position(random(0,windowWidth-300), random(0,windowHeight-700));
+                    img = createImg(buttonImgs[buttonKey]);
+                    textContainer.child(img);
                 })
             }
 

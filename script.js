@@ -46,6 +46,55 @@ const cursor = document.getElementById('cursor');
             button6: 'color circles',
         };
 
+        let img;
+        let imgContainer;
+        let textContainer;
+
+        function refTexts(work, artist, description, link) {
+            this.work = work;
+            this.artist = artist;
+            this.description = description;
+            this.link = link;
+        }
+        const noref = new refTexts(
+            'no reference :-)',
+            '',
+            '',
+            '',
+        )
+        const ref1 = new refTexts(
+            'The True Cross of the Lord, sheet 28',
+            'Gennady Pavlov',
+            'Paper, calligraphic ink, water-colours, sharp-pointed nib pen, brush, 31x31 cm, 2010',
+            'http://calligraphy-expo.com/en/participants/Gennady_Pavlov',
+        );
+        const ref2 = new refTexts(
+            'Bodoni Ornament',
+            'Seongjin Kim',
+            '',
+            'https://www.behance.net/gallery/14142121/Bodoni-Ornament',
+        );
+        const ref3 = new refTexts(
+            'Синицын, П. Преображенское и окружающие его места, их прошлое и настоящее',
+            'Михаила Васильевича Нестерова',
+            '1895, 195pp, 31.5x24.1cm. In a publishers compound chromolithographed binding with gold and colorful embossing.',
+            'https://www.litfund.ru/auction/106/94/',
+        );
+        const refTextsArray = [noref, ref1, ref2, ref3];
+
+        const buttonImgs = {
+            button1: './img/img1.jpg',
+            button2: './img/img2.jpg',
+            button3: './img/img3.jpeg',
+            button4: '',
+            button5: '',
+            button6: '',
+        }
+
+
+
+
+
 
         
 
@@ -63,10 +112,10 @@ const cursor = document.getElementById('cursor');
                 let buttonKey = 'button' + i;
                 let brushValue = window['brush' + i];
                 buttonFunctions[buttonKey] = brushValue;
-                let buttonText = buttonTexts[buttonKey];
+                const ref = refTextsArray[i] ? refTextsArray[i] : noref;
 
                 
-                let button = createButton(buttonText);
+                let button = createButton(buttonTexts[buttonKey]);
                 button.position(random(100,windowWidth-200), random(100,windowHeight-200));
                 parent.child(button);
                 setBrushFunction(buttonKey);
@@ -76,6 +125,15 @@ const cursor = document.getElementById('cursor');
 
                 button.mouseClicked(() => {
                     applyButtonStyle(button);
+
+                    imgContainer = createDiv('');
+                    imgContainer.addClass('img-container');
+                    img = createImg(buttonImgs[buttonKey]);
+                    img.parent(imgContainer);
+
+                    textContainer = createP();
+                    textContainer.addClass('text-container');
+                    textContainer.html(ref.work + '<br><br><hr>' + ref.artist + '<br><br><hr>' + ref.description + '<br><br><hr>' + '<a href="' + ref.link + '"target="_blank">' + ref.link + '</a>');
                 })
             }
 

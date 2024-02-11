@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://use.typekit.net/mdh2mek.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
 </head>
 <style>
@@ -12,6 +13,12 @@
         margin: 0;
         padding: 0;
         user-select: none;
+    }
+    a {
+        color: black;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        /* pointer-events: none; */
     }
     body {
         position: absolute;
@@ -122,6 +129,40 @@
         font-size: 20px;
         text-align: center;
     }
+    .text-container {
+            position: absolute;
+            word-break: break-word;
+            width: 388px;
+            height: 724px;
+            top: 15px;
+            right: 328px;
+            line-height: 35px;
+            background-color: white;
+
+            font-family: 'Montserrat Alternates', sans-serif;
+            font-size: 30px;
+            text-align: left;
+        }
+        .img-container {
+            position: absolute;
+            width: calc(100vw - 785px);
+            height: 1000px;
+            top: 20px;
+            left: 50px;
+            background-color: white;
+        }
+        .img-container * {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+            border: solid 1px black;
+        }
+        hr {
+            border: 0.5px solid black;
+        }
 </style>
 <body>
     <h1>

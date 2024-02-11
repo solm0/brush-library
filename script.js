@@ -67,7 +67,7 @@ const cursor = document.getElementById('cursor');
 
                 
                 let button = createButton(buttonText);
-                button.position(random(0,windowWidth), random(0,windowHeight));
+                button.position(random(100,windowWidth-200), random(100,windowHeight-200));
                 parent.child(button);
                 setBrushFunction(buttonKey);
                 button.mousePressed(() => {

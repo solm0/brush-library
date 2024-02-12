@@ -51,6 +51,7 @@ const cursor = document.getElementById('cursor');
         let text3;
         let text4;
         let imgTextContainer;
+        let button;
 
         function refTexts(work, artist, description, link) {
             this.work = work;
@@ -111,7 +112,7 @@ const cursor = document.getElementById('cursor');
                 const ref = refTextsArray[i] ? refTextsArray[i] : noref;
 
                 
-                let button = createButton(buttonTexts[buttonKey]);
+                button = createButton(buttonTexts[buttonKey]);
                 button.position(random(100,windowWidth-200), random(100,windowHeight-200));
                 parent.child(button);
                 setBrushFunction(buttonKey);
@@ -155,11 +156,12 @@ const cursor = document.getElementById('cursor');
                     imgTextContainer.child(text4);
                     imgTextContainer.position(random(0,windowWidth-300), random(0,windowHeight-700));
 
+                    //brush3, brush4, brush5
+                    fillColor = random([color(193,141,79,5),color(44,134,134, 5)]);
                 });
             }
 
-            //brush3, brush4, brush5
-            fillColor = random([color(193,141,79,5),color(44,134,134, 5)]);
+            
         }
 
 
@@ -178,6 +180,7 @@ const cursor = document.getElementById('cursor');
             // 현재 버튼을 기억
             currentButton = button;
         }
+
 
 
 

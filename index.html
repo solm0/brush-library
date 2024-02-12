@@ -130,14 +130,10 @@
         font-size: 18px;
         text-align: center;
         padding: 5px;
-        cursor: grab;
     }
     .parent > *:hover {
         background-color: blue;
         color: rgb(220,220,220);
-    }
-    .parent > *:active {
-        cursor: grabbing;
     }
     .text {
         position: relative;
@@ -172,14 +168,11 @@
         width: 200px;
         height: auto;
         z-index: 5;
-        cursor: grab;
     }
     .img-text-container:hover {
         background-color: rgb(220,220,220);
     }
-    .img-text-container:active {
-        cursor: grabbing;
-    }
+
 </style>
 <body>
     <h1>
@@ -192,5 +185,6 @@
     </div>
     <p id="cursorText">drag and draw!</p>
     <script src="./script.js"></script>
+    <!-- <script src="./draggable.js"></script> -->
 </body>
 </html>

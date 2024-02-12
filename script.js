@@ -43,11 +43,14 @@ const cursor = document.getElementById('cursor');
             button3: 'fill the closed shape',
             button4: 'fill the closed shape (2)',
             button5: 'fill the closed shape (3)',
-            button6: 'color circles',
         };
 
         let img;
-        let textContainer;
+        let text1;
+        let text2;
+        let text3;
+        let text4;
+        let imgTextContainer;
 
         function refTexts(work, artist, description, link) {
             this.work = work;
@@ -70,7 +73,7 @@ const cursor = document.getElementById('cursor');
         const ref2 = new refTexts(
             'Bodoni Ornament',
             'Seongjin Kim',
-            '',
+            '-',
             'https://www.behance.net/gallery/14142121/Bodoni-Ornament',
         );
         const ref3 = new refTexts(
@@ -87,19 +90,10 @@ const cursor = document.getElementById('cursor');
             button3: './img/img3.jpeg',
             button4: '',
             button5: '',
-            button6: '',
         }
 
 
-
-
-
-
         
-
-
-
-
         function setup() {
             createCanvas(windowWidth, windowHeight);
             background(220);
@@ -107,7 +101,10 @@ const cursor = document.getElementById('cursor');
             const parent = createDiv('');
             parent.addClass('parent');
 
-            for (let i = 6; i >= 1; i--) {
+            let imgTextContainer = createDiv('');
+            imgTextContainer.addClass('img-text-container');
+
+            for (let i = 5; i >= 1; i--) {
                 let buttonKey = 'button' + i;
                 let brushValue = window['brush' + i];
                 buttonFunctions[buttonKey] = brushValue;
@@ -118,45 +115,71 @@ const cursor = document.getElementById('cursor');
                 button.position(random(100,windowWidth-200), random(100,windowHeight-200));
                 parent.child(button);
                 setBrushFunction(buttonKey);
-
-                applyButtonStyle(button);  // 초기에 첫번째버튼에 스타일적용
+                applyButtonStyle(button);
                 
                 button.mouseClicked(() => {
+                    imgTextContainer.remove();
+                    imgTextContainer = createDiv();
+                    imgTextContainer.addClass('img-text-container');
+
                     setBrushFunction(buttonKey);
                     applyButtonStyle(button);
 
-                    textContainer = createP();
-                    textContainer.addClass('text-container');
-                    textContainer.html(ref.work + '<br>' + ref.artist + '<br>' + ref.description + '<br>' + '<a href="' + ref.link + '"target="_blank">' + ref.link + '</a>');
-                    textContainer.position(random(0,windowWidth-300), random(0,windowHeight-700));
+                    text1 = createP();
+                    text1.addClass('text');
+                    text1.style('text-indent', '0px');
+                    text1.html(ref.work + '<br>');
+
                     img = createImg(buttonImgs[buttonKey]);
-                    textContainer.child(img);
-                })
+                    
+                    text2 = createP();
+                    text2.addClass('text');
+                    text2.style('text-indent', '20px');
+                    text2.html(ref.artist + '<br>');
+
+                    text3 = createP();
+                    text3.addClass('text');
+                    text3.style('text-indent', '20px');
+                    text3.html(ref.description + '<br>');
+
+                    text4 = createP();
+                    text4.addClass('text');
+                    text4.style('text-indent', '20px');
+                    text4.html('<a href="' + ref.link + '"target="_blank">' + ref.link + '</a>');
+                    
+
+                    imgTextContainer.child(text1);
+                    imgTextContainer.child(img);
+                    imgTextContainer.child(text2);
+                    imgTextContainer.child(text3);
+                    imgTextContainer.child(text4);
+                    imgTextContainer.position(random(0,windowWidth-300), random(0,windowHeight-700));
+
+                });
             }
 
             //brush3, brush4, brush5
             fillColor = random([color(193,141,79,5),color(44,134,134, 5)]);
         }
 
+
+        function setBrushFunction(buttonName) {
+            currentBrushFunction = buttonFunctions[buttonName];
+        }
         function applyButtonStyle(button) {
             if (currentButton) {
                 // 이전 버튼이 있을 경우, 스타일 초기화
                 currentButton.style('color', '');
                 currentButton.style('background-color', '');
-                currentButton.style('box-shadow', 'none');
             }
-
             // 현재 버튼에 스타일 적용
-            button.style('color', 'white');
+            button.style('color', ' rgb(220,220,220)');
             button.style('background-color', 'blue');
-            button.style('box-shadow', '0px 0px 10px 10px blue');
             // 현재 버튼을 기억
             currentButton = button;
         }
 
-        function setBrushFunction(buttonName) {
-            currentBrushFunction = buttonFunctions[buttonName];
-        }
+
 
         function draw() {
             if (currentBrushFunction) {
@@ -337,7 +360,7 @@ const cursor = document.getElementById('cursor');
                 fill(fillColor);
                 noStroke();
                 
-                blendMode(BURN);
+                blendMode(DIFFERENCE);
                 beginShape();
                 for (let pt of points1) {
                     vertex(pt.x, pt.y);
@@ -345,18 +368,6 @@ const cursor = document.getElementById('cursor');
                 endShape(CLOSE);
             }
 
-            if (mouseIsPressed === true) {
-            
-                blendMode(BLEND);
-                stroke(225,225,216);
-                strokeWeight(sW * 0.4);
-                line(pmouseX, pmouseY, mouseX, mouseY);
-                
-                stroke('red');
-                strokeWeight(sW * 0.1);
-                line(pmouseX, pmouseY, mouseX, mouseY);
-                    
-                }
         }
 
             
@@ -487,30 +498,3 @@ const cursor = document.getElementById('cursor');
                     points3.push(createVector(mouseX, mouseY));
                 }
             }
-
-        function brush6() {
-            console.log('brush6');
-            frameRate(30);
-            drawingContext.shadowBlur = 0;
-
-            let sW = 500;
-            strokeCap(ROUND);
-            
-
-            if (mouseIsPressed === true) {
-                blendMode(DIFFERENCE);
-                filter(BLUR, 1);
-
-                stroke(random(['orange','red','yellow']));
-                strokeWeight(random(-30,30));
-                line(pmouseX, pmouseY, mouseX, mouseY);
-
-                stroke(random(['lime','blue','pink']));
-                strokeWeight(sW * 0.8);
-                line(pmouseX, pmouseY, mouseX, mouseY);
-
-                stroke(random(['orange','red','yellow']));
-                strokeWeight(sW * 0.4);
-                line(pmouseX, pmouseY, mouseX, mouseY);
-            }
-        }

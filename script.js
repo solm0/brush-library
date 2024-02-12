@@ -43,6 +43,7 @@ const cursor = document.getElementById('cursor');
             button3: 'fill the closed shape',
             button4: 'fill the closed shape (2)',
             button5: 'fill the closed shape (3)',
+            button6: 'color circles',
         };
 
         let img;
@@ -90,6 +91,7 @@ const cursor = document.getElementById('cursor');
             button3: './img/img3.jpeg',
             button4: '',
             button5: '',
+            button6: '',
         }
 
 
@@ -104,7 +106,7 @@ const cursor = document.getElementById('cursor');
             let imgTextContainer = createDiv('');
             imgTextContainer.addClass('img-text-container');
 
-            for (let i = 5; i >= 1; i--) {
+            for (let i = 6; i >= 1; i--) {
                 let buttonKey = 'button' + i;
                 let brushValue = window['brush' + i];
                 buttonFunctions[buttonKey] = brushValue;
@@ -498,5 +500,32 @@ const cursor = document.getElementById('cursor');
                 }
                 if (drawing3) {
                     points3.push(createVector(mouseX, mouseY));
+                }
+            }
+
+            function brush6() {
+                console.log('brush6');
+                frameRate(30);
+                drawingContext.shadowBlur = 0;
+    
+                let sW = 500;
+                strokeCap(ROUND);
+                
+    
+                if (mouseIsPressed === true) {
+                    blendMode(DIFFERENCE);
+                    filter(BLUR, 1);
+    
+                    stroke(random(['orange','red','yellow']));
+                    strokeWeight(random(-30,30));
+                    line(pmouseX, pmouseY, mouseX, mouseY);
+    
+                    stroke(random(['lime','blue','pink']));
+                    strokeWeight(sW * 0.8);
+                    line(pmouseX, pmouseY, mouseX, mouseY);
+    
+                    stroke(random(['orange','red','yellow']));
+                    strokeWeight(sW * 0.4);
+                    line(pmouseX, pmouseY, mouseX, mouseY);
                 }
             }

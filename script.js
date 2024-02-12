@@ -51,7 +51,6 @@ const cursor = document.getElementById('cursor');
         let text3;
         let text4;
         let imgTextContainer;
-        let button;
 
         function refTexts(work, artist, description, link) {
             this.work = work;
@@ -112,7 +111,7 @@ const cursor = document.getElementById('cursor');
                 const ref = refTextsArray[i] ? refTextsArray[i] : noref;
 
                 
-                button = createButton(buttonTexts[buttonKey]);
+                let button = createButton(buttonTexts[buttonKey]);
                 button.position(random(100,windowWidth-200), random(100,windowHeight-200));
                 parent.child(button);
                 setBrushFunction(buttonKey);

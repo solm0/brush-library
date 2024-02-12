@@ -153,7 +153,7 @@ const cursor = document.getElementById('cursor');
                     imgTextContainer.child(text2);
                     imgTextContainer.child(text3);
                     imgTextContainer.child(text4);
-                    imgTextContainer.position(windowWidth-200, 0);
+                    imgTextContainer.position(windowWidth-250, 50);
 
                     //brush3, brush4, brush5
                     fillColor = random([color(193,141,79,5),color(44,134,134, 5)]);

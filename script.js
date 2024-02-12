@@ -112,7 +112,7 @@ const cursor = document.getElementById('cursor');
 
                 
                 let button = createButton(buttonTexts[buttonKey]);
-                button.position(random(100,windowWidth-200), random(100,windowHeight-200));
+                button.position(random(100,windowWidth-200), random(500,windowHeight-200));
                 parent.child(button);
                 setBrushFunction(buttonKey);
                 applyButtonStyle(button);
@@ -134,7 +134,7 @@ const cursor = document.getElementById('cursor');
                     
                     text2 = createP();
                     text2.addClass('text');
-                    text2.style('text-indent', '20px');
+                    text2.style('text-indent', '0px');
                     text2.html(ref.artist + '<br>');
 
                     text3 = createP();
@@ -153,7 +153,7 @@ const cursor = document.getElementById('cursor');
                     imgTextContainer.child(text2);
                     imgTextContainer.child(text3);
                     imgTextContainer.child(text4);
-                    imgTextContainer.position(random(0,windowWidth-300), random(0,windowHeight-700));
+                    imgTextContainer.position(windowWidth-200, 0);
 
                     //brush3, brush4, brush5
                     fillColor = random([color(193,141,79,5),color(44,134,134, 5)]);

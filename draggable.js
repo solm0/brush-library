@@ -33,6 +33,7 @@
         }
         window.onload = () => {
             // 버튼을 선택하여 draggable 함수에 전달
-            const $target = document.querySelector('.parent');
+            const $target = document.querySelector('.img-text-container');
             draggable($target);
+            console.log($target);
         }

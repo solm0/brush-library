@@ -12,7 +12,6 @@
     * {
         margin: 0;
         padding: 0;
-        user-select: none;
     }
     a {
         color: rgb(66,33,11);
@@ -29,6 +28,7 @@
         height: 100vh;
         background-color: rgb(220,220,220);
         cursor: none;
+        user-select: none;
     }
     h1 {
         position: absolute;
@@ -79,6 +79,7 @@
         transform: translate(-50%, -50%);
         font-family: "platelet";
         font-size: 20px;
+        color: rgb(66,33,11);
         text-align: center;
         animation: cursorText 2s infinite ease-in-out;
     }
@@ -125,6 +126,7 @@
         width: 100px;
         height: auto;
         border: 1px blue solid;
+        color: rgb(66,33,11);
         background-color: rgb(220,220,220);
         font-family: "platelet";
         font-weight: 700;
@@ -135,6 +137,8 @@
     .parent > *:hover {
         background-color: blue;
         color: rgb(220,220,220);
+        transform: scale(1.2);
+        transition: transform 0.3s ease-in-out;
     }
     .text {
         position: relative;
@@ -168,10 +172,9 @@
         overflow: visible;
         width: 200px;
         height: auto;
-        z-index: 5;
-    }
-    .img-text-container:hover {
+        z-index: 4;
         background-color: rgb(220,220,220);
+        cursor: default;
     }
 
 </style>

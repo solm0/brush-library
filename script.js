@@ -118,11 +118,11 @@ const cursor = document.getElementById('cursor');
                 button.position(random(100,windowWidth-200), random(100,windowHeight-200));
                 parent.child(button);
                 setBrushFunction(buttonKey);
-                button.mousePressed(() => {
-                    setBrushFunction(buttonKey);
-                });
 
+                applyButtonStyle(button);  // 초기에 첫번째버튼에 스타일적용
+                
                 button.mouseClicked(() => {
+                    setBrushFunction(buttonKey);
                     applyButtonStyle(button);
 
                     textContainer = createP();
@@ -145,6 +145,7 @@ const cursor = document.getElementById('cursor');
                 currentButton.style('background-color', '');
                 currentButton.style('box-shadow', 'none');
             }
+
             // 현재 버튼에 스타일 적용
             button.style('color', 'white');
             button.style('background-color', 'blue');

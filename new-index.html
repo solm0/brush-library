@@ -53,18 +53,18 @@
         width: 100px;
         height: 100px;
         border: blue solid 1px;
-        animation: cursor 3s infinite ease-in-out;
+        animation: cursor 4s infinite linear;
 
         display: flex;
         justify-content: center;
         align-items: center;
     }
     #cursor>* {
-        width: 70px;
-        height: 70px;
-        transform: rotate(90deg);
+        width: 100px;
+        height: 100px;
+
         border: blue solid 1px;
-        animation: cursor2 3s infinite ease-in-out;
+        animation: cursor2 2s infinite linear reverse;
     }
     #cursorText {
         position: absolute;
@@ -89,10 +89,10 @@
     }
     @keyframes cursor2 {
         0% {
-            transform: rotate(90deg);
+            transform: rotate(0deg);
         }
         100% {
-            transform: rotate(450deg);
+            transform: rotate(360deg);
         }
     }
     @keyframes cursorText {

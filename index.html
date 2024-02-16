@@ -41,12 +41,13 @@
         position: absolute;
         bottom: 0;
         left: 10px;
-        width: 1300px;
+        width: 900px;
         font-family: "platelet";
         font-weight: 500;
         font-size: 60px;
         line-height: 90px;
         color: white;
+        z-index: 5;
     }
     #cursor {
         position: absolute;
@@ -58,6 +59,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        pointer-events: none;
     }
     #cursor>* {
         width: 100px;
@@ -65,19 +67,21 @@
 
         border: blue solid 1px;
         animation: cursor2 2s infinite linear reverse;
+        pointer-events: none;
     }
     #cursorText {
         position: absolute;
         width: 50px;
         height: 50px;
-        top: 45px;
-        left: 45px;
-        transform: translate(-50%, -50%);
+        top: 0;
+        left: 0;
+        transform: translate(50%, 50%);
         font-family: "platelet";
         font-size: 20px;
         color: rgb(66,33,11);
         text-align: center;
         animation: cursorText 2s infinite ease-in-out;
+        pointer-events: none;
     }
     @keyframes cursor {
         0% {
@@ -193,10 +197,10 @@
 
 </style>
 <body>
-    <h1>
+    <h1 id="hover-text">
         This is my Brush Library.
-        <br>I collect and reproduce 
-        <br>interesting graphics with p5.js.
+        I collect and reproduce 
+        interesting graphics with p5.js.
     </h1>
     <h2>
         press s key to save!

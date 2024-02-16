@@ -94,68 +94,41 @@ const cursor = document.getElementById('cursor');
             button6: '',
         }
 
+        let buttonKeys = [];
+
 
         
         function setup() {
-            createCanvas(windowWidth, windowHeight);
+            const cnv = createCanvas(windowWidth-340, windowHeight-50);
+            cnv.addClass('cnv');
             background(220);
 
             const parent = createDiv('');
             parent.addClass('parent');
 
-            let imgTextContainer = createDiv('');
+            imgTextContainer = createDiv('');
             imgTextContainer.addClass('img-text-container');
 
             for (let i = 6; i >= 1; i--) {
                 let buttonKey = 'button' + i;
+                buttonKeys.push(buttonKey);
                 let brushValue = window['brush' + i];
                 buttonFunctions[buttonKey] = brushValue;
-                const ref = refTextsArray[i] ? refTextsArray[i] : noref;
+                let ref = refTextsArray[i] ? refTextsArray[i] : noref;
 
                 
                 let button = createButton(buttonTexts[buttonKey]);
-                button.position(random(100,windowWidth-200), random(500,windowHeight-200));
+                button.position(random(0,windowWidth-120), random(500,windowHeight-200));
                 parent.child(button);
                 setBrushFunction(buttonKey);
                 applyButtonStyle(button);
+                applyReference(buttonKey, ref);
                 
                 button.mouseClicked(() => {
-                    imgTextContainer.remove();
-                    imgTextContainer = createDiv();
-                    imgTextContainer.addClass('img-text-container');
-
+                    console.log(buttonKey);
                     setBrushFunction(buttonKey);
                     applyButtonStyle(button);
-
-                    text1 = createP();
-                    text1.addClass('text');
-                    text1.style('text-indent', '0px');
-                    text1.html(ref.work + '<br>');
-
-                    img = createImg(buttonImgs[buttonKey]);
-                    
-                    text2 = createP();
-                    text2.addClass('text');
-                    text2.style('text-indent', '0px');
-                    text2.html(ref.artist + '<br>');
-
-                    text3 = createP();
-                    text3.addClass('text');
-                    text3.style('text-indent', '20px');
-                    text3.html(ref.description + '<br>');
-
-                    text4 = createP();
-                    text4.addClass('text');
-                    text4.style('text-indent', '20px');
-                    text4.html('<a href="' + ref.link + '"target="_blank">' + ref.link + '</a>');
-                    
-
-                    imgTextContainer.child(text1);
-                    imgTextContainer.child(img);
-                    imgTextContainer.child(text2);
-                    imgTextContainer.child(text3);
-                    imgTextContainer.child(text4);
-                    imgTextContainer.position(windowWidth-250, 50);
+                    applyReference(buttonKey, ref);
 
                     //brush3, brush4, brush5
                     fillColor = random([color(193,141,79,5),color(44,134,134, 5)]);
@@ -165,10 +138,10 @@ const cursor = document.getElementById('cursor');
             
         }
 
-
-        function setBrushFunction(buttonName) {
-            currentBrushFunction = buttonFunctions[buttonName];
+        function setBrushFunction(buttonKey) {
+            currentBrushFunction = buttonFunctions[buttonKey];
         }
+
         function applyButtonStyle(button) {
             if (currentButton) {
                 // 이전 버튼이 있을 경우, 스타일 초기화
@@ -180,6 +153,41 @@ const cursor = document.getElementById('cursor');
             button.style('background-color', 'blue');
             // 현재 버튼을 기억
             currentButton = button;
+        }
+
+        function applyReference(buttonKey, ref) {
+            imgTextContainer.remove();
+            imgTextContainer = createDiv();
+            imgTextContainer.addClass('img-text-container');
+            
+            text1 = createP();
+            text1.addClass('text');
+            text1.style('text-indent', '0px');
+            text1.html(ref.work + '<br>');
+
+            img = createImg(buttonImgs[buttonKey]);
+            
+            text2 = createP();
+            text2.addClass('text');
+            text2.style('text-indent', '0px');
+            text2.html(ref.artist + '<br>');
+
+            text3 = createP();
+            text3.addClass('text');
+            text3.style('text-indent', '20px');
+            text3.html(ref.description + '<br>');
+
+            text4 = createP();
+            text4.addClass('text');
+            text4.style('text-indent', '20px');
+            text4.html('<a href="' + ref.link + '"target="_blank">' + ref.link + '</a>');
+            
+            imgTextContainer.child(text1);
+            imgTextContainer.child(img);
+            imgTextContainer.child(text2);
+            imgTextContainer.child(text3);
+            imgTextContainer.child(text4);
+            imgTextContainer.position(windowWidth-320, 0);
         }
 
 

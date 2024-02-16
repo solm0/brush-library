@@ -14,61 +14,57 @@
         padding: 0;
     }
     a {
-        color: rgb(66,33,11);
+        color: blue;
         text-decoration: underline;
         text-decoration-thickness: 1px;
         /* pointer-events: none; */
     }
+    .cnv {
+        z-index: -1;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        border-radius: 50px;
+    }
     body {
         position: absolute;
-        top: 0;
-        left: 0;
+        margin: 20px;
+        left: 0px;
         overflow: hidden;
-        width: 100vw;
-        height: 100vh;
-        background-color: rgb(220,220,220);
+        width: calc(100vw - 40px);
+        height: calc(100vh - 40px);
+        background-color: rgb(204,204,204);
         cursor: none;
         user-select: none;
     }
     h1 {
         position: absolute;
-        top: 0;
+        bottom: 0;
         left: 10px;
         width: 1300px;
         font-family: "platelet";
-        font-weight: 200;
-        font-size: 75px;
+        font-weight: 500;
+        font-size: 60px;
         line-height: 90px;
-        color: blue;
-        mix-blend-mode: darken;
-    }
-    .text-box {
-        position: relative;
-        width: 75px;
-        height: 75px;
-        border: 1px solid blue;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 20px 0 20px;
+        color: white;
     }
     #cursor {
         position: absolute;
         width: 100px;
         height: 100px;
         border: blue solid 1px;
-        animation: cursor 3s infinite ease-in-out;
+        animation: cursor 4s infinite linear;
 
         display: flex;
         justify-content: center;
         align-items: center;
     }
     #cursor>* {
-        width: 70px;
-        height: 70px;
-        transform: rotate(90deg);
+        width: 100px;
+        height: 100px;
+
         border: blue solid 1px;
-        animation: cursor2 3s infinite ease-in-out;
+        animation: cursor2 2s infinite linear reverse;
     }
     #cursorText {
         position: absolute;
@@ -93,10 +89,10 @@
     }
     @keyframes cursor2 {
         0% {
-            transform: rotate(90deg);
+            transform: rotate(0deg);
         }
         100% {
-            transform: rotate(450deg);
+            transform: rotate(360deg);
         }
     }
     @keyframes cursorText {
@@ -145,7 +141,7 @@
     .text {
         position: relative;
         word-break: break-word;
-        width: 100%;
+        width: calc(100% - 40px);
         height: auto;
         top: 0px;
         left: 0px;
@@ -155,42 +151,61 @@
         font-size: 15px;
         font-weight: 400;
         text-align: left;
-        color: rgb(66,33,11);
+        color: blue;
     }
    
     img {
         position: relative;
-        width: 100%;
+        width: calc(100% - 40px);
         height: auto;
         top: 0;
         left: 0;
         box-sizing: border-box;
-        border: solid 1px rgb(66,33,11);
+        border: solid 1px blue;
     }
     .img-text-container {
         position: absolute;
         display: flex;
         flex-direction: column;
+        align-items: center;
         overflow: visible;
-        width: 200px;
-        height: auto;
-        z-index: 4;
+        width: 280px;
+        height: 540px;
+        border-radius: 40px;
+        padding-top: 40px;
         background-color: rgb(220,220,220);
         cursor: default;
+        z-index: -1;
+    }
+    h2 {
+        position: absolute;
+        font-family: "platelet";
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 25px;
+        color: blue;
+        left: calc(100vw - 280px);
+        top: 580px;
+        height: 80px;
+        display: flex;
+        align-items: center;
     }
 
 </style>
 <body>
     <h1>
-        This is my Graphic Library. I collect and reproduce interesting graphics with p5.js.
-        <br>press<span class="text-box">s</span>key to save
-        <br>press<span class="text-box">c</span>key to clear
+        This is my Brush Library.
+        <br>I collect and reproduce 
+        <br>interesting graphics with p5.js.
     </h1>
+    <h2>
+        press s key to save!
+        <br>press c key to clear!
+    </h2>
     <div id="cursor">
         <div></div>
     </div>
     <p id="cursorText">drag and draw!</p>
     <script src="./script.js"></script>
-    <!-- <script src="./draggable.js"></script> -->
 </body>
 </html>

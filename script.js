@@ -103,7 +103,7 @@ function setup() {
 
         
         let button = createButton(buttonTexts[buttonKey]);
-        button.position(random(0,windowWidth-120), random(500,windowHeight-200));
+        button.position(random(10,windowWidth-420), random(20,windowHeight-500));
         parent.child(button);
         setBrushFunction(buttonKey);
         applyButtonStyle(button);

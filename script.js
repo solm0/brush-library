@@ -84,7 +84,7 @@ let buttonKeys = [];
 
 
 function setup() {
-    const cnv = createCanvas(windowWidth-340, windowHeight-50);
+    const cnv = createCanvas(windowWidth-330, windowHeight-50);
     cnv.addClass('cnv');
     background(220);
 

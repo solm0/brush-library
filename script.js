@@ -23,11 +23,11 @@ let fillColor;
 const buttonFunctions = {};
 
 const buttonTexts = {
-    button1: 'outline, outline with blur',
-    button2: '9 random shapes, 3 line snap to grid',
+    button1: 'symmetrical lines',
+    button2: '3 x 3',
     button3: 'fill the closed shape',
     button4: 'memory',
-    button5: 'vanish',
+    button5: 'evaporate',
     button6: 'color circles',
 };
 

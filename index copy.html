@@ -195,6 +195,23 @@
         align-items: center;
     }
 
+
+
+        svg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+        }
+        path {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            fill: beige;
+        }
+        .button_svg {
+            position: absolute;
+        }
 </style>
 <body>
     <h1 id="hover-text">
@@ -210,6 +227,15 @@
         <div></div>
     </div>
     <p id="cursorText">drag and draw!</p>
-    <script src="./script.js"></script>
+
+    <svg class="button_svg" viewBox="0 0 350 350">
+        <path class="button-svg" d="m316.27,40.56c-34.12,0-61.78,27.66-61.78,61.78v4.38H95.05V40.56h0c-34.12,0-61.78,27.66-61.78,61.78v206.22h0c34.12,0,61.78-27.66,61.78-61.78v-4.38h159.43v66.17h0c34.12,0,61.78-27.66,61.78-61.78V40.56h0Z"/>
+    </svg>
+
+
+
+
+
+    <script src="./script copy.js"></script>
 </body>
 </html>

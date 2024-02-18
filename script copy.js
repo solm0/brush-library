@@ -119,9 +119,31 @@ function setup() {
             fillColor = random([color(193,141,79,5),color(44,134,134, 5)]);
         });
     }
-
-    
 }
+
+
+
+
+
+    let buttonNew = document.querySelector('.button-svg');
+    buttonNew.style.position = 'absolute';
+    buttonNew.style.width = '200px';
+    buttonNew.style.height = '200px';
+    buttonNew.style.left = `${Math.random() * (window.innerWidth - 420) + 10}px`;
+    buttonNew.style.top = `${Math.random() * (window.innerHeight - 500) + 20}px`;
+
+    buttonNew.addEventListener('click', () => {
+        console.log('pressed');
+    });
+
+
+
+
+
+
+
+
+
 
 function setBrushFunction(buttonKey) {
     currentBrushFunction = buttonFunctions[buttonKey];

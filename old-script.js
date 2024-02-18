@@ -26,8 +26,8 @@ const buttonTexts = {
     button1: 'outline, outline with blur',
     button2: '9 random shapes, 3 line snap to grid',
     button3: 'fill the closed shape',
-    button4: 'memory',
-    button5: 'vanish',
+    button4: 'fill the closed shape (2)',
+    button5: 'fill the closed shape (3)',
     button6: 'color circles',
 };
 
@@ -94,23 +94,6 @@ function setup() {
     imgTextContainer = createDiv('');
     imgTextContainer.addClass('img-text-container');
 
-    let svgs = selectAll('.container');
-    console.log(svgs);
-    svgs.forEach(svg => {
-        let posX = random(0, windowWidth-300);
-        let posY = random(0, windowHeight-300);
-        svg.position(posX, posY);
-    });
-
-    const buttonSVGs = {
-        button1: select('#svg1'),
-        button2: select('#svg2'),
-        button3: select('#svg3'),
-        button4: select('#svg4'),
-        button5: select('#svg5'),
-        button6: select('#svg6'),
-    }
-
     for (let i = 6; i >= 1; i--) {
         let buttonKey = 'button' + i;
         buttonKeys.push(buttonKey);
@@ -119,30 +102,26 @@ function setup() {
         let ref = refTextsArray[i] ? refTextsArray[i] : noref;
 
         
-        let button = buttonSVGs[buttonKey];
+        let button = createButton(buttonTexts[buttonKey]);
+        button.position(random(10,windowWidth-420), random(20,windowHeight-500));
         parent.child(button);
-
-        let buttonText = createP(buttonTexts[buttonKey]);
-        buttonText.parent(button);
-
-
         setBrushFunction(buttonKey);
-        applyButtonStyle(buttonSVGs[buttonKey]);
+        applyButtonStyle(button);
         applyReference(buttonKey, ref);
         
         button.mouseClicked(() => {
             console.log(buttonKey);
             setBrushFunction(buttonKey);
-            applyButtonStyle(buttonSVGs[buttonKey]);
+            applyButtonStyle(button);
             applyReference(buttonKey, ref);
 
             //brush3, brush4, brush5
             fillColor = random([color(193,141,79,5),color(44,134,134, 5)]);
         });
     }
+
+    
 }
-
-
 
 function setBrushFunction(buttonKey) {
     currentBrushFunction = buttonFunctions[buttonKey];
@@ -151,12 +130,12 @@ function setBrushFunction(buttonKey) {
 function applyButtonStyle(button) {
     if (currentButton) {
         // 이전 버튼이 있을 경우, 스타일 초기화
-        currentButton.style('fill', '');
-        currentButton.style('stroke', '');
+        currentButton.style('color', '');
+        currentButton.style('background-color', '');
     }
     // 현재 버튼에 스타일 적용
-    button.style('fill', ' rgb(204,204,204)');
-    button.style('stroke', 'blue');
+    button.style('color', ' rgb(220,220,220)');
+    button.style('background-color', 'blue');
     // 현재 버튼을 기억
     currentButton = button;
 }

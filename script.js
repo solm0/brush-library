@@ -111,6 +111,15 @@ function setup() {
         button6: select('#svg6'),
     }
 
+    const innerbuttonSVGs = {
+        button1: select('#inSvg1'),
+        button2: select('#inSvg2'),
+        button3: select('#inSvg3'),
+        button4: select('#inSvg4'),
+        button5: select('#inSvg5'),
+        button6: select('#inSvg6'),
+    }
+
     for (let i = 6; i >= 1; i--) {
         let buttonKey = 'button' + i;
         buttonKeys.push(buttonKey);
@@ -127,13 +136,13 @@ function setup() {
 
 
         setBrushFunction(buttonKey);
-        applyButtonStyle(buttonSVGs[buttonKey]);
+        applyButtonStyle(innerbuttonSVGs[buttonKey]);
         applyReference(buttonKey, ref);
         
         button.mouseClicked(() => {
             console.log(buttonKey);
             setBrushFunction(buttonKey);
-            applyButtonStyle(buttonSVGs[buttonKey]);
+            applyButtonStyle(innerbuttonSVGs[buttonKey]);
             applyReference(buttonKey, ref);
 
             //brush3, brush4, brush5
@@ -148,17 +157,19 @@ function setBrushFunction(buttonKey) {
     currentBrushFunction = buttonFunctions[buttonKey];
 }
 
-function applyButtonStyle(button) {
+function applyButtonStyle(path) {
     if (currentButton) {
         // 이전 버튼이 있을 경우, 스타일 초기화
         currentButton.style('fill', '');
         currentButton.style('stroke', '');
+        currentButton.style('stroke-width', '');
     }
     // 현재 버튼에 스타일 적용
-    button.style('fill', ' rgb(204,204,204)');
-    button.style('stroke', 'blue');
+    path.style('fill', ' rgb(204,204,204)');
+    path.style('stroke', 'blue');
+    path.style('stroke-width', '2px');
     // 현재 버튼을 기억
-    currentButton = button;
+    currentButton = path;
 }
 
 function applyReference(buttonKey, ref) {

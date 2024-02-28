@@ -1,14 +1,24 @@
-let currentBrushFunction = null;
-
 let allowDownload = true;
 let allowRefresh = true;
-
+let currentBrushFunction = null;
 let currentButton;
+
+var Engine = Matter.Engine,
+    World = Matter.World,
+    Bodies = Matter.Bodies,
+    Mouse = Matter.Mouse,
+    MouseConstraint = Matter.MouseConstraint;
+    
+var engine;
+var world;
+var boxes = [];
+var boundaries = [];
+var mConstraint;
+var mouse;
 
 
 
 const buttonFunctions = {};
-
 const buttonTexts = {
     button1: 'symmetrical lines',
     button2: '3 x 3',

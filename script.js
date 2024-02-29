@@ -123,15 +123,15 @@ function setup() {
         let brushValue = window['brush' + i];
         buttonFunctions[buttonKey] = brushValue;
         let ref = refTextsArray[i] ? refTextsArray[i] : noref;
-
+    
         
         let button = buttonSVGs[buttonKey];
         parent.child(button);
-
+    
         let buttonText = createP(buttonTexts[buttonKey]);
         buttonText.parent(button);
-
-
+    
+    
         setBrushFunction(buttonKey);
         applyButtonStyle(innerbuttonSVGs[buttonKey]);
         applyReference(buttonKey, ref);
@@ -141,12 +141,15 @@ function setup() {
             setBrushFunction(buttonKey);
             applyButtonStyle(innerbuttonSVGs[buttonKey]);
             applyReference(buttonKey, ref);
-
+    
             //brush3, brush4, brush5
             fillColor = random([color(193,141,79,5),color(44,134,134, 5)]);
         });
     }
+    
 }
+
+
 
 
 

@@ -224,6 +224,9 @@
         width: 255px;
         height: 250px;
     }
+    #cursor-wrapper {
+        position: absolute;
+    }
 </style>
 <body>
     <h1 id="hover-text">
@@ -235,10 +238,14 @@
         press s key to save!
         <br>press c key to clear!
     </h2>
-    <div id="cursor">
-        <div></div>
+    
+    <div id="cursor-wrapper">
+        <div id="cursor">
+            <div></div>
+        </div>
+        <p id="cursorText">drag and draw!</p>
     </div>
-    <p id="cursorText">drag and draw!</p>
+    
 
 
 

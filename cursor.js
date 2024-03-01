@@ -20,12 +20,24 @@ spans.forEach(span => {
 
 // 마우스커서
 const cursor = document.getElementById('cursor');
+const cursorWrapper = document.getElementById('cursor-wrapper');
 const cursorText = document.getElementById('cursorText');
+const body = document.querySelector('body');
+
 document.addEventListener('mousemove', (e) => {
-    cursor.style.left = `${e.clientX - Math.sqrt(5000)}px`;
-    cursor.style.top = `${e.clientY - Math.sqrt(5000)}px`;
-    cursorText.style.left = `${e.clientX - Math.sqrt(5000)}px`;
-    cursorText.style.top = `${e.clientY - Math.sqrt(5000)}px`;
+    cursorWrapper.style.display = 'none';
+    body.style.cursor = 'default';
+
+    if (e.clientX < innerWidth - 310) {
+        console.log(e.clientX);
+        cursorWrapper.style.display = 'block';
+        body.style.cursor = 'none';
+        cursor.style.left = `${e.clientX - Math.sqrt(5000)}px`;
+        cursor.style.top = `${e.clientY - Math.sqrt(5000)}px`;
+        cursorText.style.left = `${e.clientX - Math.sqrt(5000)}px`;
+        cursorText.style.top = `${e.clientY - Math.sqrt(5000)}px`;
+    }
+
 });
 document.addEventListener('mousedown', () => {
     cursorText.style.display = 'none';

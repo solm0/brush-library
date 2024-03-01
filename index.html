@@ -227,6 +227,43 @@
     #cursor-wrapper {
         position: absolute;
     }
+    .gallery {
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        background-color: rgb(220,220,220);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        left: calc(100vw - 305px);
+        top: 655px;
+        z-index: 5;
+        fill: rgb(204,204,204);
+    }
+
+    .coming-soon {
+        position: absolute;
+        width: 100px;
+        height: 80px;
+        font-family: 'platelet';
+        color: white;
+        font-weight: 500;
+        background-color: gray;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        line-height: 20px;
+        font-size: 18px;
+        display: none;
+        z-index: 7;
+    }
+    .coming-soon p {
+        position: absolute;
+        top: 10px;
+    }
 </style>
 <body>
     <h1 id="hover-text">
@@ -238,6 +275,19 @@
         press s key to save!
         <br>press c key to clear!
     </h2>
+
+    <div class="gallery">
+        <svg viewBox="0 0 280 280">
+            <path class="gallery-svg" id="inSvg0" d="M214.5,99.62L214.5,99.62c-4.97,0-9,4.03-9,9v75.1c0,3.38-4.09,5.08-6.49,2.69L70.91,58.3
+            c-3.51-3.51-9.21-3.51-12.73,0l0,0c-3.51,3.51-3.51,9.21,0,12.73l127.99,127.99c2.39,2.39,0.7,6.49-2.69,6.49H108.5
+            c-4.97,0-9,4.03-9,9l0,0c0,4.97,4.03,9,9,9h104.62c1.9,0.29,3.92,0.19,6.4-2.14c2.58-2.42,3.98-5.86,3.98-9.4V108.62
+            C223.5,103.65,219.47,99.62,214.5,99.62z"/>
+        </svg>
+    </div>
+    <div class="coming-soon">
+        <p>gallery is coming<br>soon!</p>
+    </div>
+
     
     <div id="cursor-wrapper">
         <div id="cursor">
@@ -246,9 +296,6 @@
         <p id="cursorText">drag and draw!</p>
     </div>
     
-
-
-
     <div class="container" id="svg1">
         <svg viewBox="0 0 350 350">
             <path class="button-svg" id="inSvg1" d="m316.27,40.56c-34.12,0-61.78,27.66-61.78,61.78v4.38H95.05V40.56h0c-34.12,0-61.78,27.66-61.78,61.78v206.22h0c34.12,0,61.78-27.66,61.78-61.78v-4.38h159.43v66.17h0c34.12,0,61.78-27.66,61.78-61.78V40.56h0Z"/>

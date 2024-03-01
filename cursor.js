@@ -29,7 +29,6 @@ document.addEventListener('mousemove', (e) => {
     body.style.cursor = 'default';
 
     if (e.clientX < innerWidth - 310) {
-        console.log(e.clientX);
         cursorWrapper.style.display = 'block';
         body.style.cursor = 'none';
         cursor.style.left = `${e.clientX - Math.sqrt(5000)}px`;
@@ -45,3 +44,19 @@ document.addEventListener('mousedown', () => {
 document.addEventListener('mouseup', () => {
     cursorText.style.display = 'block';
 });
+
+
+// 갤러리 기능 커밍쑨
+const gallery = document.querySelector('.gallery');
+const comingSoon = document.querySelector('.coming-soon')
+
+gallery.addEventListener('mouseover', (e) => {
+    comingSoon.style.display = 'block';
+})
+gallery.addEventListener('mouseout', (event) => {
+    comingSoon.style.display = 'none';
+})
+gallery.addEventListener('mousemove', (e) => {
+    comingSoon.style.left = `${e.clientX - 120}px`;
+    comingSoon.style.top = `${e.clientY -100}px`;
+})

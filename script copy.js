@@ -91,6 +91,14 @@ function setup() {
     imgTextContainer = createDiv('');
     imgTextContainer.addClass('img-text-container');
 
+    let svgs = selectAll('.container');
+    console.log(svgs);
+    svgs.forEach(svg => {
+        let posX = random(0, windowWidth-220);
+        let posY = random(0, windowHeight-500);
+        svg.position(posX, posY);
+    });
+
     const buttonSVGs = {
         button1: select('#svg1'),
         button2: select('#svg2'),
@@ -138,18 +146,9 @@ function setup() {
             fillColor = random([color(193,141,79,5),color(44,134,134, 5)]);
         });
     }
-    // let svgs = selectAll('.container');
-    // console.log(svgs);
-    // svgs.forEach(svg => {
-    //     let posX = random(0, windowWidth-220);
-    //     let posY = random(0, windowHeight-500);
-    //     svg.position(posX, posY);
-    // });
-}
-
-function onSVGPositionChange() {
     
 }
+
 
 
 

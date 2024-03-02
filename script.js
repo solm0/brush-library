@@ -16,10 +16,18 @@ var world = engine.world;
 var boxes = [];
 var boundaries = [];
 
+
 // create render
+var viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+var viewportWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 var render = Render.create({
     element: document.body,
-    engine: engine
+    engine: engine,
+    options: {
+        wireframeBackground: 'transparent',
+        width: viewportWidth - 330,
+        height: viewportHeight - 40
+    }
 });
 
 // create mouse, mconstraint
@@ -33,7 +41,7 @@ for (var i = 0; i < 6; i++) {
         friction: 0.05,
         restitution: 0.6
     }
-    var boxx = Bodies.rectangle(getRandomNumber(20, 600), getRandomNumber(20, 600),80,80, options);
+    var boxx = Bodies.rectangle(getRandomNumber(0, 600), getRandomNumber(20, 600),80,80, options);
     boxes.push(boxx);
     World.add(world, boxx);
 }
@@ -41,14 +49,14 @@ for (var i = 0; i < 6; i++) {
 console.log(boxes[0]);
 
 
-boundaries.push(new Boundary(400, 0, 800, 100));
-boundaries.push(new Boundary(400, 600, 800, 100));
-boundaries.push(new Boundary(0, 300, 100, 600));
+boundaries.push(new Boundary(400, -50, 800, 100));
+boundaries.push(new Boundary(400, 800, 800, 100));
+boundaries.push(new Boundary(-50, 300, 100, 600));
 boundaries.push(new Boundary(800, 300, 100, 600));
 
 
-// // run the renderer
-// Render.run(render);
+// run the renderer
+Render.run(render);
 
 // create runner
 var runner = Runner.create();

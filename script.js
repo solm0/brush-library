@@ -45,14 +45,12 @@ for (var i = 0; i < 6; i++) {
     boxes.push(boxx);
     World.add(world, boxx);
 }
-
 console.log(boxes[0]);
 
-
-boundaries.push(new Boundary(400, -50, 800, 100));
-boundaries.push(new Boundary(400, 800, 800, 100));
-boundaries.push(new Boundary(-50, 300, 100, 600));
-boundaries.push(new Boundary(800, 300, 100, 600));
+boundaries.push(new Boundary(viewportWidth/2, -50, viewportWidth, 100));
+boundaries.push(new Boundary(viewportWidth/2, viewportHeight, viewportWidth, 100));
+boundaries.push(new Boundary(-50, viewportHeight/2, 100, viewportHeight));
+boundaries.push(new Boundary(viewportWidth - 280, viewportHeight/2, 100, viewportHeight));
 
 
 // run the renderer

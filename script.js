@@ -28,16 +28,18 @@ var mConstraint = MouseConstraint.create(engine, {mouse: mouse});
 World.add(world, mConstraint);
 
 // create bodies
-var boxx = Bodies.rectangle(500,200,80,80,{ friction: 0.05, restitution: 0.6})
-boxes.push(boxx);
-World.add(world, boxes);
-console.log(boxx.position.x);
+for (var i = 0; i < 6; i++) {
+    var options = {
+        friction: 0.05,
+        restitution: 0.6
+    }
+    var boxx = Bodies.rectangle(500,200,80,80, options);
+    boxes.push(boxx);
+    World.add(world, boxx);
+}
 
-boxes.push(new Box(450, 250, 80, 80));
-boxes.push(new Box(350, 230, 80, 80));
-boxes.push(new Box(430, 220, 80, 80));
-boxes.push(new Box(230, 210, 80, 80));
-boxes.push(new Box(230, 200, 80, 80));
+console.log(boxes[0]);
+
 
 boundaries.push(new Boundary(400, 0, 800, 100));
 boundaries.push(new Boundary(400, 600, 800, 100));
@@ -222,7 +224,7 @@ function onSVGPositionChange() {
     });
 }
 
-setInterval(onSVGPositionChange, 100);
+setInterval(onSVGPositionChange, 60);
 
 
 

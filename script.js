@@ -206,8 +206,9 @@ function setup() {
 
 function onSVGPositionChange() {
     let svgs = document.querySelectorAll('.container');
-    svgs.forEach(svg => {
-        let box = boxx;
+    svgs.forEach((svg, index) => {
+        let boxIndex = index;
+        let box = boxes[boxIndex];
 
         let posX = box.position.x - 90;
         let posY = box.position.y - 90;

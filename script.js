@@ -33,7 +33,7 @@ for (var i = 0; i < 6; i++) {
         friction: 0.05,
         restitution: 0.6
     }
-    var boxx = Bodies.rectangle(500,200,80,80, options);
+    var boxx = Bodies.rectangle(getRandomNumber(20, 600), getRandomNumber(20, 600),80,80, options);
     boxes.push(boxx);
     World.add(world, boxx);
 }
@@ -47,8 +47,8 @@ boundaries.push(new Boundary(0, 300, 100, 600));
 boundaries.push(new Boundary(800, 300, 100, 600));
 
 
-// run the renderer
-Render.run(render);
+// // run the renderer
+// Render.run(render);
 
 // create runner
 var runner = Runner.create();
@@ -58,14 +58,8 @@ Runner.run(runner, engine);
 
 
 
-
-function Box(x,y,w,h) {
-    var options = {
-        friction: 0.05,
-        restitution: 0.6
-    }
-    var box = Bodies.rectangle(x,y,w,h,options);
-    World.add(world, box);
+function getRandomNumber(min, max) {
+    return Math.random() * (max - min) + min;
 }
 
 function Boundary(x,y,w,h) {

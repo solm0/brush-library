@@ -61,6 +61,7 @@ function Box(x,y,w,h) {
     }
     var box = Bodies.rectangle(x,y,w,h,options);
     World.add(world, box);
+    console.log(box);
 }
 
 function Boundary(x,y,w,h) {

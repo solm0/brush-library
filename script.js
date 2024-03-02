@@ -1,22 +1,86 @@
-let allowDownload = true;
-let allowRefresh = true;
-let currentBrushFunction = null;
-let currentButton;
-
 var Engine = Matter.Engine,
     World = Matter.World,
     Bodies = Matter.Bodies,
     Mouse = Matter.Mouse,
-    MouseConstraint = Matter.MouseConstraint;
+    MouseConstraint = Matter.MouseConstraint,
+
+    Render = Matter.Render,
+    Runner = Matter.Runner;
     
-var engine;
-var world;
+// create engine
+var engine = Engine.create();
+engine.gravity.y = -1;
+engine.gravity.scale = 0.0001;
+var world = engine.world;
+
 var boxes = [];
 var boundaries = [];
-var mConstraint;
-var mouse;
+
+// create render
+var render = Render.create({
+    element: document.body,
+    engine: engine
+});
+
+// create mouse, mconstraint
+var mouse = Mouse.create(render.canvas);
+var mConstraint = MouseConstraint.create(engine, {mouse: mouse});
+World.add(world, mConstraint);
+
+// create bodies
+var boxx = Bodies.rectangle(500,200,80,80,{ friction: 0.05, restitution: 0.6})
+boxes.push(boxx);
+World.add(world, boxes);
+console.log(boxx.position.x);
+
+boxes.push(new Box(450, 250, 80, 80));
+boxes.push(new Box(350, 230, 80, 80));
+boxes.push(new Box(430, 220, 80, 80));
+boxes.push(new Box(230, 210, 80, 80));
+boxes.push(new Box(230, 200, 80, 80));
+
+boundaries.push(new Boundary(400, 0, 800, 100));
+boundaries.push(new Boundary(400, 600, 800, 100));
+boundaries.push(new Boundary(0, 300, 100, 600));
+boundaries.push(new Boundary(800, 300, 100, 600));
 
 
+// run the renderer
+Render.run(render);
+
+// create runner
+var runner = Runner.create();
+
+// run the engine
+Runner.run(runner, engine);
+
+
+
+
+function Box(x,y,w,h) {
+    var options = {
+        friction: 0.05,
+        restitution: 0.6
+    }
+    var box = Bodies.rectangle(x,y,w,h,options);
+    World.add(world, box);
+}
+
+function Boundary(x,y,w,h) {
+    var options = {
+        friction: 0.05,
+        restitution: 0.6,
+        isStatic: true
+    }
+    var boundary = Bodies.rectangle(x,y,w,h,options);
+    World.add(world, boundary);
+}
+
+
+let allowDownload = true;
+let allowRefresh = true;
+let currentBrushFunction = null;
+let currentButton;
 
 const buttonFunctions = {};
 const buttonTexts = {
@@ -78,8 +142,6 @@ const buttonImgs = {
 
 let buttonKeys = [];
 
-
-
 function setup() {
     const cnv = createCanvas(windowWidth-330, windowHeight-50);
     cnv.addClass('cnv');
@@ -138,18 +200,29 @@ function setup() {
             fillColor = random([color(193,141,79,5),color(44,134,134, 5)]);
         });
     }
-    // let svgs = selectAll('.container');
-    // console.log(svgs);
-    // svgs.forEach(svg => {
-    //     let posX = random(0, windowWidth-220);
-    //     let posY = random(0, windowHeight-500);
-    //     svg.position(posX, posY);
-    // });
+    let svgs = selectAll('.container');
+    console.log(svgs);
+    svgs.forEach(svg => {
+        let posX = random(0, windowWidth-220);
+        let posY = random(0, windowHeight-500);
+        svg.position(posX, posY);
+    });
 }
 
 function onSVGPositionChange() {
-    
+    let svgs = document.querySelectorAll('.container');
+    svgs.forEach(svg => {
+        let box = boxx;
+
+        let posX = box.position.x;
+        let posY = box.position.y;
+        
+        svg.style.left = posX + "px";
+        svg.style.top = posY + "px";
+    });
 }
+
+setInterval(onSVGPositionChange, 100);
 
 
 

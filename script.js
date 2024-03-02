@@ -212,9 +212,11 @@ function onSVGPositionChange() {
 
         let posX = box.position.x - 90;
         let posY = box.position.y - 90;
+        let angle = box.angle;
         
         svg.style.left = posX + "px";
         svg.style.top = posY + "px";
+        svg.style.transform = `rotate(${angle}deg)`;
     });
 }
 

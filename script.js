@@ -41,9 +41,10 @@ for (var i = 0; i < 6; i++) {
         friction: 0.05,
         restitution: 0.6
     }
-    var boxx = Bodies.rectangle(getRandomNumber(0, viewportWidth - 220), getRandomNumber(500, viewportHeight - 200), 180, 180, options);
-    boxes.push(boxx);
-    World.add(world, boxx);
+    var box = Bodies.rectangle(getRandomNumber(0, viewportWidth - 220), getRandomNumber(500, viewportHeight - 200), 180, 180, options);
+    boxes.push(box);
+    World.add(world, box);
+    console.log(box.angle);
 }
 console.log(boxes);
 
@@ -215,8 +216,9 @@ function onSVGPositionChange() {
         let angle = box.angle;
         
         svg.style.left = posX + "px";
-        svg.style.top = posY + "px";
-        svg.style.transform = `rotate(${angle}deg)`;
+        svg.style.top = posY + "px"
+        svg.setAttribute('transform', 'rotate(' + angle + 'deg)');
+        // svg.style.transform = "rotate(" + angle + "deg)";
     });
 }
 

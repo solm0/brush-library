@@ -25,7 +25,7 @@ var render = Render.create({
     engine: engine,
     options: {
         wireframeBackground: 'transparent',
-        width: viewportWidth - 330,
+        width: viewportWidth - 40,
         height: viewportHeight - 40
     }
 });
@@ -41,16 +41,16 @@ for (var i = 0; i < 6; i++) {
         friction: 0.05,
         restitution: 0.6
     }
-    var boxx = Bodies.rectangle(getRandomNumber(0, 600), getRandomNumber(20, 600),80,80, options);
+    var boxx = Bodies.rectangle(getRandomNumber(0, viewportWidth - 220), getRandomNumber(500, viewportHeight - 200), 180, 180, options);
     boxes.push(boxx);
     World.add(world, boxx);
 }
-console.log(boxes[0]);
+console.log(boxes);
 
 boundaries.push(new Boundary(viewportWidth/2, -50, viewportWidth, 100));
 boundaries.push(new Boundary(viewportWidth/2, viewportHeight, viewportWidth, 100));
 boundaries.push(new Boundary(-50, viewportHeight/2, 100, viewportHeight));
-boundaries.push(new Boundary(viewportWidth - 280, viewportHeight/2, 100, viewportHeight));
+boundaries.push(new Boundary(viewportWidth + 10, viewportHeight/2, 100, viewportHeight));
 
 
 // run the renderer
@@ -202,13 +202,6 @@ function setup() {
             fillColor = random([color(193,141,79,5),color(44,134,134, 5)]);
         });
     }
-    let svgs = selectAll('.container');
-    console.log(svgs);
-    svgs.forEach(svg => {
-        let posX = random(0, windowWidth-220);
-        let posY = random(0, windowHeight-500);
-        svg.position(posX, posY);
-    });
 }
 
 function onSVGPositionChange() {
@@ -216,8 +209,8 @@ function onSVGPositionChange() {
     svgs.forEach(svg => {
         let box = boxx;
 
-        let posX = box.position.x;
-        let posY = box.position.y;
+        let posX = box.position.x - 90;
+        let posY = box.position.y - 90;
         
         svg.style.left = posX + "px";
         svg.style.top = posY + "px";

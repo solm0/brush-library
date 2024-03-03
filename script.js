@@ -43,11 +43,29 @@ for (var i = 0; i < 6; i++) {
         friction: 0.05,
         restitution: 0.6
     }
-    var box = Bodies.rectangle(getRandomNumber(0, viewportWidth - 220), getRandomNumber(500, viewportHeight - 200), 180, 180, options);
+    var box = Bodies.circle(getRandomNumber(0, viewportWidth - 220), getRandomNumber(500, viewportHeight - 200), 110, options);
     boxes.push(box);
     World.add(world, box);
 }
 
+var mousebody = Bodies.circle(0,0,80);
+World.add(world, mousebody);
+
+document.body.addEventListener("mousemove", function(event) {
+    // 마우스 위치를 가져옵니다.
+    var mouseX = event.pageX - render.canvas.getBoundingClientRect().left;
+    var mouseY = event.pageY - render.canvas.getBoundingClientRect().top;
+
+    // 마우스 위치에 원을 이동시킵니다.
+    if (world.bodies.length > 0) {
+        var mousebody = engine.world.bodies[6];
+        Matter.Body.setPosition(mousebody, { x: mouseX, y: mouseY }); // 원의 위치를 마우스 위치로 설정합니다.
+    } else {
+        // 원이 없을 경우에는 새로운 원을 생성합니다.
+        var mousebody = Bodies.circle(mouseX, mouseY, 20, { restitution: 0.5 });
+        World.add(world, mousebody);
+    }
+});
 
 boundaries.push(new Boundary(viewportWidth/2, -50, viewportWidth, 100));
 boundaries.push(new Boundary(viewportWidth/2, viewportHeight, viewportWidth, 100));
@@ -211,8 +229,8 @@ function onSVGPositionChange() {
         let boxIndex = index;
         let box = boxes[boxIndex];
 
-        let posX = box.position.x - 110;
-        let posY = box.position.y - 110;
+        let posX = box.position.x - 125;
+        let posY = box.position.y - 125;
         let angle = box.angle * 115;
 
         svg.style.left = posX + "px";

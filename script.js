@@ -48,24 +48,33 @@ for (var i = 0; i < 6; i++) {
     World.add(world, box);
 }
 
-var mousebody = Bodies.circle(0,0,80);
-World.add(world, mousebody);
+var mousebody;
+console.log(world.bodies);
+console.log(world.bodies.length);
 
-document.body.addEventListener("mousemove", function(event) {
-    // 마우스 위치를 가져옵니다.
-    var mouseX = event.pageX - render.canvas.getBoundingClientRect().left;
-    var mouseY = event.pageY - render.canvas.getBoundingClientRect().top;
+document.body.addEventListener("mousedown", () => {
+    mousebody = Bodies.circle(0,0,80);
+    World.add(world, mousebody);
 
-    // 마우스 위치에 원을 이동시킵니다.
-    if (world.bodies.length > 0) {
-        var mousebody = engine.world.bodies[6];
-        Matter.Body.setPosition(mousebody, { x: mouseX, y: mouseY }); // 원의 위치를 마우스 위치로 설정합니다.
-    } else {
-        // 원이 없을 경우에는 새로운 원을 생성합니다.
-        var mousebody = Bodies.circle(mouseX, mouseY, 20, { restitution: 0.5 });
-        World.add(world, mousebody);
-    }
+    document.body.addEventListener("mousemove", function(event) {
+        var mouseX = event.pageX - render.canvas.getBoundingClientRect().left;
+        var mouseY = event.pageY - render.canvas.getBoundingClientRect().top; 
+        
+        if (world.bodies.length > 10) {
+            console.log(world.bodies.length);
+            var mousebody = world.bodies[10];
+            Matter.Body.setPosition(mousebody, { x: mouseX, y: mouseY });
+        }
+    });
 });
+document.body.addEventListener("mouseup", () => {
+    if (mousebody) {
+        World.remove(world, mousebody);
+        // mousebody 변수를 null 또는 undefined로 설정하여 다음에 이벤트가 발생할 때 새로운 mousebody를 생성할 수 있도록 함
+        mousebody = null;
+    }
+})
+
 
 boundaries.push(new Boundary(viewportWidth/2, -50, viewportWidth, 100));
 boundaries.push(new Boundary(viewportWidth/2, viewportHeight, viewportWidth, 100));
@@ -73,8 +82,8 @@ boundaries.push(new Boundary(-50, viewportHeight/2, 100, viewportHeight));
 boundaries.push(new Boundary(viewportWidth + 10, viewportHeight/2, 100, viewportHeight));
 
 
-// // run the renderer
-// Render.run(render);
+// run the renderer
+Render.run(render);
 
 // create runner
 var runner = Runner.create();

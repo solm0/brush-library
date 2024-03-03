@@ -17,6 +17,8 @@ var boxes = [];
 var boundaries = [];
 
 
+
+
 // create render
 var viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 var viewportWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -44,9 +46,8 @@ for (var i = 0; i < 6; i++) {
     var box = Bodies.rectangle(getRandomNumber(0, viewportWidth - 220), getRandomNumber(500, viewportHeight - 200), 180, 180, options);
     boxes.push(box);
     World.add(world, box);
-    console.log(box.angle);
 }
-console.log(boxes);
+
 
 boundaries.push(new Boundary(viewportWidth/2, -50, viewportWidth, 100));
 boundaries.push(new Boundary(viewportWidth/2, viewportHeight, viewportWidth, 100));
@@ -54,15 +55,14 @@ boundaries.push(new Boundary(-50, viewportHeight/2, 100, viewportHeight));
 boundaries.push(new Boundary(viewportWidth + 10, viewportHeight/2, 100, viewportHeight));
 
 
-// run the renderer
-Render.run(render);
+// // run the renderer
+// Render.run(render);
 
 // create runner
 var runner = Runner.create();
 
 // run the engine
 Runner.run(runner, engine);
-
 
 
 function getRandomNumber(min, max) {
@@ -211,14 +211,13 @@ function onSVGPositionChange() {
         let boxIndex = index;
         let box = boxes[boxIndex];
 
-        let posX = box.position.x - 90;
-        let posY = box.position.y - 90;
-        let angle = box.angle;
-        
+        let posX = box.position.x - 110;
+        let posY = box.position.y - 110;
+        let angle = box.angle * 115;
+
         svg.style.left = posX + "px";
         svg.style.top = posY + "px"
-        svg.setAttribute('transform', 'rotate(' + angle + 'deg)');
-        // svg.style.transform = "rotate(" + angle + "deg)";
+        svg.style.transform = "rotate(" + angle + "deg)";
     });
 }
 

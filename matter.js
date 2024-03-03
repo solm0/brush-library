@@ -1,6 +1,7 @@
 var Engine = Matter.Engine,
     World = Matter.World,
     Bodies = Matter.Bodies,
+    Body = Matter.Body,
     Mouse = Matter.Mouse,
     MouseConstraint = Matter.MouseConstraint,
 
@@ -10,7 +11,7 @@ var Engine = Matter.Engine,
 // create engine
 var engine = Engine.create();
 engine.gravity.y = -1;
-engine.gravity.scale = 0.0001;
+engine.gravity.scale = 0.00005;
 var world = engine.world;
 
 var boxes = [];
@@ -47,6 +48,7 @@ for (var i = 0; i < 6; i++) {
 }
 
 var mousebody;
+
 document.body.addEventListener("mousedown", () => {
     mousebody = Bodies.circle(0,0,80);
     World.add(world, mousebody);
@@ -57,7 +59,7 @@ document.body.addEventListener("mousedown", () => {
         
         if (world.bodies.length > 10) {
             var mousebody = world.bodies[10];
-            Matter.Body.setPosition(mousebody, { x: mouseX, y: mouseY });
+            Body.setPosition(mousebody, { x: mouseX, y: mouseY });
         }
     });
 });
@@ -67,7 +69,7 @@ document.body.addEventListener("mouseup", () => {
         // mousebody 변수를 null 또는 undefined로 설정하여 다음에 이벤트가 발생할 때 새로운 mousebody를 생성할 수 있도록 함
         mousebody = null;
     }
-})
+});
 
 
 boundaries.push(new Boundary(viewportWidth/2, -50, viewportWidth, 100));

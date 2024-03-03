@@ -82,8 +82,8 @@ boundaries.push(new Boundary(-50, viewportHeight/2, 100, viewportHeight));
 boundaries.push(new Boundary(viewportWidth + 10, viewportHeight/2, 100, viewportHeight));
 
 
-// run the renderer
-Render.run(render);
+// // run the renderer
+// Render.run(render);
 
 // create runner
 var runner = Runner.create();

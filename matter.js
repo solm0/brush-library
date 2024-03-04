@@ -3,6 +3,7 @@ var Engine = Matter.Engine,
     Bodies = Matter.Bodies,
     Body = Matter.Body,
     Mouse = Matter.Mouse,
+    MouseConstraint = Matter.MouseConstraint,
 
     Render = Matter.Render,
     Runner = Matter.Runner,
@@ -32,13 +33,8 @@ var render = Render.create({
         wireframeBackground: 'transparent',
         width: viewportWidth - 40,
         height: viewportHeight - 40,
-        offset: {
-            x: 10, // x 축으로 10px 이동
-            y: 10  // y 축으로 10px 이동
-        }
     }
 });
-console.log(render);
 
 
 // create bodies
@@ -56,21 +52,23 @@ for (var i = 0; i < 6; i++) {
 
 
 
-boundaries.push(new Boundary(viewportWidth/2, -50, viewportWidth, 100));
-boundaries.push(new Boundary(viewportWidth/2, viewportHeight, viewportWidth, 100));
-boundaries.push(new Boundary(-50, viewportHeight/2, 100, viewportHeight));
-boundaries.push(new Boundary(viewportWidth + 10, viewportHeight/2, 100, viewportHeight));
+boundaries.push(new Boundary(viewportWidth/2, -50, viewportWidth, 150));
+boundaries.push(new Boundary(viewportWidth/2, viewportHeight, viewportWidth, 150));
+boundaries.push(new Boundary(-50, viewportHeight/2, 150, viewportHeight));
+boundaries.push(new Boundary(viewportWidth + 10, viewportHeight/2, 150, viewportHeight));
 
 
 
 
 // create mouse
 var mouse = Mouse.create(render.canvas);
+var mConstraint = MouseConstraint.create(engine, {mouse: mouse});
+World.add(world, mConstraint);
 
 // create mousebody
 var mousebody;
 document.body.addEventListener("mousedown", () => {
-    mousebody = Bodies.circle(0,0,80);
+    mousebody = Bodies.circle(0,0,50);
     World.add(world, mousebody);
 
     document.body.addEventListener("mousemove", function(event) {
@@ -91,11 +89,18 @@ document.body.addEventListener("mouseup", () => {
     }
 });
 
+document.body.addEventListener("mouseleave", () => {
+    // console.log('mouse left body');
+    if (mousebody) {
+        World.remove(world, mousebody);
+        mousebody = null;
+    }
+});
 
 
 
-// run the renderer
-Render.run(render);
+// // run the renderer
+// Render.run(render);
 
 // create runner
 var runner = Runner.create();
@@ -138,3 +143,6 @@ function onSVGPositionChange() {
 }
 
 setInterval(onSVGPositionChange, 60);
+
+
+

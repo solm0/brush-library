@@ -58,7 +58,7 @@ var svgs = ([
 svgs.forEach(function(path) { 
     loadSvg(path).then(function(root) {
         var vertexSets = select(root, 'path')
-            .map(function(path) { return Vertices.scale(Svg.pathToVertices(path, 30), 0.4, 0.4); });
+            .map(function(path) { return Vertices.scale(Svg.pathToVertices(path, 30), 0.8, 0.8); });
 
         var options = {
             friction: 0.05,
@@ -139,6 +139,7 @@ function Boundary(x,y,w,h) {
 
 
 
+
 // body의 위치를 svg에서 참조하기
 function onSVGPositionChange() {
     let svgs = document.querySelectorAll('.container');
@@ -148,7 +149,7 @@ function onSVGPositionChange() {
 
         let posX = box.position.x - 125;
         let posY = box.position.y - 125;
-        let angle = box.angle * 115;
+        let angle = box.angle * 50;
 
         svg.style.left = posX + "px";
         svg.style.top = posY + "px"
@@ -156,4 +157,21 @@ function onSVGPositionChange() {
     });
 }
 
-setInterval(onSVGPositionChange, 60);
+
+
+
+const checkLength = setInterval(() => {
+    if (boxes.length === 6) {
+        clearInterval(checkLength); // clearInterval을 호출하여 setInterval을 멈춥니다.
+        console.log("Length of boxes array is now 6. Starting setInterval.");
+        startInterval();
+    }
+}, 100); // 매 초마다 배열의 길이를 확인합니다.
+
+// setInterval을 호출하는 함수
+function startInterval() {
+    setInterval(() => {
+        onSVGPositionChange(60);
+        console.log("Interval function is running...");
+    }, 200); // 예시로 2초마다 실행되도록 설정되어 있습니다.
+}

@@ -3,16 +3,20 @@ var Engine = Matter.Engine,
     Bodies = Matter.Bodies,
     Body = Matter.Body,
     Mouse = Matter.Mouse,
-    MouseConstraint = Matter.MouseConstraint,
 
     Render = Matter.Render,
-    Runner = Matter.Runner;
+    Runner = Matter.Runner,
+    
+    Composite = Matter.Composite,
+    Vertices = Matter.Vertices,
+    Svg = Matter.Svg;
     
 // create engine
-var engine = Engine.create();
-engine.gravity.y = -1;
-engine.gravity.scale = 0.00005;
-var world = engine.world;
+var options = {
+    gravity: { y: -1, scale: 0.00005 }
+}
+var engine = Engine.create(options),
+    world = engine.world;
 
 var boxes = [];
 var boundaries = [];
@@ -31,10 +35,7 @@ var render = Render.create({
     }
 });
 
-// create mouse, mconstraint
-var mouse = Mouse.create(render.canvas);
-var mConstraint = MouseConstraint.create(engine, {mouse: mouse});
-World.add(world, mConstraint);
+
 
 // create bodies
 for (var i = 0; i < 6; i++) {
@@ -47,8 +48,53 @@ for (var i = 0; i < 6; i++) {
     World.add(world, box);
 }
 
-var mousebody;
 
+// create svg bodies
+// var select = function(root, selector) {
+//     return Array.prototype.slice.call(root.querySelectorAll(selector));
+// };
+
+// var loadSvg = function(url) {
+//     return fetch(url)
+//         .then(function(response) { return response.text(); })
+//         .then(function(raw) { return (new window.DOMParser()).parseFromString(raw, 'image/svg+xml'); });
+// };
+
+// var svgs = ([
+//     './svgs-08.svg',
+//     './svgs-09.svg',
+//     './svgs-10.svg',
+//     './svgs-11.svg',
+//     './svgs-12.svg',
+//     './svgs-13.svg'
+// ]);
+// svgs.forEach(function(path) { 
+//     loadSvg(path).then(function(root) {
+//         var vertexSets = select(root, 'path')
+//             .map(function(path) { return Vertices.scale(Svg.pathToVertices(path, 30), 0.4, 0.4); });
+
+//         World.add(world, Bodies.fromVertices(100, 100, vertexSets, {}, true));
+//     });
+// });
+// console.log(world.bodies);
+
+
+
+
+
+boundaries.push(new Boundary(viewportWidth/2, -50, viewportWidth, 100));
+boundaries.push(new Boundary(viewportWidth/2, viewportHeight, viewportWidth, 100));
+boundaries.push(new Boundary(-50, viewportHeight/2, 100, viewportHeight));
+boundaries.push(new Boundary(viewportWidth + 10, viewportHeight/2, 100, viewportHeight));
+
+
+
+
+// create mouse
+var mouse = Mouse.create(render.canvas);
+
+// create mousebody
+var mousebody;
 document.body.addEventListener("mousedown", () => {
     mousebody = Bodies.circle(0,0,80);
     World.add(world, mousebody);
@@ -72,10 +118,6 @@ document.body.addEventListener("mouseup", () => {
 });
 
 
-boundaries.push(new Boundary(viewportWidth/2, -50, viewportWidth, 100));
-boundaries.push(new Boundary(viewportWidth/2, viewportHeight, viewportWidth, 100));
-boundaries.push(new Boundary(-50, viewportHeight/2, 100, viewportHeight));
-boundaries.push(new Boundary(viewportWidth + 10, viewportHeight/2, 100, viewportHeight));
 
 
 // // run the renderer

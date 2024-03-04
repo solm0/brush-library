@@ -37,46 +37,52 @@ var render = Render.create({
 
 
 
-// create bodies
-for (var i = 0; i < 6; i++) {
-    var options = {
-        friction: 0.05,
-        restitution: 0.6
-    }
-    var box = Bodies.circle(getRandomNumber(0, viewportWidth - 220), getRandomNumber(500, viewportHeight - 200), 110, options);
-    boxes.push(box);
-    World.add(world, box);
-}
+// // create bodies
+// for (var i = 0; i < 6; i++) {
+//     var options = {
+//         friction: 0.05,
+//         restitution: 0.6
+//     }
+//     var box = Bodies.circle(getRandomNumber(0, viewportWidth - 220), getRandomNumber(500, viewportHeight - 200), 110, options);
+//     boxes.push(box);
+//     World.add(world, box);
+// }
 
 
 // create svg bodies
-// var select = function(root, selector) {
-//     return Array.prototype.slice.call(root.querySelectorAll(selector));
-// };
+var select = function(root, selector) {
+    return Array.prototype.slice.call(root.querySelectorAll(selector));
+};
 
-// var loadSvg = function(url) {
-//     return fetch(url)
-//         .then(function(response) { return response.text(); })
-//         .then(function(raw) { return (new window.DOMParser()).parseFromString(raw, 'image/svg+xml'); });
-// };
+var loadSvg = function(url) {
+    return fetch(url)
+        .then(function(response) { return response.text(); })
+        .then(function(raw) { return (new window.DOMParser()).parseFromString(raw, 'image/svg+xml'); });
+};
 
-// var svgs = ([
-//     './svgs-08.svg',
-//     './svgs-09.svg',
-//     './svgs-10.svg',
-//     './svgs-11.svg',
-//     './svgs-12.svg',
-//     './svgs-13.svg'
-// ]);
-// svgs.forEach(function(path) { 
-//     loadSvg(path).then(function(root) {
-//         var vertexSets = select(root, 'path')
-//             .map(function(path) { return Vertices.scale(Svg.pathToVertices(path, 30), 0.4, 0.4); });
+var svgs = ([
+    './svg/svgs-08.svg',
+    './svg/svgs-09.svg',
+    './svg/svgs-10.svg',
+    './svg/svgs-11.svg',
+    './svg/svgs-12.svg',
+    './svg/svgs-13.svg'
+]);
+svgs.forEach(function(path) { 
+    loadSvg(path).then(function(root) {
+        var vertexSets = select(root, 'path')
+            .map(function(path) { return Vertices.scale(Svg.pathToVertices(path, 30), 0.4, 0.4); });
 
-//         World.add(world, Bodies.fromVertices(100, 100, vertexSets, {}, true));
-//     });
-// });
-// console.log(world.bodies);
+        var options = {
+            friction: 0.05,
+             restitution: 0.6
+        }
+        var box = Bodies.fromVertices(getRandomNumber(0, viewportWidth - 220), getRandomNumber(500, viewportHeight - 200), vertexSets, options, true)
+        boxes.push(box);
+        World.add(world, box);
+    });
+});
+console.log(world.bodies);
 
 
 
@@ -120,8 +126,8 @@ document.body.addEventListener("mouseup", () => {
 
 
 
-// // run the renderer
-// Render.run(render);
+// run the renderer
+Render.run(render);
 
 // create runner
 var runner = Runner.create();

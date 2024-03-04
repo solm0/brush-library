@@ -31,45 +31,26 @@ var render = Render.create({
     options: {
         wireframeBackground: 'transparent',
         width: viewportWidth - 40,
-        height: viewportHeight - 40
+        height: viewportHeight - 40,
+        offset: {
+            x: 10, // x 축으로 10px 이동
+            y: 10  // y 축으로 10px 이동
+        }
     }
 });
+console.log(render);
 
 
-// create svg bodies
-var select = function(root, selector) {
-    return Array.prototype.slice.call(root.querySelectorAll(selector));
-};
-
-var loadSvg = function(url) {
-    return fetch(url)
-        .then(function(response) { return response.text(); })
-        .then(function(raw) { return (new window.DOMParser()).parseFromString(raw, 'image/svg+xml'); });
-};
-
-var svgs = ([
-    './svg/svgs-08.svg',
-    './svg/svgs-09.svg',
-    './svg/svgs-10.svg',
-    './svg/svgs-11.svg',
-    './svg/svgs-12.svg',
-    './svg/svgs-13.svg'
-]);
-svgs.forEach(function(path) { 
-    loadSvg(path).then(function(root) {
-        var vertexSets = select(root, 'path')
-            .map(function(path) { return Vertices.scale(Svg.pathToVertices(path, 30), 0.8, 0.8); });
-
-        var options = {
-            friction: 0.05,
-             restitution: 0.6
-        }
-        var box = Bodies.fromVertices(getRandomNumber(0, viewportWidth - 220), getRandomNumber(500, viewportHeight - 200), vertexSets, options, true)
-        boxes.push(box);
-        World.add(world, box);
-    });
-});
-console.log(world.bodies);
+// create bodies
+for (var i = 0; i < 6; i++) {
+    var options = {
+        friction: 0.05,
+        restitution: 0.6
+    }
+    var box = Bodies.circle(getRandomNumber(0, viewportWidth - 220), getRandomNumber(500, viewportHeight - 200), 110, options);
+    boxes.push(box);
+    World.add(world, box);
+}
 
 
 
@@ -139,7 +120,6 @@ function Boundary(x,y,w,h) {
 
 
 
-
 // body의 위치를 svg에서 참조하기
 function onSVGPositionChange() {
     let svgs = document.querySelectorAll('.container');
@@ -149,7 +129,7 @@ function onSVGPositionChange() {
 
         let posX = box.position.x - 125;
         let posY = box.position.y - 125;
-        let angle = box.angle * 50;
+        let angle = box.angle * 80;
 
         svg.style.left = posX + "px";
         svg.style.top = posY + "px"
@@ -157,21 +137,4 @@ function onSVGPositionChange() {
     });
 }
 
-
-
-
-const checkLength = setInterval(() => {
-    if (boxes.length === 6) {
-        clearInterval(checkLength); // clearInterval을 호출하여 setInterval을 멈춥니다.
-        console.log("Length of boxes array is now 6. Starting setInterval.");
-        startInterval();
-    }
-}, 100); // 매 초마다 배열의 길이를 확인합니다.
-
-// setInterval을 호출하는 함수
-function startInterval() {
-    setInterval(() => {
-        onSVGPositionChange(60);
-        console.log("Interval function is running...");
-    }, 200); // 예시로 2초마다 실행되도록 설정되어 있습니다.
-}
+setInterval(onSVGPositionChange, 60);

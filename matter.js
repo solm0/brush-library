@@ -36,19 +36,6 @@ var render = Render.create({
 });
 
 
-
-// // create bodies
-// for (var i = 0; i < 6; i++) {
-//     var options = {
-//         friction: 0.05,
-//         restitution: 0.6
-//     }
-//     var box = Bodies.circle(getRandomNumber(0, viewportWidth - 220), getRandomNumber(500, viewportHeight - 200), 110, options);
-//     boxes.push(box);
-//     World.add(world, box);
-// }
-
-
 // create svg bodies
 var select = function(root, selector) {
     return Array.prototype.slice.call(root.querySelectorAll(selector));

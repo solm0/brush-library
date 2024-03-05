@@ -4,11 +4,9 @@ var Engine = Matter.Engine,
     Body = Matter.Body,
     Mouse = Matter.Mouse,
     MouseConstraint = Matter.MouseConstraint,
-
     Render = Matter.Render,
     Runner = Matter.Runner,
     
-    Composite = Matter.Composite,
     Vertices = Matter.Vertices,
     Svg = Matter.Svg;
     
@@ -36,7 +34,6 @@ var render = Render.create({
     }
 });
 
-
 // create bodies
 for (var i = 0; i < 6; i++) {
     var options = {
@@ -48,16 +45,10 @@ for (var i = 0; i < 6; i++) {
     World.add(world, box);
 }
 
-
-
-
-
 boundaries.push(new Boundary(viewportWidth/2, -50, viewportWidth, 150));
 boundaries.push(new Boundary(viewportWidth/2, viewportHeight, viewportWidth, 150));
 boundaries.push(new Boundary(-50, viewportHeight/2, 150, viewportHeight));
 boundaries.push(new Boundary(viewportWidth + 10, viewportHeight/2, 150, viewportHeight));
-
-
 
 
 // create mouse
@@ -88,7 +79,6 @@ document.body.addEventListener("mouseup", () => {
         mousebody = null;
     }
 });
-
 document.body.addEventListener("mouseleave", () => {
     // console.log('mouse left body');
     if (mousebody) {
@@ -98,14 +88,11 @@ document.body.addEventListener("mouseleave", () => {
 });
 
 
-
 // // run the renderer
 // Render.run(render);
 
 // create runner
 var runner = Runner.create();
-
-// run the engine
 Runner.run(runner, engine);
 
 
@@ -122,8 +109,6 @@ function Boundary(x,y,w,h) {
     var boundary = Bodies.rectangle(x,y,w,h,options);
     World.add(world, boundary);
 }
-
-
 
 // body의 위치를 svg에서 참조하기
 function onSVGPositionChange() {
@@ -143,6 +128,3 @@ function onSVGPositionChange() {
 }
 
 setInterval(onSVGPositionChange, 60);
-
-
-

@@ -13,12 +13,12 @@ const buttonTexts = {
     button6: 'color circles',
 };
 
-let img;
-let text1;
-let text2;
-let text3;
-let text4;
-let imgTextContainer;
+let img,
+    text1,
+    text2,
+    text3,
+    text4,
+    imgTextContainer;
 
 function refTexts(work, artist, description, link) {
     this.work = work;
@@ -56,9 +56,6 @@ const buttonImgs = {
     button1: './img/img1.jpg',
     button2: './img/img2.jpg',
     button3: './img/img3.jpeg',
-    button4: '',
-    button5: '',
-    button6: '',
 }
 
 let buttonKeys = [];
@@ -152,7 +149,7 @@ function applyReference(buttonKey, ref) {
     text1.style('text-indent', '0px');
     text1.html(ref.work + '<br>');
 
-    img = createImg(buttonImgs[buttonKey]);
+    img = buttonImgs[buttonKey] ? createImg(buttonImgs[buttonKey]) : null;
     
     text2 = createP();
     text2.addClass('text');
